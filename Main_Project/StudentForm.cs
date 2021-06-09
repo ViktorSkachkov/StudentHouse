@@ -13,17 +13,17 @@ namespace Student_House
     public partial class StudentForm : Form
     {
         private List<String> UserEvents;
-        private StudentHouse sh;
-        private LogIn li;
-        private User u;
-        private Rules r;
+        private StudentHouse studentHouse;
+        private LogIn logIn;
+        private User user;
+        private Rules rules;
         public StudentForm(LogIn li, StudentHouse sh, User u, Rules r)
         {
             InitializeComponent();
-            this.sh = sh;
-            this.li = li;
-            this.u = u;
-            this.r = r;
+            this.studentHouse = sh;
+            this.logIn = li;
+            this.user = u;
+            this.rules = r;
             this.UserEvents = new List<string>();
             this.Fill();
             this.Update();
@@ -31,30 +31,30 @@ namespace Student_House
         }
         private void lblBack_Click(object sender, EventArgs e)
         {
-            this.li.Show();
+            this.logIn.Show();
             this.Close();
         }
         private void Fill()
         {
             this.cbDay.Items.Clear();
-            this.cbDay.Items.AddRange(this.sh.GetDays().ToArray());
+            this.cbDay.Items.AddRange(this.studentHouse.GetDays().ToArray());
             this.UpdateEvents();
         }
         private void WelcomeUser()
         {
-            String firstName = this.u.FirstName;
-            String surname = this.u.Surname;
-            String lastName = this.u.LastName;
+            String firstName = this.user.FirstName;
+            String surname = this.user.Surname;
+            String lastName = this.user.LastName;
             this.lblWelcome.Text = String.Format("Welcome back {0} {1} {2}!", firstName, surname, lastName);
         }
         private void Update()
         {
             this.lbRules.Items.Clear();
-            this.lbRules.Items.AddRange(this.r.GetRules.ToArray());
+            this.lbRules.Items.AddRange(this.rules.GetRules.ToArray());
             this.lbDaily.Items.Clear();
-            foreach(DayOrWeek d in this.sh.GetAllDays(this.u))
+            foreach(DayOrWeek d in this.studentHouse.GetAllDays(this.user))
             {
-                this.lbDaily.Items.Add(d.GetInfo(this.u));
+                this.lbDaily.Items.Add(d.GetInfo(this.user));
             }
         }
         private void UpdateEvents()

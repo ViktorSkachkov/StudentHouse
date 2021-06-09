@@ -13,26 +13,25 @@ namespace Student_House
     public partial class LogIn : Form
     {
         
-        private StudentHouse sh;
-        private Rules r;
-        private User user;
+        private StudentHouse studentHouse;
+        private Rules rules;
         public LogIn()
         {
             InitializeComponent();
-            this.sh = new StudentHouse();
-            this.r = new Rules();
+            this.studentHouse = new StudentHouse();
+            this.rules = new Rules();
         }
         private void ChangeForm(int userNumber, String password)
         {
-            User u = this.sh.GetUser(userNumber, password);
+            User u = this.studentHouse.GetUser(userNumber, password);
             if (u.DeterminePassword == "@student")
             {
-                StudentForm sf = new StudentForm(this, this.sh, u, this.r);
+                StudentForm sf = new StudentForm(this, this.studentHouse, u, this.rules);
                 sf.Show();
             }
             else if (u.DeterminePassword == "@admin")
             {
-                AdminForm af = new AdminForm(this, this.sh, u, this.r);
+                AdminForm af = new AdminForm(this, this.studentHouse, u, this.rules);
                 af.Show();
             }
             this.Visible = false;
@@ -41,11 +40,11 @@ namespace Student_House
         {
             int userNumber = int.Parse(this.tbUserNumber.Text.Trim());
             String password = this.tbPassword.Text.Trim();
-            if (this.sh.CheckNumber(userNumber))
+            if (this.studentHouse.CheckNumber(userNumber))
             {
-                if (this.sh.CheckPassword(password))
+                if (this.studentHouse.CheckPassword(password))
                 {
-                    User u = this.sh.GetUser(userNumber, password);
+                    User u = this.studentHouse.GetUser(userNumber, password);
                     if (u.Pending)
                     {
                         MessageBox.Show("Your account is still in pending! Please wait for approval from admin!");
@@ -60,9 +59,7 @@ namespace Student_House
                         {
                             this.ChangeForm(userNumber, password);
                         }
-                    }
-              
-
+                    }             
                 }
                 else
                 {
@@ -89,7 +86,7 @@ namespace Student_House
         private void signIn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SignIn signIn = new SignIn(this.sh, this);
+            SignIn signIn = new SignIn(this.studentHouse, this);
             signIn.Show();
         }
 

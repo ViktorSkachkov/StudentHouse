@@ -13,19 +13,19 @@ namespace Student_House
     public partial class AdminForm : Form
     {
         private List<String[]> complaintList;
-        private StudentHouse sh;
+        private StudentHouse studentHouse;
         private List<String> UserEvents;
-        private LogIn li;
-        private User u;
-        private Rules r;
+        private LogIn logIn;
+        private User user;
+        private Rules rules;
         private Random rand;
         public AdminForm(LogIn li, StudentHouse sh, User u, Rules r)
         {
             InitializeComponent();
-            this.sh = sh;
-            this.li = li;
-            this.u = u;
-            this.r = r;
+            this.studentHouse = sh;
+            this.logIn = li;
+            this.user = u;
+            this.rules = r;
             this.UserEvents = new List<string>();
             this.rand = new Random();
             this.UpdateRules();
@@ -44,9 +44,9 @@ namespace Student_House
             }
             else
             {
-                if (!this.r.CheckRule(rule))
+                if (!this.rules.CheckRule(rule))
                 {
-                    this.r.AddRule(rule);
+                    this.rules.AddRule(rule);
                     MessageBox.Show(String.Format("The rule {0} was successfully added!", rule));
                 }
                 else
@@ -59,7 +59,7 @@ namespace Student_House
         private void Remove()
         {
             String rule = this.lbRules.SelectedItem.ToString();
-            this.r.RemoveRule(rule);
+            this.rules.RemoveRule(rule);
             MessageBox.Show(String.Format("The rule {0} was successfully deleted!", rule));
             this.UpdateRules();
         }
@@ -85,8 +85,8 @@ namespace Student_House
             }
             else
             {
-                this.r.EditRule(index, oldRule, newRule);
-                this.r.RemoveRule(oldRule);
+                this.rules.EditRule(index, oldRule, newRule);
+                this.rules.RemoveRule(oldRule);
                 MessageBox.Show(String.Format("The rule '{0}' was successfully replaced with rule '{1}'", oldRule, newRule));
             }
             this.UpdateRules();
@@ -95,7 +95,7 @@ namespace Student_House
         private void RefreshPending()
         {
 
-            foreach (User u in sh.GetAllUsers())
+            foreach (User u in studentHouse.GetAllUsers())
             {
                 if (u.Pending)
                 {
@@ -106,7 +106,7 @@ namespace Student_House
 
         private void RefreshBann() {
             this.lbBanned.Items.Clear();
-            foreach (User u in sh.GetAllUsers())
+            foreach (User u in studentHouse.GetAllUsers())
             {
                 if (u.Banned)
                 {
@@ -117,7 +117,7 @@ namespace Student_House
         private void Fill()
         {
             this.cbDay.Items.Clear();
-            this.cbDay.Items.AddRange(this.sh.GetDays().ToArray());
+            this.cbDay.Items.AddRange(this.studentHouse.GetDays().ToArray());
             this.UpdateEvents();
         }
 
@@ -135,20 +135,20 @@ namespace Student_House
 
         private void lblBack_Click(object sender, EventArgs e)
         {
-            this.li.Show();
+            this.logIn.Show();
             this.Close();
         }
         private void WelcomeUser()
         {
-            String firstName = this.u.FirstName;
-            String surname = this.u.Surname;
-            String lastName = this.u.LastName;
+            String firstName = this.user.FirstName;
+            String surname = this.user.Surname;
+            String lastName = this.user.LastName;
             this.lblWelcome.Text = String.Format("Welcome back {0} {1} {2}!", firstName, surname, lastName);
         }
         private void UpdateRules()
         {
             this.lbRules.Items.Clear();
-            this.lbRules.Items.AddRange(this.r.GetRules.ToArray());
+            this.lbRules.Items.AddRange(this.rules.GetRules.ToArray());
         }
         private void UpdateComplaints()
         {
@@ -163,59 +163,59 @@ namespace Student_House
         }
         private void AssignRandomly()
         {
-            this.sh.ClearAllDays();
-            foreach(Task task in this.sh.GetAllTasks())
+            this.studentHouse.ClearAllDays();
+            foreach(Task task in this.studentHouse.GetAllTasks())
             {
                 if (task.Type == "weekly")
                 {
-                    int i = this.rand.Next(0, this.sh.GetAllUsers().Count - 1);
-                    this.sh.AddTask("This week", i, task);
+                    int i = this.rand.Next(0, this.studentHouse.GetAllUsers().Count - 1);
+                    this.studentHouse.AddTask("This week", i, task);
                 }
                 else
                 {
                     if(task.Type == "daily")
                     {
-                        foreach (String day in this.sh.GetDays())
+                        foreach (String day in this.studentHouse.GetDays())
                         {
-                                int i = this.rand.Next(0, this.sh.GetAllUsers().Count - 1);
-                                this.sh.AddTask(day, i, task);
+                                int i = this.rand.Next(0, this.studentHouse.GetAllUsers().Count - 1);
+                                this.studentHouse.AddTask(day, i, task);
                         }
                     }
                 }
             }
-            foreach (DayOrWeek d in this.sh.GetAllDays(null))
+            foreach (DayOrWeek d in this.studentHouse.GetAllDays(null))
             {
                 if (d.Name == "Monday")
                 {
-                    this.lblMonday.Text += d.GetInfo(null);
+                    this.lblMonday.Text += d.GetInfo();
                 }
                 if (d.Name == "Tuesday")
                 {
-                    this.lblTuesday.Text += d.GetInfo(null);
+                    this.lblTuesday.Text += d.GetInfo();
                 }
                 if (d.Name == "Wednesday")
                 {
-                    this.lblWednesday.Text += d.GetInfo(null);
+                    this.lblWednesday.Text += d.GetInfo();
                 }
                 if (d.Name == "Thursday")
                 {
-                    this.lblThursday.Text += d.GetInfo(null);
+                    this.lblThursday.Text += d.GetInfo();
                 }
                 if (d.Name == "Friday")
                 {
-                    this.lblFriday.Text += d.GetInfo(null);
+                    this.lblFriday.Text += d.GetInfo();
                 }
                 if (d.Name == "Saturday")
                 {
-                    this.lblSaturday.Text += d.GetInfo(null);
+                    this.lblSaturday.Text += d.GetInfo();
                 }
                 if (d.Name == "Sunday")
                 {
-                    this.lblSunday.Text += d.GetInfo(null);
+                    this.lblSunday.Text += d.GetInfo();
                 }
                 if(d.Name == "This week")
                 {
-                    this.lblThisWeek.Text += d.GetInfo(null);
+                    this.lblThisWeek.Text += d.GetInfo();
                 }
             }
         }
@@ -235,11 +235,11 @@ namespace Student_House
         {
             int id = Convert.ToInt32(lbPending.SelectedItem);
          
-            foreach (User u in sh.GetAllUsers())
+            foreach (User user in studentHouse.GetAllUsers())
             {
-                if (u.UserNumber == id)
+                if (user.UserNumber == id)
                 {
-                    u.Pending = false;
+                    user.ChangePending();
                 }
             }
             this.lbPending.Items.Clear();
@@ -249,12 +249,12 @@ namespace Student_House
 
         private void btnBann_Click(object sender, EventArgs e)
         {
-            foreach (User u in sh.GetAllUsers())
+            foreach (User user in studentHouse.GetAllUsers())
             {
-                if (u.UserNumber == Convert.ToInt32(tbBannAccounts.Text))
+                if (user.UserNumber == Convert.ToInt32(tbBannAccounts.Text))
                 {
-                    u.Banned = true;
-                    MessageBox.Show($"{u.UserNumber}" + " banned");
+                    user.ChangeBanned();
+                    MessageBox.Show($"{user.UserNumber}" + " banned");
                     this.RefreshBann();
                 }
             }
@@ -264,11 +264,11 @@ namespace Student_House
         {
             int id = Convert.ToInt32(lbBanned.SelectedItem);
 
-            foreach (User u in sh.GetAllUsers())
+            foreach (User user in studentHouse.GetAllUsers())
             {
-                if (u.UserNumber == Convert.ToInt32(this.lbBanned.SelectedItem))
+                if (user.UserNumber == Convert.ToInt32(this.lbBanned.SelectedItem))
                 {
-                    u.Banned = false;
+                    user.ChangeBanned();
                     MessageBox.Show($"{id}" + " unbanned");
                     this.RefreshBann();
                 }
@@ -277,7 +277,7 @@ namespace Student_House
         private void Delete()
         {
             int id = Convert.ToInt32(this.lbBanned.SelectedItem);
-            this.sh.RemoveUser(id);
+            this.studentHouse.RemoveUser(id);
             this.lbBanned.Items.Clear();
             MessageBox.Show($"{id}" + " rejected");
             this.RefreshBann();
@@ -310,7 +310,7 @@ namespace Student_House
         private void Deny()
         {
             int id = Convert.ToInt32(this.lbPending.SelectedItem);
-            this.sh.RemoveUser(id);
+            this.studentHouse.RemoveUser(id);
             this.lbPending.Items.Clear();
             MessageBox.Show($"{id}" + " rejected");
             this.RefreshPending();
@@ -346,6 +346,40 @@ namespace Student_House
             try
             {
                 this.RemoveComp();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void ShowPending()
+        {
+            int userNumber = Convert.ToInt32(this.lbPending.SelectedItem);
+            User u = this.studentHouse.GetUser(userNumber);
+            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName);
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ShowPending();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void ShowBanned()
+        {
+            int userNumber = Convert.ToInt32(this.lbBanned.SelectedItem);
+            User u = this.studentHouse.GetUser(userNumber);
+            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName);
+        }
+        private void btnShowBanned_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
             }
             catch(Exception ex)
             {

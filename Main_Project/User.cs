@@ -58,15 +58,23 @@ namespace Student_House
             get { return this.determinePassword; }
         }
         public bool Pending
-        { get { return this.pending; }
-            set { this.pending = value; }
+        { 
+            get { return this.pending; }
+            private set { this.pending = value; }
         }
 
         public bool Banned
         {
             get { return this.banned; }
-            set { this.banned = value; }
+            private set { this.banned = value; }
         }
-
+        public void ChangeBanned()
+        {
+            this.banned = !this.banned;
+        }
+        public void ChangePending()
+        {
+            this.pending = !this.pending;
+        }
     }
 }

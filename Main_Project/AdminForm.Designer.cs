@@ -79,12 +79,18 @@
             this.lbComp = new System.Windows.Forms.ListBox();
             this.lblBack = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnShowPending = new System.Windows.Forms.Button();
+            this.gbBann = new System.Windows.Forms.GroupBox();
+            this.gbPending = new System.Windows.Forms.GroupBox();
+            this.btnShowBanned = new System.Windows.Forms.Button();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
             this.tpTasks.SuspendLayout();
             this.tpEvents.SuspendLayout();
             this.tpComplaints.SuspendLayout();
+            this.gbBann.SuspendLayout();
+            this.gbPending.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbRules
@@ -223,17 +229,8 @@
             // tpPendingAccounts
             // 
             this.tpPendingAccounts.BackColor = System.Drawing.Color.Gainsboro;
-            this.tpPendingAccounts.Controls.Add(this.label5);
-            this.tpPendingAccounts.Controls.Add(this.tbBannAccounts);
-            this.tpPendingAccounts.Controls.Add(this.btnBann);
-            this.tpPendingAccounts.Controls.Add(this.button3);
-            this.tpPendingAccounts.Controls.Add(this.button4);
-            this.tpPendingAccounts.Controls.Add(this.label4);
-            this.tpPendingAccounts.Controls.Add(this.lbBanned);
-            this.tpPendingAccounts.Controls.Add(this.btnDeny);
-            this.tpPendingAccounts.Controls.Add(this.btnApprove);
-            this.tpPendingAccounts.Controls.Add(this.label3);
-            this.tpPendingAccounts.Controls.Add(this.lbPending);
+            this.tpPendingAccounts.Controls.Add(this.gbPending);
+            this.tpPendingAccounts.Controls.Add(this.gbBann);
             this.tpPendingAccounts.Location = new System.Drawing.Point(4, 25);
             this.tpPendingAccounts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpPendingAccounts.Name = "tpPendingAccounts";
@@ -245,7 +242,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(604, 86);
+            this.label5.Location = new System.Drawing.Point(36, 133);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 17);
             this.label5.TabIndex = 23;
@@ -253,7 +250,7 @@
             // 
             // tbBannAccounts
             // 
-            this.tbBannAccounts.Location = new System.Drawing.Point(719, 86);
+            this.tbBannAccounts.Location = new System.Drawing.Point(151, 133);
             this.tbBannAccounts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbBannAccounts.Name = "tbBannAccounts";
             this.tbBannAccounts.Size = new System.Drawing.Size(111, 22);
@@ -261,7 +258,7 @@
             // 
             // btnBann
             // 
-            this.btnBann.Location = new System.Drawing.Point(719, 123);
+            this.btnBann.Location = new System.Drawing.Point(151, 170);
             this.btnBann.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBann.Name = "btnBann";
             this.btnBann.Size = new System.Drawing.Size(111, 23);
@@ -272,7 +269,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1069, 425);
+            this.button3.Location = new System.Drawing.Point(470, 472);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -283,7 +280,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(867, 425);
+            this.button4.Location = new System.Drawing.Point(268, 472);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
@@ -295,7 +292,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(916, 66);
+            this.label4.Location = new System.Drawing.Point(240, -21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 17);
             this.label4.TabIndex = 18;
@@ -305,7 +302,7 @@
             // 
             this.lbBanned.FormattingEnabled = true;
             this.lbBanned.ItemHeight = 16;
-            this.lbBanned.Location = new System.Drawing.Point(867, 86);
+            this.lbBanned.Location = new System.Drawing.Point(268, 133);
             this.lbBanned.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbBanned.Name = "lbBanned";
             this.lbBanned.Size = new System.Drawing.Size(277, 324);
@@ -313,7 +310,7 @@
             // 
             // btnDeny
             // 
-            this.btnDeny.Location = new System.Drawing.Point(243, 425);
+            this.btnDeny.Location = new System.Drawing.Point(213, 476);
             this.btnDeny.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeny.Name = "btnDeny";
             this.btnDeny.Size = new System.Drawing.Size(75, 32);
@@ -324,7 +321,7 @@
             // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(41, 425);
+            this.btnApprove.Location = new System.Drawing.Point(11, 476);
             this.btnApprove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 32);
@@ -336,7 +333,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(89, 66);
+            this.label3.Location = new System.Drawing.Point(39, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 17);
             this.label3.TabIndex = 14;
@@ -346,10 +343,10 @@
             // 
             this.lbPending.FormattingEnabled = true;
             this.lbPending.ItemHeight = 16;
-            this.lbPending.Location = new System.Drawing.Point(41, 86);
+            this.lbPending.Location = new System.Drawing.Point(11, 153);
             this.lbPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbPending.Name = "lbPending";
-            this.lbPending.Size = new System.Drawing.Size(277, 324);
+            this.lbPending.Size = new System.Drawing.Size(277, 308);
             this.lbPending.TabIndex = 13;
             // 
             // tpTasks
@@ -661,6 +658,59 @@
             this.lblWelcome.TabIndex = 2;
             this.lblWelcome.Text = "Welcome";
             // 
+            // btnShowPending
+            // 
+            this.btnShowPending.Location = new System.Drawing.Point(351, 21);
+            this.btnShowPending.Name = "btnShowPending";
+            this.btnShowPending.Size = new System.Drawing.Size(210, 62);
+            this.btnShowPending.TabIndex = 24;
+            this.btnShowPending.Text = "Show information about a pending account";
+            this.btnShowPending.UseVisualStyleBackColor = true;
+            this.btnShowPending.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // gbBann
+            // 
+            this.gbBann.BackColor = System.Drawing.Color.Red;
+            this.gbBann.Controls.Add(this.btnShowBanned);
+            this.gbBann.Controls.Add(this.lbBanned);
+            this.gbBann.Controls.Add(this.label4);
+            this.gbBann.Controls.Add(this.button4);
+            this.gbBann.Controls.Add(this.label5);
+            this.gbBann.Controls.Add(this.button3);
+            this.gbBann.Controls.Add(this.tbBannAccounts);
+            this.gbBann.Controls.Add(this.btnBann);
+            this.gbBann.Location = new System.Drawing.Point(621, 0);
+            this.gbBann.Name = "gbBann";
+            this.gbBann.Size = new System.Drawing.Size(564, 508);
+            this.gbBann.TabIndex = 0;
+            this.gbBann.TabStop = false;
+            this.gbBann.Text = "Bann";
+            // 
+            // gbPending
+            // 
+            this.gbPending.BackColor = System.Drawing.Color.Lime;
+            this.gbPending.Controls.Add(this.btnShowPending);
+            this.gbPending.Controls.Add(this.label3);
+            this.gbPending.Controls.Add(this.btnDeny);
+            this.gbPending.Controls.Add(this.lbPending);
+            this.gbPending.Controls.Add(this.btnApprove);
+            this.gbPending.Location = new System.Drawing.Point(3, 0);
+            this.gbPending.Name = "gbPending";
+            this.gbPending.Size = new System.Drawing.Size(612, 514);
+            this.gbPending.TabIndex = 26;
+            this.gbPending.TabStop = false;
+            this.gbPending.Text = "Pending";
+            // 
+            // btnShowBanned
+            // 
+            this.btnShowBanned.Location = new System.Drawing.Point(151, 21);
+            this.btnShowBanned.Name = "btnShowBanned";
+            this.btnShowBanned.Size = new System.Drawing.Size(226, 73);
+            this.btnShowBanned.TabIndex = 24;
+            this.btnShowBanned.Text = "Show information about a banned account";
+            this.btnShowBanned.UseVisualStyleBackColor = true;
+            this.btnShowBanned.Click += new System.EventHandler(this.btnShowBanned_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -676,12 +726,15 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tpPendingAccounts.ResumeLayout(false);
-            this.tpPendingAccounts.PerformLayout();
             this.tpTasks.ResumeLayout(false);
             this.tpTasks.PerformLayout();
             this.tpEvents.ResumeLayout(false);
             this.tpEvents.PerformLayout();
             this.tpComplaints.ResumeLayout(false);
+            this.gbBann.ResumeLayout(false);
+            this.gbBann.PerformLayout();
+            this.gbPending.ResumeLayout(false);
+            this.gbPending.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -739,5 +792,9 @@
         private System.Windows.Forms.Button btnClearComp;
         private System.Windows.Forms.Button btnRemoveComp;
         private System.Windows.Forms.ListBox lbComp;
+        private System.Windows.Forms.GroupBox gbPending;
+        private System.Windows.Forms.Button btnShowPending;
+        private System.Windows.Forms.GroupBox gbBann;
+        private System.Windows.Forms.Button btnShowBanned;
     }
 }

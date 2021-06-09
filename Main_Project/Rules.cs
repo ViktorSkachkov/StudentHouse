@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +19,14 @@ namespace Student_House
         }
         public bool CheckRule(String rule)
         {
-            return this.rules.Contains(rule);
-       
+            if (this.rules.Contains(rule))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public void RemoveRule(String rule)
         {

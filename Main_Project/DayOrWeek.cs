@@ -54,26 +54,25 @@ namespace Student_House
             }
             return number;
         }
-        public String GetInfo(User u)
+        public String GetInfo()
         {
             String holder = String.Format(" {0}: ", this.name);
-            if (u == null)
-            {
                 for (int i = 0; i < this.students.Count; i++)
                 {
                     holder += String.Format("Student {0} will {1}. ", this.students[i].FirstName, this.tasks[i].Name);
                 }
-            }
-            else
-            {
-                for(int i = 0; i < this.students.Count; i++)
+            return holder;
+        }
+        public String GetInfo(User u)
+        {
+            String holder = String.Format(" {0}: ", this.name);
+                for (int i = 0; i < this.students.Count; i++)
                 {
-                    if(this.students[i] == u)
+                    if (this.students[i] == u)
                     {
                         holder += String.Format("You will {0}. ", this.tasks[i].Name);
-                    }                           
+                    }
                 }
-            }
             return holder;
         }
     }
