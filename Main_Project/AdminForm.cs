@@ -12,12 +12,12 @@ namespace Student_House
 {
     public partial class AdminForm : Form
     {
-        private List<String[]> complaintList;
         private StudentHouse studentHouse;
-        private List<String> UserEvents;
         private LogIn logIn;
         private User user;
         private Rules rules;
+        private List<String> UserEvents;
+        private List<User> tempForUsers;
         private Random rand;
         public AdminForm(LogIn li, StudentHouse sh, User u, Rules r)
         {
@@ -27,6 +27,7 @@ namespace Student_House
             this.user = u;
             this.rules = r;
             this.UserEvents = new List<string>();
+            this.tempForUsers = new List<User>();
             this.rand = new Random();
             this.UpdateRules();
             this.UpdateComplaints();
@@ -152,71 +153,81 @@ namespace Student_House
         }
         private void UpdateComplaints()
         {
-            this.complaintList = Complaint.GetComplaints();
             this.lbComp.Items.Clear();
-            foreach (string[] complaint in complaintList)
+            foreach (Complaint c in this.studentHouse.GetComplaints())
             {
-                string complaintDate = complaint[1];
-                string complaintDesc = complaint[0];
-                this.lbComp.Items.Add(complaintDate + ": " + complaintDesc);
+                this.lbComp.Items.Add(c.GetComplaint());
             }
         }
-        private void AssignRandomly()
+        private void FillWithTasks(String building)
         {
-            this.studentHouse.ClearAllDays();
-            foreach(Task task in this.studentHouse.GetAllTasks())
-            {
-                if (task.Type == "weekly")
-                {
-                    int i = this.rand.Next(0, this.studentHouse.GetAllUsers().Count - 1);
-                    this.studentHouse.AddTask("This week", i, task);
-                }
-                else
-                {
-                    if(task.Type == "daily")
-                    {
-                        foreach (String day in this.studentHouse.GetDays())
-                        {
-                                int i = this.rand.Next(0, this.studentHouse.GetAllUsers().Count - 1);
-                                this.studentHouse.AddTask(day, i, task);
-                        }
-                    }
-                }
-            }
+            this.lblMonday.Text = "";
+            this.lblTuesday.Text = "";
+            this.lblWednesday.Text = "";
+            this.lblThursday.Text = "";
+            this.lblFriday.Text = "";
+            this.lblSaturday.Text = "";
+            this.lblSunday.Text = "";
+            this.lblThisWeek.Text = "";
             foreach (DayOrWeek d in this.studentHouse.GetAllDays(null))
             {
                 if (d.Name == "Monday")
                 {
-                    this.lblMonday.Text += d.GetInfo();
+                    this.lblMonday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Tuesday")
                 {
-                    this.lblTuesday.Text += d.GetInfo();
+                    this.lblTuesday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Wednesday")
                 {
-                    this.lblWednesday.Text += d.GetInfo();
+                    this.lblWednesday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Thursday")
                 {
-                    this.lblThursday.Text += d.GetInfo();
+                    this.lblThursday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Friday")
                 {
-                    this.lblFriday.Text += d.GetInfo();
+                    this.lblFriday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Saturday")
                 {
-                    this.lblSaturday.Text += d.GetInfo();
+                    this.lblSaturday.Text += d.GetInfo(building);
                 }
                 if (d.Name == "Sunday")
                 {
-                    this.lblSunday.Text += d.GetInfo();
+                    this.lblSunday.Text += d.GetInfo(building);
                 }
-                if(d.Name == "This week")
+                if (d.Name == "This week")
                 {
-                    this.lblThisWeek.Text += d.GetInfo();
+                    this.lblThisWeek.Text += d.GetInfo(building);
                 }
+            }
+        }
+        private void AssignRandomly()
+        {
+            String building = this.cbBuilding.SelectedItem.ToString();
+            this.studentHouse.ClearAllDays(building);
+            foreach (Task task in this.studentHouse.GetAllTasks())
+            {
+                if (task.Type == "weekly")
+                {
+                    int i = this.rand.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                    this.studentHouse.AddTask(building, "This week", i, task);
+                }
+                else
+                {
+                    if (task.Type == "daily")
+                    {
+                        foreach (String day in this.studentHouse.GetDays())
+                        {
+                            int i = this.rand.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                            this.studentHouse.AddTask(building, day, i, task);
+                        }
+                    }
+                }
+                this.FillWithTasks(building);
             }
         }
         private void btnAssign_Click(object sender, EventArgs e)
@@ -253,7 +264,7 @@ namespace Student_House
             {
                 if (user.UserNumber == Convert.ToInt32(tbBannAccounts.Text))
                 {
-                    user.ChangeBanned();
+                    user.Bann();
                     MessageBox.Show($"{user.UserNumber}" + " banned");
                     this.RefreshBann();
                 }
@@ -268,7 +279,7 @@ namespace Student_House
             {
                 if (user.UserNumber == Convert.ToInt32(this.lbBanned.SelectedItem))
                 {
-                    user.ChangeBanned();
+                    user.Unbann();
                     MessageBox.Show($"{id}" + " unbanned");
                     this.RefreshBann();
                 }
@@ -300,9 +311,9 @@ namespace Student_House
         }
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
-            string Event = cbEvent.Text;
-            string Day = cbDay.Text;
-            string Time = cbTime.Text;
+            string Event = cbEvent.SelectedItem.ToString();
+            string Day = cbDay.SelectedItem.ToString();
+            string Time = cbTime.SelectedItem.ToString();
 
             UserEvents.Add(Event + " on " + Day + " at " + Time);
             UpdateEvents();
@@ -328,17 +339,18 @@ namespace Student_House
         }
 
         private void btnClearComp_Click(object sender, EventArgs e)
-        {
+        { 
             this.lbComp.Items.Clear();
+            this.studentHouse.ClearComplaints();
+            MessageBox.Show("All the complaints were cleared!");
         }
         private void RemoveComp()
         {
             int action = this.lbComp.SelectedIndex;
             if (action > -1)
             {
-                this.complaintList.RemoveAt(action);
-                Complaint.RemoveCom(action);
                 this.lbComp.Items.RemoveAt(action);
+                this.studentHouse.RemoveComplaint(action);
             }
         }
         private void btnRemoveComp_Click(object sender, EventArgs e)
@@ -356,7 +368,7 @@ namespace Student_House
         {
             int userNumber = Convert.ToInt32(this.lbPending.SelectedItem);
             User u = this.studentHouse.GetUser(userNumber);
-            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName);
+            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName + " in building " + u.Building);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -373,13 +385,131 @@ namespace Student_House
         {
             int userNumber = Convert.ToInt32(this.lbBanned.SelectedItem);
             User u = this.studentHouse.GetUser(userNumber);
-            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName);
+            MessageBox.Show(u.FirstName + " " + u.Surname + " " + u.LastName + " in " + u.Building);
         }
         private void btnShowBanned_Click(object sender, EventArgs e)
         {
             try
             {
 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void SeeTasks()
+        {
+            String building = this.cbBuilding.SelectedItem.ToString();
+            this.FillWithTasks(building);
+        }
+        private void btnSeeTasks_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.SeeTasks();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Answer()
+        {
+            int index = this.lbComp.SelectedIndex;
+            Complaint complaint = this.studentHouse.GetComplaints()[index];
+            User receiver = complaint.GetSender;
+            String message = this.tbMessage.Text.Trim();
+            if (receiver.AddAnswer(message))
+            {
+                throw new Exception("Answer successfully sent!");
+            }
+            else
+            {
+                throw new Exception("Write something in the text field!");
+            }
+        }
+        private void btnAnswerAComplaint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Answer();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void ShowBuildingStudents()
+        {
+            String building = this.cbMessageToBuilding.SelectedItem.ToString();
+            this.lbShowStudentsFromSameBuilding.Items.Clear();
+            this.tempForUsers.Clear();
+            foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building)) 
+            {
+                this.tempForUsers.Add(u);
+                this.lbShowStudentsFromSameBuilding.Items.Add(u.GetInfo());
+                    }
+        }
+        private void btnShowBuildingStudents_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ShowBuildingStudents();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void SendMessageToSelectedStudent()
+        {
+            int index = this.lbShowStudentsFromSameBuilding.SelectedIndex;
+            User u = this.tempForUsers[index];
+            String comment = this.tbSendToSelected.Text.Trim();
+            if(comment != "")
+            {
+                u.AddMessage(comment, this.user);
+                throw new Exception("Message successfully sent!");
+            }
+            else
+            {
+                throw new Exception("Write something in the text field!");
+            }
+        }
+        private void btnSendMessageToSelected_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.SendMessageToSelectedStudent();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void SendToAll()
+        {
+            String building = this.cbMessageToBuilding.SelectedItem.ToString();
+            String message = this.tbSendToSelected.Text.Trim();
+            if (message != "")
+            {
+                foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building))
+                {
+                    u.AddMessage(message, this.user);
+                }
+                throw new Exception("Message successfully sent!");
+            }
+            else
+            {
+                throw new Exception("Write something in the text field!");
+            }
+        }
+        private void btnSendToAllStudentsFromBuilding_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.SendToAll();
             }
             catch(Exception ex)
             {

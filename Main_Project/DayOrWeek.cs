@@ -22,10 +22,19 @@ namespace Student_House
             this.students.Add(student);
             this.tasks.Add(task);
         }
-        public void RemoveAll()
+        public void RemoveAllAtTheBuilding(String building)
         {
-            this.students.Clear();
-            this.tasks.Clear();
+            int index = 0;
+            foreach (User user in this.students)
+            {
+                if (user.Building == building)
+                {
+                    this.students.Remove(user);
+                    Task task = this.tasks[index];
+                    this.tasks.Remove(task);
+                }
+                index++;
+            }
         }
         public String Name
         {
@@ -42,24 +51,27 @@ namespace Student_House
             get { return this.tasks; }
             private set { this.tasks = value; }
         }
-        public int GetNumberOfStudents(User u)
+        public int GetNumberOfTimes(User u)
         {
             int number = 0;
-            foreach(User n in this.students)
+            foreach (User n in this.students)
             {
-                if(n == u)
+                if (n == u)
                 {
                     number++;
                 }
             }
             return number;
         }
-        public String GetInfo()
+        public String GetInfo(String building)
         {
             String holder = String.Format(" {0}: ", this.name);
                 for (int i = 0; i < this.students.Count; i++)
                 {
-                    holder += String.Format("Student {0} will {1}. ", this.students[i].FirstName, this.tasks[i].Name);
+                    if (this.students[i].Building == building)
+                    {
+                        holder += String.Format("Student {0} will {1}. ", this.students[i].FirstName, this.tasks[i].Name);
+                    }
                 }
             return holder;
         }

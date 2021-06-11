@@ -6,24 +6,33 @@ using System.Threading.Tasks;
 
 namespace Student_House
 {
-    class Complaint
+    public class Complaint
     {
-        public static List<string[]> complaintlist = new List<string[]>();
         private string description;
         private DateTime time;
-
-        public Complaint(string description, DateTime time)
+        private String building;
+        private User sender;
+        public Complaint(string description, DateTime time, String building, User sender)
         {
-            complaintlist.Add(new string[] { description, time.ToString() });
+            this.description = description;
+            this.time = time;
+            this.building = building;
+            this.sender = sender;
         }
-
-        public static void RemoveCom(int index)
+        public String GetComplaint()
         {
-            Complaint.complaintlist.RemoveAt(index);
+            String holder = description + " " + time.ToString() + " from building " + building;
+            return holder;
         }
-        public static List<string[]> GetComplaints()
+        public String Building
         {
-            return complaintlist;
+            get { return this.building; }
+            private set { this.building = value; }
+        }
+        public User GetSender
+        {
+            get { return this.sender; }
+            private set { this.sender = value; }
         }
     }
 }

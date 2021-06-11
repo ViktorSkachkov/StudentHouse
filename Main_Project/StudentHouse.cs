@@ -11,17 +11,21 @@ namespace Student_House
         private List<DayOrWeek> days;
         private List<User> users;
         private List<Task> tasks;
+        private List<Complaint> complaints;
+        private List<Event> events;
         private Random rand;
         public StudentHouse()
         {
-            this.users = new List<User>() { new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "sulphur", "@student", false, false),
-                                            new User(1234, "Johnny", "Brown", "Kerrigan", "j.kerriganY@gmail.com", "pas", "@student", true, false),
-                                            new User(1, "Pavel", "Ivanov", "Vasilov", "pav.vasilov999@gmail.com", "admin", "@admin", false, false)};           
+            this.users = new List<User>() { new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "sulphur", "@student", false, false),
+                                            new User(1234, "Johnny", "Brown", "Kerrigan", "j.kerriganY@gmail.com", "B2", "pas", "@student", true, false),
+                                            new User(1, "Pavel", "Ivanov", "Vasilov", "pav.vasilov999@gmail.com", "admin", "admin", "@admin", false, false)};           
             this.days = new List<DayOrWeek>() { new DayOrWeek("Monday"), new DayOrWeek("Tuesday"), new DayOrWeek("Wednesday"), new DayOrWeek("Thursday"), new DayOrWeek("Friday"), new DayOrWeek("Saturday"), new DayOrWeek("Sunday"), new DayOrWeek("This week")};
             this.tasks = new List<Task>() { new Task("do the garbage disposal", "daily"), new Task("swipe the whole property", "daily"), new Task("clean the dishes", "daily"), new Task("clean the bathroom", "weekly"), new Task("clean the whole property", "weekly") };
+            this.events = new List<Event>();
+            this.complaints = new List<Complaint>();
             this.rand = new Random();
         }
-        public void AddUser(int userNumber, String firstName, String surname, String lastName, String email, String password, String determinePassword, bool pending, bool banned)
+        public void AddUser(int userNumber, String firstName, String surname, String lastName, String email, String building, String password, String determinePassword, bool pending, bool banned)
         {
                 if (!this.CheckName(firstName, surname, lastName))
                 {
@@ -29,7 +33,7 @@ namespace Student_House
                     {
                         if (!this.CheckPassword(password))
                         {
-                            this.users.Add(new User(userNumber, firstName, surname, lastName, email, password, determinePassword, pending, banned));
+                            this.users.Add(new User(userNumber, firstName, surname, lastName, email, building, password, determinePassword, pending, banned));
                         }//gorniq red kod ima problem s USER
                         else
                         {
@@ -45,6 +49,31 @@ namespace Student_House
                 {
                     throw new Exception("This name is already used by another user!");
                 }
+        }
+        public List<Complaint> GetComplaints()
+        {
+            return this.complaints;
+        }
+        public void AddComplaint(String complaintdescription, DateTime complaintdate, String building, User sender)
+        {
+            if (complaintdescription != "")
+            {
+                this.complaints.Add(new Complaint(complaintdescription, complaintdate, building, sender));
+                throw new Exception("The complaint was successfully added!");
+            }
+            else
+            {
+                throw new Exception("Write something in the text field!");
+            }
+        }
+        public void RemoveComplaint(int index)
+        {
+            this.complaints.RemoveAt(index);
+            throw new Exception("The complaint was successfully removed!");
+        }
+        public void ClearComplaints()
+        {
+            this.complaints.Clear();
         }
         public void RemoveUser(int userNumber)
         {
@@ -69,20 +98,26 @@ namespace Student_House
         {
             return this.users.Exists(x => x.Email == email);
         }
-        public void AddTask(String day, int i, Task task)
+        public List<User> GetUsersFromSameBuilding(String building)
+        {
+            List<User> temp = new List<User>();
+            temp = this.users.FindAll(x => x.Building == building);
+            return temp;
+        }
+        public void AddTask(String building, String day, int i, Task task)
         {
             DayOrWeek d = this.days.Find(x => x.Name == day);
-            User u = this.users[i];
-            if (this.CheckUser(u) && u.DeterminePassword != "@admin")
+            User u = this.GetUsersFromSameBuilding(building)[i];
+            if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
             {
                 d.Add(u, task);
             }
             else
             {
-                for (i = 0; i < this.users.Count; i++)
+                for (i = 0; i < this.GetUsersFromSameBuilding(building).Count; i++)
                 {
-                    u = this.users[i];
-                    if (this.CheckUser(u) && u.DeterminePassword != "@admin")
+                    u = this.GetUsersFromSameBuilding(building)[i];
+                    if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
                     {
                         d.Add(u, task);
                         break;
@@ -90,32 +125,28 @@ namespace Student_House
                 }
             }
         }
-        private bool CheckUser(User u)
+        private bool CheckUser(User u, String building)
         {
             int number = 0;
+            List<User> temp = new List<User>();
+            temp = this.GetUsersFromSameBuilding(building);
             foreach (DayOrWeek d in this.days)
             {
                 if (d.Students.Contains(u))
                 {
-                    number += d.GetNumberOfStudents(u);
+                    number += d.GetNumberOfTimes(u);
                 }
             }
-            double checker = 23 / (this.users.Count - 1);
+            double checker = 23 / (temp.Count);
             return number <= Math.Ceiling(checker);
         }
-        public void ClearAllDays()
+        public void ClearAllDays(String building)
         {
             foreach(DayOrWeek d in this.days)
             {
-                d.RemoveAll();
+                d.RemoveAllAtTheBuilding(building);
             }
-        }
-        public bool getPending(int userNumber, String password) {
-
-            User user = this.users.Find(x => x.UserNumber == userNumber);
-            return user.Pending;
-        }
-        
+        }       
         public User GetUser(int userNumber, String password)
         {
             if (this.users.Exists(x => x.Password == password && x.UserNumber == userNumber))
@@ -156,6 +187,10 @@ namespace Student_House
         public List<Task> GetAllTasks()
         {
             return this.tasks;
+        }
+        public List<Event> GetEvents()
+        {
+            return this.events;
         }
     }
 }

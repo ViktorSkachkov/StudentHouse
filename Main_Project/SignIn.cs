@@ -36,6 +36,7 @@ namespace Student_House
                 string surname = tbSurname.Text.Trim();
                 string lastName = tbLastName.Text.Trim();
                 string email = tbEmail.Text.Trim();
+                string building = cbBuilding.SelectedItem.ToString().Trim(); 
                 string password = tbPassword.Text.Trim();
                 string repeatPassword = tbPassword.Text.Trim();
                 if (password == repeatPassword)
@@ -43,7 +44,7 @@ namespace Student_House
 
                     var random = new Random();
                     stNumber = random.Next(1000, 9999);
-                    this.studentHouse.AddUser(stNumber, firstName, surname, lastName, email, password, "@student", true, false);
+                    this.studentHouse.AddUser(stNumber, firstName, surname, lastName, email, building, password, "@student", true, false);
                     this.Hide();
                     MessageBox.Show($"{stNumber}");
                     login.Show();

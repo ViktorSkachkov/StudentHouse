@@ -38,17 +38,19 @@ namespace Student_House
             this.label3 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbRepeatPassowrd = new System.Windows.Forms.TextBox();
             this.btnSignIn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblBuilding = new System.Windows.Forms.Label();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.cbBuilding = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // tbFirstName
             // 
             this.tbFirstName.Location = new System.Drawing.Point(164, 79);
-            this.tbFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(132, 22);
             this.tbFirstName.TabIndex = 0;
@@ -76,7 +78,7 @@ namespace Student_House
             // tbLastName
             // 
             this.tbLastName.Location = new System.Drawing.Point(164, 177);
-            this.tbLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLastName.Margin = new System.Windows.Forms.Padding(4);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(132, 22);
             this.tbLastName.TabIndex = 2;
@@ -94,7 +96,7 @@ namespace Student_House
             // tbSurname
             // 
             this.tbSurname.Location = new System.Drawing.Point(164, 127);
-            this.tbSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSurname.Margin = new System.Windows.Forms.Padding(4);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.Size = new System.Drawing.Size(132, 22);
             this.tbSurname.TabIndex = 4;
@@ -102,7 +104,7 @@ namespace Student_House
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(80, 249);
+            this.label3.Location = new System.Drawing.Point(80, 227);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 17);
@@ -111,8 +113,8 @@ namespace Student_House
             // 
             // tbEmail
             // 
-            this.tbEmail.Location = new System.Drawing.Point(164, 240);
-            this.tbEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbEmail.Location = new System.Drawing.Point(164, 218);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(4);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(132, 22);
             this.tbEmail.TabIndex = 6;
@@ -127,14 +129,6 @@ namespace Student_House
             this.label4.TabIndex = 9;
             this.label4.Text = "Password";
             // 
-            // tbPassword
-            // 
-            this.tbPassword.Location = new System.Drawing.Point(164, 292);
-            this.tbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(132, 22);
-            this.tbPassword.TabIndex = 8;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -148,7 +142,7 @@ namespace Student_House
             // tbRepeatPassowrd
             // 
             this.tbRepeatPassowrd.Location = new System.Drawing.Point(455, 297);
-            this.tbRepeatPassowrd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRepeatPassowrd.Margin = new System.Windows.Forms.Padding(4);
             this.tbRepeatPassowrd.Name = "tbRepeatPassowrd";
             this.tbRepeatPassowrd.Size = new System.Drawing.Size(132, 22);
             this.tbRepeatPassowrd.TabIndex = 10;
@@ -156,7 +150,7 @@ namespace Student_House
             // btnSignIn
             // 
             this.btnSignIn.Location = new System.Drawing.Point(165, 386);
-            this.btnSignIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSignIn.Margin = new System.Windows.Forms.Padding(4);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(249, 46);
             this.btnSignIn.TabIndex = 12;
@@ -174,17 +168,48 @@ namespace Student_House
             this.label6.TabIndex = 13;
             this.label6.Text = "Sign In page";
             // 
+            // lblBuilding
+            // 
+            this.lblBuilding.AutoSize = true;
+            this.lblBuilding.Location = new System.Drawing.Point(76, 264);
+            this.lblBuilding.Name = "lblBuilding";
+            this.lblBuilding.Size = new System.Drawing.Size(58, 17);
+            this.lblBuilding.TabIndex = 14;
+            this.lblBuilding.Text = "Building";
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Location = new System.Drawing.Point(164, 295);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(132, 22);
+            this.tbPassword.TabIndex = 16;
+            // 
+            // cbBuilding
+            // 
+            this.cbBuilding.FormattingEnabled = true;
+            this.cbBuilding.Items.AddRange(new object[] {
+            "B1",
+            "B2",
+            "B3",
+            "B4"});
+            this.cbBuilding.Location = new System.Drawing.Point(165, 257);
+            this.cbBuilding.Name = "cbBuilding";
+            this.cbBuilding.Size = new System.Drawing.Size(131, 24);
+            this.cbBuilding.TabIndex = 17;
+            // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.cbBuilding);
+            this.Controls.Add(this.tbPassword);
+            this.Controls.Add(this.lblBuilding);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSignIn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbRepeatPassowrd);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.label2);
@@ -193,7 +218,7 @@ namespace Student_House
             this.Controls.Add(this.tbLastName);
             this.Controls.Add(this.firstName);
             this.Controls.Add(this.tbFirstName);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SignIn";
             this.Text = "Sign in";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -213,10 +238,12 @@ namespace Student_House
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbRepeatPassowrd;
         private System.Windows.Forms.Button btnSignIn;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblBuilding;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.ComboBox cbBuilding;
     }
 }

@@ -44,18 +44,27 @@
             this.cbEvent = new System.Windows.Forms.ComboBox();
             this.btnAddEvent = new System.Windows.Forms.Button();
             this.lbEvents = new System.Windows.Forms.ListBox();
-            this.lblWelcome = new System.Windows.Forms.Label();
             this.tpComplaints = new System.Windows.Forms.TabPage();
-            this.lblComplaint = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.tbComp = new System.Windows.Forms.TextBox();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRemoveMessage = new System.Windows.Forms.Button();
+            this.lbAnswers = new System.Windows.Forms.ListBox();
             this.btnSendComplaint = new System.Windows.Forms.Button();
+            this.tbComp = new System.Windows.Forms.TextBox();
+            this.lblComplaint = new System.Windows.Forms.Label();
+            this.tpSendMessages = new System.Windows.Forms.TabPage();
+            this.lbMessages = new System.Windows.Forms.ListBox();
+            this.cbStudentsFromThisBuilding = new System.Windows.Forms.ComboBox();
+            this.btnSendMessage = new System.Windows.Forms.Button();
+            this.lblWriteMessage = new System.Windows.Forms.Label();
+            this.tbSendMessage = new System.Windows.Forms.TextBox();
+            this.lblChooseStudentFromThisBuilding = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tpRules.SuspendLayout();
             this.tpTasks.SuspendLayout();
             this.tpEvents.SuspendLayout();
             this.tpComplaints.SuspendLayout();
+            this.tpSendMessages.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblBack
@@ -76,6 +85,7 @@
             this.tabControl.Controls.Add(this.tpTasks);
             this.tabControl.Controls.Add(this.tpEvents);
             this.tabControl.Controls.Add(this.tpComplaints);
+            this.tabControl.Controls.Add(this.tpSendMessages);
             this.tabControl.Location = new System.Drawing.Point(0, 92);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -153,7 +163,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(570, 8);
+            this.lblTime.Location = new System.Drawing.Point(661, 17);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(102, 17);
             this.lblTime.TabIndex = 7;
@@ -162,7 +172,7 @@
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(404, 8);
+            this.lblDay.Location = new System.Drawing.Point(495, 17);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(99, 17);
             this.lblDay.TabIndex = 6;
@@ -171,7 +181,7 @@
             // lblEvent
             // 
             this.lblEvent.AutoSize = true;
-            this.lblEvent.Location = new System.Drawing.Point(200, 8);
+            this.lblEvent.Location = new System.Drawing.Point(291, 17);
             this.lblEvent.Name = "lblEvent";
             this.lblEvent.Size = new System.Drawing.Size(119, 17);
             this.lblEvent.TabIndex = 5;
@@ -205,7 +215,7 @@
             "21:00",
             "22:00",
             "23:00"});
-            this.cbTime.Location = new System.Drawing.Point(573, 44);
+            this.cbTime.Location = new System.Drawing.Point(664, 53);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(94, 24);
             this.cbTime.TabIndex = 4;
@@ -213,7 +223,7 @@
             // cbDay
             // 
             this.cbDay.FormattingEnabled = true;
-            this.cbDay.Location = new System.Drawing.Point(407, 44);
+            this.cbDay.Location = new System.Drawing.Point(498, 53);
             this.cbDay.Name = "cbDay";
             this.cbDay.Size = new System.Drawing.Size(121, 24);
             this.cbDay.TabIndex = 3;
@@ -225,7 +235,7 @@
             "Small Group Gathering",
             "Small Party",
             "Friend / Parents coming over for a few day"});
-            this.cbEvent.Location = new System.Drawing.Point(203, 44);
+            this.cbEvent.Location = new System.Drawing.Point(294, 53);
             this.cbEvent.Name = "cbEvent";
             this.cbEvent.Size = new System.Drawing.Size(159, 24);
             this.cbEvent.TabIndex = 2;
@@ -235,7 +245,7 @@
             this.btnAddEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddEvent.Location = new System.Drawing.Point(8, 6);
             this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(169, 71);
+            this.btnAddEvent.Size = new System.Drawing.Size(123, 71);
             this.btnAddEvent.TabIndex = 1;
             this.btnAddEvent.Text = "Add Event";
             this.btnAddEvent.UseVisualStyleBackColor = true;
@@ -250,22 +260,14 @@
             this.lbEvents.Size = new System.Drawing.Size(741, 308);
             this.lbEvents.TabIndex = 0;
             // 
-            // lblWelcome
-            // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(12, 9);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(66, 17);
-            this.lblWelcome.TabIndex = 3;
-            this.lblWelcome.Text = "Welcome";
-            // 
             // tpComplaints
             // 
             this.tpComplaints.BackColor = System.Drawing.Color.Gainsboro;
+            this.tpComplaints.Controls.Add(this.label1);
+            this.tpComplaints.Controls.Add(this.btnRemoveMessage);
+            this.tpComplaints.Controls.Add(this.lbAnswers);
             this.tpComplaints.Controls.Add(this.btnSendComplaint);
-            this.tpComplaints.Controls.Add(this.dtpDate);
             this.tpComplaints.Controls.Add(this.tbComp);
-            this.tpComplaints.Controls.Add(this.lblDate);
             this.tpComplaints.Controls.Add(this.lblComplaint);
             this.tpComplaints.Location = new System.Drawing.Point(4, 25);
             this.tpComplaints.Name = "tpComplaints";
@@ -273,6 +275,53 @@
             this.tpComplaints.Size = new System.Drawing.Size(780, 420);
             this.tpComplaints.TabIndex = 3;
             this.tpComplaints.Text = "Complaints";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 118);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Answers to complaints:";
+            // 
+            // btnRemoveMessage
+            // 
+            this.btnRemoveMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveMessage.Location = new System.Drawing.Point(643, 150);
+            this.btnRemoveMessage.Name = "btnRemoveMessage";
+            this.btnRemoveMessage.Size = new System.Drawing.Size(131, 90);
+            this.btnRemoveMessage.TabIndex = 6;
+            this.btnRemoveMessage.Text = "Remove Message";
+            this.btnRemoveMessage.UseVisualStyleBackColor = true;
+            this.btnRemoveMessage.Click += new System.EventHandler(this.btnRemoveMessage_Click);
+            // 
+            // lbAnswers
+            // 
+            this.lbAnswers.FormattingEnabled = true;
+            this.lbAnswers.ItemHeight = 16;
+            this.lbAnswers.Location = new System.Drawing.Point(31, 150);
+            this.lbAnswers.Name = "lbAnswers";
+            this.lbAnswers.Size = new System.Drawing.Size(606, 260);
+            this.lbAnswers.TabIndex = 5;
+            // 
+            // btnSendComplaint
+            // 
+            this.btnSendComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendComplaint.Location = new System.Drawing.Point(474, 46);
+            this.btnSendComplaint.Name = "btnSendComplaint";
+            this.btnSendComplaint.Size = new System.Drawing.Size(184, 59);
+            this.btnSendComplaint.TabIndex = 4;
+            this.btnSendComplaint.Text = "Send Complaint";
+            this.btnSendComplaint.UseVisualStyleBackColor = true;
+            this.btnSendComplaint.Click += new System.EventHandler(this.btnSendComplaint_Click);
+            // 
+            // tbComp
+            // 
+            this.tbComp.Location = new System.Drawing.Point(177, 18);
+            this.tbComp.Name = "tbComp";
+            this.tbComp.Size = new System.Drawing.Size(481, 22);
+            this.tbComp.TabIndex = 2;
             // 
             // lblComplaint
             // 
@@ -283,39 +332,83 @@
             this.lblComplaint.TabIndex = 0;
             this.lblComplaint.Text = "Complaint:";
             // 
-            // lblDate
+            // tpSendMessages
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(28, 95);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(122, 17);
-            this.lblDate.TabIndex = 1;
-            this.lblDate.Text = "Date of complaint:";
+            this.tpSendMessages.BackColor = System.Drawing.Color.Gainsboro;
+            this.tpSendMessages.Controls.Add(this.lbMessages);
+            this.tpSendMessages.Controls.Add(this.cbStudentsFromThisBuilding);
+            this.tpSendMessages.Controls.Add(this.btnSendMessage);
+            this.tpSendMessages.Controls.Add(this.lblWriteMessage);
+            this.tpSendMessages.Controls.Add(this.tbSendMessage);
+            this.tpSendMessages.Controls.Add(this.lblChooseStudentFromThisBuilding);
+            this.tpSendMessages.Location = new System.Drawing.Point(4, 25);
+            this.tpSendMessages.Name = "tpSendMessages";
+            this.tpSendMessages.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSendMessages.Size = new System.Drawing.Size(780, 420);
+            this.tpSendMessages.TabIndex = 4;
+            this.tpSendMessages.Text = "Send messages";
             // 
-            // tbComp
+            // lbMessages
             // 
-            this.tbComp.Location = new System.Drawing.Point(177, 18);
-            this.tbComp.Name = "tbComp";
-            this.tbComp.Size = new System.Drawing.Size(481, 22);
-            this.tbComp.TabIndex = 2;
+            this.lbMessages.FormattingEnabled = true;
+            this.lbMessages.ItemHeight = 16;
+            this.lbMessages.Location = new System.Drawing.Point(433, 36);
+            this.lbMessages.Name = "lbMessages";
+            this.lbMessages.Size = new System.Drawing.Size(328, 356);
+            this.lbMessages.TabIndex = 7;
             // 
-            // dtpDate
+            // cbStudentsFromThisBuilding
             // 
-            this.dtpDate.Location = new System.Drawing.Point(177, 95);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(270, 22);
-            this.dtpDate.TabIndex = 3;
+            this.cbStudentsFromThisBuilding.FormattingEnabled = true;
+            this.cbStudentsFromThisBuilding.Location = new System.Drawing.Point(32, 70);
+            this.cbStudentsFromThisBuilding.Name = "cbStudentsFromThisBuilding";
+            this.cbStudentsFromThisBuilding.Size = new System.Drawing.Size(214, 24);
+            this.cbStudentsFromThisBuilding.TabIndex = 6;
             // 
-            // btnSendComplaint
+            // btnSendMessage
             // 
-            this.btnSendComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendComplaint.Location = new System.Drawing.Point(474, 58);
-            this.btnSendComplaint.Name = "btnSendComplaint";
-            this.btnSendComplaint.Size = new System.Drawing.Size(184, 59);
-            this.btnSendComplaint.TabIndex = 4;
-            this.btnSendComplaint.Text = "Send Complaint";
-            this.btnSendComplaint.UseVisualStyleBackColor = true;
-            this.btnSendComplaint.Click += new System.EventHandler(this.btnSendComplaint_Click);
+            this.btnSendMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendMessage.Location = new System.Drawing.Point(32, 167);
+            this.btnSendMessage.Name = "btnSendMessage";
+            this.btnSendMessage.Size = new System.Drawing.Size(214, 73);
+            this.btnSendMessage.TabIndex = 5;
+            this.btnSendMessage.Text = "Send";
+            this.btnSendMessage.UseVisualStyleBackColor = true;
+            this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
+            // 
+            // lblWriteMessage
+            // 
+            this.lblWriteMessage.AutoSize = true;
+            this.lblWriteMessage.Location = new System.Drawing.Point(29, 107);
+            this.lblWriteMessage.Name = "lblWriteMessage";
+            this.lblWriteMessage.Size = new System.Drawing.Size(118, 17);
+            this.lblWriteMessage.TabIndex = 4;
+            this.lblWriteMessage.Text = "Write a message:";
+            // 
+            // tbSendMessage
+            // 
+            this.tbSendMessage.Location = new System.Drawing.Point(8, 139);
+            this.tbSendMessage.Name = "tbSendMessage";
+            this.tbSendMessage.Size = new System.Drawing.Size(370, 22);
+            this.tbSendMessage.TabIndex = 3;
+            // 
+            // lblChooseStudentFromThisBuilding
+            // 
+            this.lblChooseStudentFromThisBuilding.AutoSize = true;
+            this.lblChooseStudentFromThisBuilding.Location = new System.Drawing.Point(29, 27);
+            this.lblChooseStudentFromThisBuilding.Name = "lblChooseStudentFromThisBuilding";
+            this.lblChooseStudentFromThisBuilding.Size = new System.Drawing.Size(123, 17);
+            this.lblChooseStudentFromThisBuilding.TabIndex = 1;
+            this.lblChooseStudentFromThisBuilding.Text = "Choose a student:";
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(12, 9);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(66, 17);
+            this.lblWelcome.TabIndex = 3;
+            this.lblWelcome.Text = "Welcome";
             // 
             // StudentForm
             // 
@@ -335,6 +428,8 @@
             this.tpEvents.PerformLayout();
             this.tpComplaints.ResumeLayout(false);
             this.tpComplaints.PerformLayout();
+            this.tpSendMessages.ResumeLayout(false);
+            this.tpSendMessages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,9 +455,17 @@
         private System.Windows.Forms.Label lblEvent;
         private System.Windows.Forms.TabPage tpComplaints;
         private System.Windows.Forms.Button btnSendComplaint;
-        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.TextBox tbComp;
-        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblComplaint;
+        private System.Windows.Forms.ListBox lbAnswers;
+        private System.Windows.Forms.Button btnRemoveMessage;
+        private System.Windows.Forms.TabPage tpSendMessages;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblChooseStudentFromThisBuilding;
+        private System.Windows.Forms.TextBox tbSendMessage;
+        private System.Windows.Forms.Button btnSendMessage;
+        private System.Windows.Forms.Label lblWriteMessage;
+        private System.Windows.Forms.ComboBox cbStudentsFromThisBuilding;
+        private System.Windows.Forms.ListBox lbMessages;
     }
 }

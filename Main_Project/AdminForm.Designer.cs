@@ -41,18 +41,25 @@
             this.lblRule = new System.Windows.Forms.Label();
             this.tbAddRule = new System.Windows.Forms.TextBox();
             this.tpPendingAccounts = new System.Windows.Forms.TabPage();
+            this.gbPending = new System.Windows.Forms.GroupBox();
+            this.btnShowPending = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnDeny = new System.Windows.Forms.Button();
+            this.lbPending = new System.Windows.Forms.ListBox();
+            this.btnApprove = new System.Windows.Forms.Button();
+            this.gbBann = new System.Windows.Forms.GroupBox();
+            this.btnShowBanned = new System.Windows.Forms.Button();
+            this.lbBanned = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.tbBannAccounts = new System.Windows.Forms.TextBox();
             this.btnBann = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbBanned = new System.Windows.Forms.ListBox();
-            this.btnDeny = new System.Windows.Forms.Button();
-            this.btnApprove = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lbPending = new System.Windows.Forms.ListBox();
             this.tpTasks = new System.Windows.Forms.TabPage();
+            this.btnSeeTasks = new System.Windows.Forms.Button();
+            this.cbBuilding = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblThisWeek = new System.Windows.Forms.Label();
             this.lblSunday = new System.Windows.Forms.Label();
             this.lblSaturday = new System.Windows.Forms.Label();
@@ -74,23 +81,31 @@
             this.btnAddEvent = new System.Windows.Forms.Button();
             this.lbEvents = new System.Windows.Forms.ListBox();
             this.tpComplaints = new System.Windows.Forms.TabPage();
+            this.lblAnswer = new System.Windows.Forms.Label();
+            this.tbMessage = new System.Windows.Forms.TextBox();
+            this.btnAnswerAComplaint = new System.Windows.Forms.Button();
             this.btnClearComp = new System.Windows.Forms.Button();
             this.btnRemoveComp = new System.Windows.Forms.Button();
             this.lbComp = new System.Windows.Forms.ListBox();
+            this.tpSendMessages = new System.Windows.Forms.TabPage();
             this.lblBack = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
-            this.btnShowPending = new System.Windows.Forms.Button();
-            this.gbBann = new System.Windows.Forms.GroupBox();
-            this.gbPending = new System.Windows.Forms.GroupBox();
-            this.btnShowBanned = new System.Windows.Forms.Button();
+            this.cbMessageToBuilding = new System.Windows.Forms.ComboBox();
+            this.lblSelectBuilding = new System.Windows.Forms.Label();
+            this.btnShowBuildingStudents = new System.Windows.Forms.Button();
+            this.lbShowStudentsFromSameBuilding = new System.Windows.Forms.ListBox();
+            this.btnSendMessageToSelected = new System.Windows.Forms.Button();
+            this.tbSendToSelected = new System.Windows.Forms.TextBox();
+            this.btnSendToAllStudentsFromBuilding = new System.Windows.Forms.Button();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
+            this.gbPending.SuspendLayout();
+            this.gbBann.SuspendLayout();
             this.tpTasks.SuspendLayout();
             this.tpEvents.SuspendLayout();
             this.tpComplaints.SuspendLayout();
-            this.gbBann.SuspendLayout();
-            this.gbPending.SuspendLayout();
+            this.tpSendMessages.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbRules
@@ -100,6 +115,7 @@
             this.tbRules.Controls.Add(this.tpTasks);
             this.tbRules.Controls.Add(this.tpEvents);
             this.tbRules.Controls.Add(this.tpComplaints);
+            this.tbRules.Controls.Add(this.tpSendMessages);
             this.tbRules.Location = new System.Drawing.Point(12, 57);
             this.tbRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRules.Name = "tbRules";
@@ -239,6 +255,130 @@
             this.tpPendingAccounts.TabIndex = 1;
             this.tpPendingAccounts.Text = "Pending Accounts";
             // 
+            // gbPending
+            // 
+            this.gbPending.BackColor = System.Drawing.Color.Lime;
+            this.gbPending.Controls.Add(this.btnShowPending);
+            this.gbPending.Controls.Add(this.label3);
+            this.gbPending.Controls.Add(this.btnDeny);
+            this.gbPending.Controls.Add(this.lbPending);
+            this.gbPending.Controls.Add(this.btnApprove);
+            this.gbPending.Location = new System.Drawing.Point(3, 0);
+            this.gbPending.Name = "gbPending";
+            this.gbPending.Size = new System.Drawing.Size(612, 514);
+            this.gbPending.TabIndex = 26;
+            this.gbPending.TabStop = false;
+            this.gbPending.Text = "Pending";
+            // 
+            // btnShowPending
+            // 
+            this.btnShowPending.Location = new System.Drawing.Point(351, 21);
+            this.btnShowPending.Name = "btnShowPending";
+            this.btnShowPending.Size = new System.Drawing.Size(210, 62);
+            this.btnShowPending.TabIndex = 24;
+            this.btnShowPending.Text = "Show information about a pending account";
+            this.btnShowPending.UseVisualStyleBackColor = true;
+            this.btnShowPending.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Waiting approval";
+            // 
+            // btnDeny
+            // 
+            this.btnDeny.Location = new System.Drawing.Point(213, 476);
+            this.btnDeny.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDeny.Name = "btnDeny";
+            this.btnDeny.Size = new System.Drawing.Size(75, 32);
+            this.btnDeny.TabIndex = 16;
+            this.btnDeny.Text = "Deny";
+            this.btnDeny.UseVisualStyleBackColor = true;
+            this.btnDeny.Click += new System.EventHandler(this.btnDenied_Click);
+            // 
+            // lbPending
+            // 
+            this.lbPending.FormattingEnabled = true;
+            this.lbPending.ItemHeight = 16;
+            this.lbPending.Location = new System.Drawing.Point(11, 153);
+            this.lbPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbPending.Name = "lbPending";
+            this.lbPending.Size = new System.Drawing.Size(277, 308);
+            this.lbPending.TabIndex = 13;
+            // 
+            // btnApprove
+            // 
+            this.btnApprove.Location = new System.Drawing.Point(11, 476);
+            this.btnApprove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.Size = new System.Drawing.Size(75, 32);
+            this.btnApprove.TabIndex = 15;
+            this.btnApprove.Text = "Approve";
+            this.btnApprove.UseVisualStyleBackColor = true;
+            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
+            // 
+            // gbBann
+            // 
+            this.gbBann.BackColor = System.Drawing.Color.Red;
+            this.gbBann.Controls.Add(this.btnShowBanned);
+            this.gbBann.Controls.Add(this.lbBanned);
+            this.gbBann.Controls.Add(this.label4);
+            this.gbBann.Controls.Add(this.button4);
+            this.gbBann.Controls.Add(this.label5);
+            this.gbBann.Controls.Add(this.button3);
+            this.gbBann.Controls.Add(this.tbBannAccounts);
+            this.gbBann.Controls.Add(this.btnBann);
+            this.gbBann.Location = new System.Drawing.Point(621, 0);
+            this.gbBann.Name = "gbBann";
+            this.gbBann.Size = new System.Drawing.Size(564, 508);
+            this.gbBann.TabIndex = 0;
+            this.gbBann.TabStop = false;
+            this.gbBann.Text = "Bann";
+            // 
+            // btnShowBanned
+            // 
+            this.btnShowBanned.Location = new System.Drawing.Point(151, 21);
+            this.btnShowBanned.Name = "btnShowBanned";
+            this.btnShowBanned.Size = new System.Drawing.Size(226, 73);
+            this.btnShowBanned.TabIndex = 24;
+            this.btnShowBanned.Text = "Show information about a banned account";
+            this.btnShowBanned.UseVisualStyleBackColor = true;
+            this.btnShowBanned.Click += new System.EventHandler(this.btnShowBanned_Click);
+            // 
+            // lbBanned
+            // 
+            this.lbBanned.FormattingEnabled = true;
+            this.lbBanned.ItemHeight = 16;
+            this.lbBanned.Location = new System.Drawing.Point(268, 133);
+            this.lbBanned.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lbBanned.Name = "lbBanned";
+            this.lbBanned.Size = new System.Drawing.Size(277, 324);
+            this.lbBanned.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(240, -21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(118, 17);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Banned accounts";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(268, 472);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "Unbann";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -247,6 +387,17 @@
             this.label5.Size = new System.Drawing.Size(113, 17);
             this.label5.TabIndex = 23;
             this.label5.Text = "Student number ";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(470, 472);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tbBannAccounts
             // 
@@ -267,91 +418,12 @@
             this.btnBann.UseVisualStyleBackColor = true;
             this.btnBann.Click += new System.EventHandler(this.btnBann_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(470, 472);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(268, 472);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 19;
-            this.button4.Text = "Unbann";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(240, -21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(118, 17);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Banned accounts";
-            // 
-            // lbBanned
-            // 
-            this.lbBanned.FormattingEnabled = true;
-            this.lbBanned.ItemHeight = 16;
-            this.lbBanned.Location = new System.Drawing.Point(268, 133);
-            this.lbBanned.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbBanned.Name = "lbBanned";
-            this.lbBanned.Size = new System.Drawing.Size(277, 324);
-            this.lbBanned.TabIndex = 17;
-            // 
-            // btnDeny
-            // 
-            this.btnDeny.Location = new System.Drawing.Point(213, 476);
-            this.btnDeny.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnDeny.Name = "btnDeny";
-            this.btnDeny.Size = new System.Drawing.Size(75, 32);
-            this.btnDeny.TabIndex = 16;
-            this.btnDeny.Text = "Deny";
-            this.btnDeny.UseVisualStyleBackColor = true;
-            this.btnDeny.Click += new System.EventHandler(this.btnDenied_Click);
-            // 
-            // btnApprove
-            // 
-            this.btnApprove.Location = new System.Drawing.Point(11, 476);
-            this.btnApprove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(75, 32);
-            this.btnApprove.TabIndex = 15;
-            this.btnApprove.Text = "Approve";
-            this.btnApprove.UseVisualStyleBackColor = true;
-            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 112);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Waiting approval";
-            // 
-            // lbPending
-            // 
-            this.lbPending.FormattingEnabled = true;
-            this.lbPending.ItemHeight = 16;
-            this.lbPending.Location = new System.Drawing.Point(11, 153);
-            this.lbPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbPending.Name = "lbPending";
-            this.lbPending.Size = new System.Drawing.Size(277, 308);
-            this.lbPending.TabIndex = 13;
-            // 
             // tpTasks
             // 
             this.tpTasks.BackColor = System.Drawing.Color.Gainsboro;
+            this.tpTasks.Controls.Add(this.btnSeeTasks);
+            this.tpTasks.Controls.Add(this.cbBuilding);
+            this.tpTasks.Controls.Add(this.label6);
             this.tpTasks.Controls.Add(this.lblThisWeek);
             this.tpTasks.Controls.Add(this.lblSunday);
             this.tpTasks.Controls.Add(this.lblSaturday);
@@ -368,6 +440,39 @@
             this.tpTasks.Size = new System.Drawing.Size(1191, 517);
             this.tpTasks.TabIndex = 2;
             this.tpTasks.Text = "Tasks";
+            // 
+            // btnSeeTasks
+            // 
+            this.btnSeeTasks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeeTasks.Location = new System.Drawing.Point(6, 226);
+            this.btnSeeTasks.Name = "btnSeeTasks";
+            this.btnSeeTasks.Size = new System.Drawing.Size(208, 77);
+            this.btnSeeTasks.TabIndex = 11;
+            this.btnSeeTasks.Text = "See tasks";
+            this.btnSeeTasks.UseVisualStyleBackColor = true;
+            this.btnSeeTasks.Click += new System.EventHandler(this.btnSeeTasks_Click);
+            // 
+            // cbBuilding
+            // 
+            this.cbBuilding.FormattingEnabled = true;
+            this.cbBuilding.Items.AddRange(new object[] {
+            "B1",
+            "B2",
+            "B3",
+            "B4"});
+            this.cbBuilding.Location = new System.Drawing.Point(29, 67);
+            this.cbBuilding.Name = "cbBuilding";
+            this.cbBuilding.Size = new System.Drawing.Size(161, 24);
+            this.cbBuilding.TabIndex = 10;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(26, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 17);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Select a building:";
             // 
             // lblThisWeek
             // 
@@ -444,7 +549,7 @@
             // btnAssign
             // 
             this.btnAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssign.Location = new System.Drawing.Point(5, 194);
+            this.btnAssign.Location = new System.Drawing.Point(6, 128);
             this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAssign.Name = "btnAssign";
             this.btnAssign.Size = new System.Drawing.Size(208, 75);
@@ -596,6 +701,9 @@
             // tpComplaints
             // 
             this.tpComplaints.BackColor = System.Drawing.Color.Gainsboro;
+            this.tpComplaints.Controls.Add(this.lblAnswer);
+            this.tpComplaints.Controls.Add(this.tbMessage);
+            this.tpComplaints.Controls.Add(this.btnAnswerAComplaint);
             this.tpComplaints.Controls.Add(this.btnClearComp);
             this.tpComplaints.Controls.Add(this.btnRemoveComp);
             this.tpComplaints.Controls.Add(this.lbComp);
@@ -606,10 +714,37 @@
             this.tpComplaints.TabIndex = 4;
             this.tpComplaints.Text = "Complaints";
             // 
+            // lblAnswer
+            // 
+            this.lblAnswer.AutoSize = true;
+            this.lblAnswer.Location = new System.Drawing.Point(42, 466);
+            this.lblAnswer.Name = "lblAnswer";
+            this.lblAnswer.Size = new System.Drawing.Size(284, 17);
+            this.lblAnswer.TabIndex = 6;
+            this.lblAnswer.Text = "Select a complaint and write an answer to it:";
+            // 
+            // tbMessage
+            // 
+            this.tbMessage.Location = new System.Drawing.Point(45, 486);
+            this.tbMessage.Name = "tbMessage";
+            this.tbMessage.Size = new System.Drawing.Size(1131, 22);
+            this.tbMessage.TabIndex = 5;
+            // 
+            // btnAnswerAComplaint
+            // 
+            this.btnAnswerAComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnswerAComplaint.Location = new System.Drawing.Point(45, 357);
+            this.btnAnswerAComplaint.Name = "btnAnswerAComplaint";
+            this.btnAnswerAComplaint.Size = new System.Drawing.Size(237, 96);
+            this.btnAnswerAComplaint.TabIndex = 4;
+            this.btnAnswerAComplaint.Text = "Answer a complaint";
+            this.btnAnswerAComplaint.UseVisualStyleBackColor = true;
+            this.btnAnswerAComplaint.Click += new System.EventHandler(this.btnAnswerAComplaint_Click);
+            // 
             // btnClearComp
             // 
             this.btnClearComp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearComp.Location = new System.Drawing.Point(820, 379);
+            this.btnClearComp.Location = new System.Drawing.Point(942, 366);
             this.btnClearComp.Name = "btnClearComp";
             this.btnClearComp.Size = new System.Drawing.Size(234, 96);
             this.btnClearComp.TabIndex = 3;
@@ -620,7 +755,7 @@
             // btnRemoveComp
             // 
             this.btnRemoveComp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveComp.Location = new System.Drawing.Point(469, 379);
+            this.btnRemoveComp.Location = new System.Drawing.Point(701, 366);
             this.btnRemoveComp.Name = "btnRemoveComp";
             this.btnRemoveComp.Size = new System.Drawing.Size(226, 96);
             this.btnRemoveComp.TabIndex = 2;
@@ -636,6 +771,23 @@
             this.lbComp.Name = "lbComp";
             this.lbComp.Size = new System.Drawing.Size(1072, 324);
             this.lbComp.TabIndex = 0;
+            // 
+            // tpSendMessages
+            // 
+            this.tpSendMessages.BackColor = System.Drawing.Color.Gainsboro;
+            this.tpSendMessages.Controls.Add(this.btnSendToAllStudentsFromBuilding);
+            this.tpSendMessages.Controls.Add(this.tbSendToSelected);
+            this.tpSendMessages.Controls.Add(this.btnSendMessageToSelected);
+            this.tpSendMessages.Controls.Add(this.lbShowStudentsFromSameBuilding);
+            this.tpSendMessages.Controls.Add(this.btnShowBuildingStudents);
+            this.tpSendMessages.Controls.Add(this.lblSelectBuilding);
+            this.tpSendMessages.Controls.Add(this.cbMessageToBuilding);
+            this.tpSendMessages.Location = new System.Drawing.Point(4, 25);
+            this.tpSendMessages.Name = "tpSendMessages";
+            this.tpSendMessages.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSendMessages.Size = new System.Drawing.Size(1191, 517);
+            this.tpSendMessages.TabIndex = 5;
+            this.tpSendMessages.Text = "Send messages";
             // 
             // lblBack
             // 
@@ -658,58 +810,76 @@
             this.lblWelcome.TabIndex = 2;
             this.lblWelcome.Text = "Welcome";
             // 
-            // btnShowPending
+            // cbMessageToBuilding
             // 
-            this.btnShowPending.Location = new System.Drawing.Point(351, 21);
-            this.btnShowPending.Name = "btnShowPending";
-            this.btnShowPending.Size = new System.Drawing.Size(210, 62);
-            this.btnShowPending.TabIndex = 24;
-            this.btnShowPending.Text = "Show information about a pending account";
-            this.btnShowPending.UseVisualStyleBackColor = true;
-            this.btnShowPending.Click += new System.EventHandler(this.button1_Click);
+            this.cbMessageToBuilding.FormattingEnabled = true;
+            this.cbMessageToBuilding.Items.AddRange(new object[] {
+            "B1",
+            "B2",
+            "B3",
+            "B4"});
+            this.cbMessageToBuilding.Location = new System.Drawing.Point(182, 66);
+            this.cbMessageToBuilding.Name = "cbMessageToBuilding";
+            this.cbMessageToBuilding.Size = new System.Drawing.Size(160, 24);
+            this.cbMessageToBuilding.TabIndex = 0;
             // 
-            // gbBann
+            // lblSelectBuilding
             // 
-            this.gbBann.BackColor = System.Drawing.Color.Red;
-            this.gbBann.Controls.Add(this.btnShowBanned);
-            this.gbBann.Controls.Add(this.lbBanned);
-            this.gbBann.Controls.Add(this.label4);
-            this.gbBann.Controls.Add(this.button4);
-            this.gbBann.Controls.Add(this.label5);
-            this.gbBann.Controls.Add(this.button3);
-            this.gbBann.Controls.Add(this.tbBannAccounts);
-            this.gbBann.Controls.Add(this.btnBann);
-            this.gbBann.Location = new System.Drawing.Point(621, 0);
-            this.gbBann.Name = "gbBann";
-            this.gbBann.Size = new System.Drawing.Size(564, 508);
-            this.gbBann.TabIndex = 0;
-            this.gbBann.TabStop = false;
-            this.gbBann.Text = "Bann";
+            this.lblSelectBuilding.AutoSize = true;
+            this.lblSelectBuilding.Location = new System.Drawing.Point(179, 31);
+            this.lblSelectBuilding.Name = "lblSelectBuilding";
+            this.lblSelectBuilding.Size = new System.Drawing.Size(116, 17);
+            this.lblSelectBuilding.TabIndex = 1;
+            this.lblSelectBuilding.Text = "Select a building:";
             // 
-            // gbPending
+            // btnShowBuildingStudents
             // 
-            this.gbPending.BackColor = System.Drawing.Color.Lime;
-            this.gbPending.Controls.Add(this.btnShowPending);
-            this.gbPending.Controls.Add(this.label3);
-            this.gbPending.Controls.Add(this.btnDeny);
-            this.gbPending.Controls.Add(this.lbPending);
-            this.gbPending.Controls.Add(this.btnApprove);
-            this.gbPending.Location = new System.Drawing.Point(3, 0);
-            this.gbPending.Name = "gbPending";
-            this.gbPending.Size = new System.Drawing.Size(612, 514);
-            this.gbPending.TabIndex = 26;
-            this.gbPending.TabStop = false;
-            this.gbPending.Text = "Pending";
+            this.btnShowBuildingStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowBuildingStudents.Location = new System.Drawing.Point(505, 31);
+            this.btnShowBuildingStudents.Name = "btnShowBuildingStudents";
+            this.btnShowBuildingStudents.Size = new System.Drawing.Size(233, 74);
+            this.btnShowBuildingStudents.TabIndex = 2;
+            this.btnShowBuildingStudents.Text = "Show all the students in the building";
+            this.btnShowBuildingStudents.UseVisualStyleBackColor = true;
+            this.btnShowBuildingStudents.Click += new System.EventHandler(this.btnShowBuildingStudents_Click);
             // 
-            // btnShowBanned
+            // lbShowStudentsFromSameBuilding
             // 
-            this.btnShowBanned.Location = new System.Drawing.Point(151, 21);
-            this.btnShowBanned.Name = "btnShowBanned";
-            this.btnShowBanned.Size = new System.Drawing.Size(226, 73);
-            this.btnShowBanned.TabIndex = 24;
-            this.btnShowBanned.Text = "Show information about a banned account";
-            this.btnShowBanned.UseVisualStyleBackColor = true;
-            this.btnShowBanned.Click += new System.EventHandler(this.btnShowBanned_Click);
+            this.lbShowStudentsFromSameBuilding.FormattingEnabled = true;
+            this.lbShowStudentsFromSameBuilding.ItemHeight = 16;
+            this.lbShowStudentsFromSameBuilding.Location = new System.Drawing.Point(758, 31);
+            this.lbShowStudentsFromSameBuilding.Name = "lbShowStudentsFromSameBuilding";
+            this.lbShowStudentsFromSameBuilding.Size = new System.Drawing.Size(427, 308);
+            this.lbShowStudentsFromSameBuilding.TabIndex = 3;
+            // 
+            // btnSendMessageToSelected
+            // 
+            this.btnSendMessageToSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendMessageToSelected.Location = new System.Drawing.Point(517, 257);
+            this.btnSendMessageToSelected.Name = "btnSendMessageToSelected";
+            this.btnSendMessageToSelected.Size = new System.Drawing.Size(211, 82);
+            this.btnSendMessageToSelected.TabIndex = 4;
+            this.btnSendMessageToSelected.Text = "Send message to selected student";
+            this.btnSendMessageToSelected.UseVisualStyleBackColor = true;
+            this.btnSendMessageToSelected.Click += new System.EventHandler(this.btnSendMessageToSelected_Click);
+            // 
+            // tbSendToSelected
+            // 
+            this.tbSendToSelected.Location = new System.Drawing.Point(6, 359);
+            this.tbSendToSelected.Name = "tbSendToSelected";
+            this.tbSendToSelected.Size = new System.Drawing.Size(1179, 22);
+            this.tbSendToSelected.TabIndex = 5;
+            // 
+            // btnSendToAllStudentsFromBuilding
+            // 
+            this.btnSendToAllStudentsFromBuilding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendToAllStudentsFromBuilding.Location = new System.Drawing.Point(137, 244);
+            this.btnSendToAllStudentsFromBuilding.Name = "btnSendToAllStudentsFromBuilding";
+            this.btnSendToAllStudentsFromBuilding.Size = new System.Drawing.Size(306, 95);
+            this.btnSendToAllStudentsFromBuilding.TabIndex = 6;
+            this.btnSendToAllStudentsFromBuilding.Text = "Send message to all students from selected building";
+            this.btnSendToAllStudentsFromBuilding.UseVisualStyleBackColor = true;
+            this.btnSendToAllStudentsFromBuilding.Click += new System.EventHandler(this.btnSendToAllStudentsFromBuilding_Click);
             // 
             // AdminForm
             // 
@@ -726,15 +896,18 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tpPendingAccounts.ResumeLayout(false);
+            this.gbPending.ResumeLayout(false);
+            this.gbPending.PerformLayout();
+            this.gbBann.ResumeLayout(false);
+            this.gbBann.PerformLayout();
             this.tpTasks.ResumeLayout(false);
             this.tpTasks.PerformLayout();
             this.tpEvents.ResumeLayout(false);
             this.tpEvents.PerformLayout();
             this.tpComplaints.ResumeLayout(false);
-            this.gbBann.ResumeLayout(false);
-            this.gbBann.PerformLayout();
-            this.gbPending.ResumeLayout(false);
-            this.gbPending.PerformLayout();
+            this.tpComplaints.PerformLayout();
+            this.tpSendMessages.ResumeLayout(false);
+            this.tpSendMessages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -796,5 +969,19 @@
         private System.Windows.Forms.Button btnShowPending;
         private System.Windows.Forms.GroupBox gbBann;
         private System.Windows.Forms.Button btnShowBanned;
+        private System.Windows.Forms.ComboBox cbBuilding;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnSeeTasks;
+        private System.Windows.Forms.Button btnAnswerAComplaint;
+        private System.Windows.Forms.Label lblAnswer;
+        private System.Windows.Forms.TextBox tbMessage;
+        private System.Windows.Forms.TabPage tpSendMessages;
+        private System.Windows.Forms.ListBox lbShowStudentsFromSameBuilding;
+        private System.Windows.Forms.Button btnShowBuildingStudents;
+        private System.Windows.Forms.Label lblSelectBuilding;
+        private System.Windows.Forms.ComboBox cbMessageToBuilding;
+        private System.Windows.Forms.TextBox tbSendToSelected;
+        private System.Windows.Forms.Button btnSendMessageToSelected;
+        private System.Windows.Forms.Button btnSendToAllStudentsFromBuilding;
     }
 }

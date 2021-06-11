@@ -55,6 +55,7 @@
     <Compile Include="Complaint.cs" />
     <Compile Include="DayOrWeek.cs" />
     <Compile Include="DaysOfTheWeek.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
