@@ -18,7 +18,6 @@ namespace Student_House
         private Rules rules;
         private List<String> UserEvents;
         private List<User> tempForUsers;
-        private Random rand;
         public AdminForm(LogIn li, StudentHouse sh, User u, Rules r)
         {
             InitializeComponent();
@@ -28,7 +27,6 @@ namespace Student_House
             this.rules = r;
             this.UserEvents = new List<string>();
             this.tempForUsers = new List<User>();
-            this.rand = new Random();
             this.UpdateRules();
             this.UpdateComplaints();
             this.Fill();
@@ -205,43 +203,6 @@ namespace Student_House
                 }
             }
         }
-        private void AssignRandomly()
-        {
-            String building = this.cbBuilding.SelectedItem.ToString();
-            this.studentHouse.ClearAllDays(building);
-            foreach (Task task in this.studentHouse.GetAllTasks())
-            {
-                if (task.Type == "weekly")
-                {
-                    int i = this.rand.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
-                    this.studentHouse.AddTask(building, "This week", i, task);
-                }
-                else
-                {
-                    if (task.Type == "daily")
-                    {
-                        foreach (String day in this.studentHouse.GetDays())
-                        {
-                            int i = this.rand.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
-                            this.studentHouse.AddTask(building, day, i, task);
-                        }
-                    }
-                }
-                this.FillWithTasks(building);
-            }
-        }
-        private void btnAssign_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.AssignRandomly();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void btnApprove_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(lbPending.SelectedItem);

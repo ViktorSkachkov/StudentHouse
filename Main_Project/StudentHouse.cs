@@ -140,11 +140,11 @@ namespace Student_House
             double checker = 23 / (temp.Count);
             return number <= Math.Ceiling(checker);
         }
-        public void ClearAllDays(String building)
+        public void ClearAllDays()
         {
             foreach(DayOrWeek d in this.days)
             {
-                d.RemoveAllAtTheBuilding(building);
+                d.RemoveAll();
             }
         }       
         public User GetUser(int userNumber, String password)

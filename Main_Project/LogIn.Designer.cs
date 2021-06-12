@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnLogIn = new System.Windows.Forms.Button();
             this.tbUserNumber = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.lblUserNumber = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.signIn = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnLogIn
@@ -94,6 +96,12 @@
             this.signIn.UseVisualStyleBackColor = true;
             this.signIn.Click += new System.EventHandler(this.signIn_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 20000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -121,6 +129,7 @@
         private System.Windows.Forms.Label lblUserNumber;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button signIn;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -22,19 +22,10 @@ namespace Student_House
             this.students.Add(student);
             this.tasks.Add(task);
         }
-        public void RemoveAllAtTheBuilding(String building)
+        public void RemoveAll()
         {
-            int index = 0;
-            foreach (User user in this.students)
-            {
-                if (user.Building == building)
-                {
-                    this.students.Remove(user);
-                    Task task = this.tasks[index];
-                    this.tasks.Remove(task);
-                }
-                index++;
-            }
+            this.students.Clear();
+            this.tasks.Clear();
         }
         public String Name
         {

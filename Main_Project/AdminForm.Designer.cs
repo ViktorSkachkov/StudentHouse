@@ -68,7 +68,6 @@
             this.lblWednesday = new System.Windows.Forms.Label();
             this.lblTuesday = new System.Windows.Forms.Label();
             this.lblMonday = new System.Windows.Forms.Label();
-            this.btnAssign = new System.Windows.Forms.Button();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
@@ -88,15 +87,15 @@
             this.btnRemoveComp = new System.Windows.Forms.Button();
             this.lbComp = new System.Windows.Forms.ListBox();
             this.tpSendMessages = new System.Windows.Forms.TabPage();
+            this.btnSendToAllStudentsFromBuilding = new System.Windows.Forms.Button();
+            this.tbSendToSelected = new System.Windows.Forms.TextBox();
+            this.btnSendMessageToSelected = new System.Windows.Forms.Button();
+            this.lbShowStudentsFromSameBuilding = new System.Windows.Forms.ListBox();
+            this.btnShowBuildingStudents = new System.Windows.Forms.Button();
+            this.lblSelectBuilding = new System.Windows.Forms.Label();
+            this.cbMessageToBuilding = new System.Windows.Forms.ComboBox();
             this.lblBack = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
-            this.cbMessageToBuilding = new System.Windows.Forms.ComboBox();
-            this.lblSelectBuilding = new System.Windows.Forms.Label();
-            this.btnShowBuildingStudents = new System.Windows.Forms.Button();
-            this.lbShowStudentsFromSameBuilding = new System.Windows.Forms.ListBox();
-            this.btnSendMessageToSelected = new System.Windows.Forms.Button();
-            this.tbSendToSelected = new System.Windows.Forms.TextBox();
-            this.btnSendToAllStudentsFromBuilding = new System.Windows.Forms.Button();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
@@ -432,7 +431,6 @@
             this.tpTasks.Controls.Add(this.lblWednesday);
             this.tpTasks.Controls.Add(this.lblTuesday);
             this.tpTasks.Controls.Add(this.lblMonday);
-            this.tpTasks.Controls.Add(this.btnAssign);
             this.tpTasks.Location = new System.Drawing.Point(4, 25);
             this.tpTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpTasks.Name = "tpTasks";
@@ -545,18 +543,6 @@
             this.lblMonday.Size = new System.Drawing.Size(21, 17);
             this.lblMonday.TabIndex = 1;
             this.lblMonday.Text = "1)";
-            // 
-            // btnAssign
-            // 
-            this.btnAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssign.Location = new System.Drawing.Point(6, 128);
-            this.btnAssign.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAssign.Name = "btnAssign";
-            this.btnAssign.Size = new System.Drawing.Size(208, 75);
-            this.btnAssign.TabIndex = 0;
-            this.btnAssign.Text = "Assign randomly";
-            this.btnAssign.UseVisualStyleBackColor = true;
-            this.btnAssign.Click += new System.EventHandler(this.btnAssign_Click);
             // 
             // tpEvents
             // 
@@ -789,6 +775,77 @@
             this.tpSendMessages.TabIndex = 5;
             this.tpSendMessages.Text = "Send messages";
             // 
+            // btnSendToAllStudentsFromBuilding
+            // 
+            this.btnSendToAllStudentsFromBuilding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendToAllStudentsFromBuilding.Location = new System.Drawing.Point(137, 244);
+            this.btnSendToAllStudentsFromBuilding.Name = "btnSendToAllStudentsFromBuilding";
+            this.btnSendToAllStudentsFromBuilding.Size = new System.Drawing.Size(306, 95);
+            this.btnSendToAllStudentsFromBuilding.TabIndex = 6;
+            this.btnSendToAllStudentsFromBuilding.Text = "Send message to all students from selected building";
+            this.btnSendToAllStudentsFromBuilding.UseVisualStyleBackColor = true;
+            this.btnSendToAllStudentsFromBuilding.Click += new System.EventHandler(this.btnSendToAllStudentsFromBuilding_Click);
+            // 
+            // tbSendToSelected
+            // 
+            this.tbSendToSelected.Location = new System.Drawing.Point(6, 359);
+            this.tbSendToSelected.Name = "tbSendToSelected";
+            this.tbSendToSelected.Size = new System.Drawing.Size(1179, 22);
+            this.tbSendToSelected.TabIndex = 5;
+            // 
+            // btnSendMessageToSelected
+            // 
+            this.btnSendMessageToSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendMessageToSelected.Location = new System.Drawing.Point(517, 257);
+            this.btnSendMessageToSelected.Name = "btnSendMessageToSelected";
+            this.btnSendMessageToSelected.Size = new System.Drawing.Size(211, 82);
+            this.btnSendMessageToSelected.TabIndex = 4;
+            this.btnSendMessageToSelected.Text = "Send message to selected student";
+            this.btnSendMessageToSelected.UseVisualStyleBackColor = true;
+            this.btnSendMessageToSelected.Click += new System.EventHandler(this.btnSendMessageToSelected_Click);
+            // 
+            // lbShowStudentsFromSameBuilding
+            // 
+            this.lbShowStudentsFromSameBuilding.FormattingEnabled = true;
+            this.lbShowStudentsFromSameBuilding.ItemHeight = 16;
+            this.lbShowStudentsFromSameBuilding.Location = new System.Drawing.Point(758, 31);
+            this.lbShowStudentsFromSameBuilding.Name = "lbShowStudentsFromSameBuilding";
+            this.lbShowStudentsFromSameBuilding.Size = new System.Drawing.Size(427, 308);
+            this.lbShowStudentsFromSameBuilding.TabIndex = 3;
+            // 
+            // btnShowBuildingStudents
+            // 
+            this.btnShowBuildingStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowBuildingStudents.Location = new System.Drawing.Point(505, 31);
+            this.btnShowBuildingStudents.Name = "btnShowBuildingStudents";
+            this.btnShowBuildingStudents.Size = new System.Drawing.Size(233, 74);
+            this.btnShowBuildingStudents.TabIndex = 2;
+            this.btnShowBuildingStudents.Text = "Show all the students in the building";
+            this.btnShowBuildingStudents.UseVisualStyleBackColor = true;
+            this.btnShowBuildingStudents.Click += new System.EventHandler(this.btnShowBuildingStudents_Click);
+            // 
+            // lblSelectBuilding
+            // 
+            this.lblSelectBuilding.AutoSize = true;
+            this.lblSelectBuilding.Location = new System.Drawing.Point(179, 31);
+            this.lblSelectBuilding.Name = "lblSelectBuilding";
+            this.lblSelectBuilding.Size = new System.Drawing.Size(116, 17);
+            this.lblSelectBuilding.TabIndex = 1;
+            this.lblSelectBuilding.Text = "Select a building:";
+            // 
+            // cbMessageToBuilding
+            // 
+            this.cbMessageToBuilding.FormattingEnabled = true;
+            this.cbMessageToBuilding.Items.AddRange(new object[] {
+            "B1",
+            "B2",
+            "B3",
+            "B4"});
+            this.cbMessageToBuilding.Location = new System.Drawing.Point(182, 66);
+            this.cbMessageToBuilding.Name = "cbMessageToBuilding";
+            this.cbMessageToBuilding.Size = new System.Drawing.Size(160, 24);
+            this.cbMessageToBuilding.TabIndex = 0;
+            // 
             // lblBack
             // 
             this.lblBack.AutoSize = true;
@@ -809,77 +866,6 @@
             this.lblWelcome.Size = new System.Drawing.Size(66, 17);
             this.lblWelcome.TabIndex = 2;
             this.lblWelcome.Text = "Welcome";
-            // 
-            // cbMessageToBuilding
-            // 
-            this.cbMessageToBuilding.FormattingEnabled = true;
-            this.cbMessageToBuilding.Items.AddRange(new object[] {
-            "B1",
-            "B2",
-            "B3",
-            "B4"});
-            this.cbMessageToBuilding.Location = new System.Drawing.Point(182, 66);
-            this.cbMessageToBuilding.Name = "cbMessageToBuilding";
-            this.cbMessageToBuilding.Size = new System.Drawing.Size(160, 24);
-            this.cbMessageToBuilding.TabIndex = 0;
-            // 
-            // lblSelectBuilding
-            // 
-            this.lblSelectBuilding.AutoSize = true;
-            this.lblSelectBuilding.Location = new System.Drawing.Point(179, 31);
-            this.lblSelectBuilding.Name = "lblSelectBuilding";
-            this.lblSelectBuilding.Size = new System.Drawing.Size(116, 17);
-            this.lblSelectBuilding.TabIndex = 1;
-            this.lblSelectBuilding.Text = "Select a building:";
-            // 
-            // btnShowBuildingStudents
-            // 
-            this.btnShowBuildingStudents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowBuildingStudents.Location = new System.Drawing.Point(505, 31);
-            this.btnShowBuildingStudents.Name = "btnShowBuildingStudents";
-            this.btnShowBuildingStudents.Size = new System.Drawing.Size(233, 74);
-            this.btnShowBuildingStudents.TabIndex = 2;
-            this.btnShowBuildingStudents.Text = "Show all the students in the building";
-            this.btnShowBuildingStudents.UseVisualStyleBackColor = true;
-            this.btnShowBuildingStudents.Click += new System.EventHandler(this.btnShowBuildingStudents_Click);
-            // 
-            // lbShowStudentsFromSameBuilding
-            // 
-            this.lbShowStudentsFromSameBuilding.FormattingEnabled = true;
-            this.lbShowStudentsFromSameBuilding.ItemHeight = 16;
-            this.lbShowStudentsFromSameBuilding.Location = new System.Drawing.Point(758, 31);
-            this.lbShowStudentsFromSameBuilding.Name = "lbShowStudentsFromSameBuilding";
-            this.lbShowStudentsFromSameBuilding.Size = new System.Drawing.Size(427, 308);
-            this.lbShowStudentsFromSameBuilding.TabIndex = 3;
-            // 
-            // btnSendMessageToSelected
-            // 
-            this.btnSendMessageToSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendMessageToSelected.Location = new System.Drawing.Point(517, 257);
-            this.btnSendMessageToSelected.Name = "btnSendMessageToSelected";
-            this.btnSendMessageToSelected.Size = new System.Drawing.Size(211, 82);
-            this.btnSendMessageToSelected.TabIndex = 4;
-            this.btnSendMessageToSelected.Text = "Send message to selected student";
-            this.btnSendMessageToSelected.UseVisualStyleBackColor = true;
-            this.btnSendMessageToSelected.Click += new System.EventHandler(this.btnSendMessageToSelected_Click);
-            // 
-            // tbSendToSelected
-            // 
-            this.tbSendToSelected.Location = new System.Drawing.Point(6, 359);
-            this.tbSendToSelected.Name = "tbSendToSelected";
-            this.tbSendToSelected.Size = new System.Drawing.Size(1179, 22);
-            this.tbSendToSelected.TabIndex = 5;
-            // 
-            // btnSendToAllStudentsFromBuilding
-            // 
-            this.btnSendToAllStudentsFromBuilding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendToAllStudentsFromBuilding.Location = new System.Drawing.Point(137, 244);
-            this.btnSendToAllStudentsFromBuilding.Name = "btnSendToAllStudentsFromBuilding";
-            this.btnSendToAllStudentsFromBuilding.Size = new System.Drawing.Size(306, 95);
-            this.btnSendToAllStudentsFromBuilding.TabIndex = 6;
-            this.btnSendToAllStudentsFromBuilding.Text = "Send message to all students from selected building";
-            this.btnSendToAllStudentsFromBuilding.UseVisualStyleBackColor = true;
-            this.btnSendToAllStudentsFromBuilding.Click += new System.EventHandler(this.btnSendToAllStudentsFromBuilding_Click);
             // 
             // AdminForm
             // 
@@ -930,7 +916,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.TabPage tpTasks;
-        private System.Windows.Forms.Button btnAssign;
         private System.Windows.Forms.Label lblSunday;
         private System.Windows.Forms.Label lblSaturday;
         private System.Windows.Forms.Label lblFriday;

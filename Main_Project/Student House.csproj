@@ -52,6 +52,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Buildings.cs" />
     <Compile Include="Complaint.cs" />
     <Compile Include="DayOrWeek.cs" />
     <Compile Include="DaysOfTheWeek.cs" />

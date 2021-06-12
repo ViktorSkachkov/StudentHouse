@@ -12,7 +12,7 @@ namespace Student_House
 {
     public partial class LogIn : Form
     {
-        
+        private Random rand;
         private StudentHouse studentHouse;
         private Rules rules;
         public LogIn()
@@ -20,6 +20,7 @@ namespace Student_House
             InitializeComponent();
             this.studentHouse = new StudentHouse();
             this.rules = new Rules();
+            this.rand = new Random();
         }
         private void ChangeForm(int userNumber, String password)
         {
@@ -85,7 +86,7 @@ namespace Student_House
 
         private void signIn_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Visible = false;
             SignIn signIn = new SignIn(this.studentHouse, this);
             signIn.Show();
         }
@@ -93,6 +94,54 @@ namespace Student_House
         private void lblSignUp_Click(object sender, EventArgs e)
         {
 
+        }
+        private void AssignTasks()
+        {
+            this.studentHouse.ClearAllDays();
+            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            {
+                if (this.studentHouse.GetUsersFromSameBuilding(building).Count > 0)
+                {
+                    foreach (Task task in this.studentHouse.GetAllTasks())
+                    {
+                        if (task.Type == "weekly")
+                        {
+                            int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                            if (i == -1)
+                            {
+                                i++;
+                            }
+                            this.studentHouse.AddTask(building, "This week", i, task);
+                        }
+                        else
+                        {
+                            if (task.Type == "daily")
+                            {
+                                foreach (String day in this.studentHouse.GetDays())
+                                {
+                                    int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                                    if (i == -1)
+                                    {
+                                        i++;
+                                    }
+                                    this.studentHouse.AddTask(building, day, i, task);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                this.AssignTasks();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
