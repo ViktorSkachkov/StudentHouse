@@ -18,8 +18,8 @@ namespace Student_House
         private Rules rules;
         private List<String> UserEvents;
         private List<User> tempForUsers;
-        private List<int> pendingUsers;
-        private List<int> bannedUsers;
+        private List<User> pendingUsers;
+        private List<User> bannedUsers;
             
         private Random random;
         public AdminForm(LogIn li, StudentHouse sh, User u, Rules r)
@@ -31,8 +31,8 @@ namespace Student_House
             this.rules = r;
             this.UserEvents = new List<string>();
             this.tempForUsers = new List<User>();
-            this.pendingUsers = new List<int>();
-            this.bannedUsers = new List<int>();
+            this.pendingUsers = new List<User>();
+            this.bannedUsers = new List<User>();
             this.random = new Random();
             this.UpdateRules();
             this.UpdateComplaints();
@@ -173,14 +173,14 @@ namespace Student_House
         //           REFRESHING METHODS
         private void RefreshPending()
         {
-
+            this.lbPending.Items.Clear();
+            this.pendingUsers.Clear();
             foreach (User u in studentHouse.GetAllUsers())
             {
                 if (u.Pending)
                 {
-                    this.pendingUsers.Add(u.UserNumber);
                     this.lbPending.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber}");
-                    
+                    this.pendingUsers.Add(u);
                 }
             }
         }
@@ -188,15 +188,15 @@ namespace Student_House
 
         private void RefreshBann()
         {
-            foreach (User u in studentHouse.GetAllUsers())
-            {
+            this.bannedUsers.Clear();
+            this.lbBanned.Items.Clear();
+            foreach (User u in this.studentHouse.GetAllUsers())
                 if (u.Banned)
                 {
-                    this.bannedUsers.Add(u.UserNumber); 
+                    this.bannedUsers.Add(u);
                     this.lbBanned.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber}");
-                     
+
                 }
-            }
         }
 
         //           REFRESHING METHODS
@@ -208,25 +208,13 @@ namespace Student_House
 
         private void btnApprove_Click(object sender, EventArgs e)
               {
+            int index = this.lbPending.SelectedIndex;
 
-
-
-                   int index = this.lbPending.SelectedIndex;
-
-                  foreach (User user in studentHouse.GetAllUsers())
-                 {
-
-                     if (this.pendingUsers[index] == user.UserNumber)
-                        {
-
-                          user.ChangePending();
-                            MessageBox.Show($"{this.pendingUsers[index]}" + " approved");
-                     }
-                     this.lbPending.Items.Clear();
-                        this.RefreshPending();
-                  }
-
-              }
+            User u = this.pendingUsers[index];
+            u.ChangePending();
+            MessageBox.Show($"{this.pendingUsers[index].UserNumber}" + " approved");
+            this.RefreshPending();
+        }
 
         private void btnBann_Click(object sender, EventArgs e)
         {
@@ -256,24 +244,13 @@ namespace Student_House
 
         private void btnUnbann_Click(object sender, EventArgs e)
         {
-
-
-
-
             int index = this.lbBanned.SelectedIndex;
 
-            foreach (User user in studentHouse.GetAllUsers())
-            {
-
-                if (this.bannedUsers[index] == user.UserNumber)
-                {
-
-                    user.ChangeBanned();
-                    MessageBox.Show($"{this.bannedUsers[index]} is unbanned!");
-                }
-                this.lbBanned.Items.Clear();
-                this.RefreshBann();
-            }
+            User u = this.bannedUsers[index];
+            u.Unbann();
+            MessageBox.Show($"{this.bannedUsers[index].UserNumber} is unbanned!");
+            this.lbBanned.Items.Clear();
+            this.RefreshBann();
         }
 
 
@@ -389,44 +366,6 @@ namespace Student_House
             try
             {
                 this.SeeTasks();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void AssignRandomly()
-        {
-            this.studentHouse.ClearAllDays();
-            String building = this.cbBuilding.SelectedItem.ToString();
-            foreach (Task task in this.studentHouse.GetAllTasks())
-            {
-                if (task.Type == "weekly")
-                {
-                    int i = this.random.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
-                    this.studentHouse.AddTask(building, "This week", i, task);
-                }
-                else
-                {
-                    if (task.Type == "daily")
-                    {
-                        foreach (String day in this.studentHouse.GetDays())
-                        {
-                            int i = this.random.Next(0, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
-                            this.studentHouse.AddTask(building, day, i, task);
-                        }
-                    }
-                }
-                this.FillWithTasks(building);
-            }
-        }
-
-        private void btnAssign_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.AssignRandomly();
             }
             catch (Exception ex)
             {
