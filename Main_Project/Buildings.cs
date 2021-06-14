@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Student_House
 {
-    public enum Buildings { B1, B2, B3, B4}
+    public enum Buildings { B1, B2, B3, B4 }
 }

@@ -41,5 +41,18 @@ namespace Student_House
             get { return this.name; }
             private set { this.name = value; }
         }
+
+        public String GetEvents()
+        {
+            String holder=$"{this.organizer} will make {this.name} on {this.day}, {this.time}";
+            return holder;
+        }
+
+
+
     }
+
+
+
 }
+    

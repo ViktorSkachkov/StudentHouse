@@ -57,6 +57,8 @@
     <Compile Include="DayOrWeek.cs" />
     <Compile Include="DaysOfTheWeek.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="SharedItems.cs" />
+    <Compile Include="SharedItemsManager.cs" />
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>

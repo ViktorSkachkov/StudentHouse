@@ -19,11 +19,11 @@ namespace Student_House
             this.building = building;
             this.sender = sender;
         }
-        public String GetComplaint()
-        {
-            String holder = description + " " + time.ToString() + " from building " + building;
-            return holder;
-        }
+            public String GetComplaint()
+            {
+                String holder = description + " " + time.ToString() + " from building " + building;
+                return holder;
+            }
         public String Building
         {
             get { return this.building; }

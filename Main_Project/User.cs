@@ -98,6 +98,12 @@ namespace Student_House
         {
             this.pending = !this.pending;
         }
+
+        public void ChangeBanned()
+        {
+            this.banned = !this.banned;
+        }
+
         public bool AddAnswer(String comment)
         {
             if (comment != "")

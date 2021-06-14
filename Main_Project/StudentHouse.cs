@@ -10,13 +10,20 @@ namespace Student_House
     {
         private List<DayOrWeek> days;
         private List<User> users;
+        private List<SharedItems> sharedItem;
         private List<Task> tasks;
         private List<Complaint> complaints;
         private List<Event> events;
+        public SharedItemsManager manager;
+  
         private Random rand;
         public StudentHouse()
         {
-            this.users = new List<User>() { new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "sulphur", "@student", false, false),
+            this.manager = new SharedItemsManager();
+            this.users = new List<User>() { new User(2312, "Pedro", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
+                                            new User(4343, "Cisco", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
+                                            new User(9797, "Sergo", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
+                                            new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
                                             new User(1234, "Johnny", "Brown", "Kerrigan", "j.kerriganY@gmail.com", "B2", "pas", "@student", true, false),
                                             new User(1, "Pavel", "Ivanov", "Vasilov", "pav.vasilov999@gmail.com", "admin", "admin", "@admin", false, false)};           
             this.days = new List<DayOrWeek>() { new DayOrWeek("Monday"), new DayOrWeek("Tuesday"), new DayOrWeek("Wednesday"), new DayOrWeek("Thursday"), new DayOrWeek("Friday"), new DayOrWeek("Saturday"), new DayOrWeek("Sunday"), new DayOrWeek("This week")};
@@ -24,6 +31,13 @@ namespace Student_House
             this.events = new List<Event>();
             this.complaints = new List<Complaint>();
             this.rand = new Random();
+        }
+        public SharedItems shared
+        {
+            get
+            {
+                return this.shared;
+            }
         }
         public void AddUser(int userNumber, String firstName, String surname, String lastName, String email, String building, String password, String determinePassword, bool pending, bool banned)
         {
@@ -54,6 +68,12 @@ namespace Student_House
         {
             return this.complaints;
         }
+
+        public List<Event> GetEvents()
+        {
+            return this.events;
+        }
+
         public void AddComplaint(String complaintdescription, DateTime complaintdate, String building, User sender)
         {
             if (complaintdescription != "")
@@ -108,7 +128,7 @@ namespace Student_House
         {
             DayOrWeek d = this.days.Find(x => x.Name == day);
             User u = this.GetUsersFromSameBuilding(building)[i];
-            if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
+            if (this.CheckUser(u) && u.DeterminePassword != "@admin")
             {
                 d.Add(u, task);
             }
@@ -117,7 +137,7 @@ namespace Student_House
                 for (i = 0; i < this.GetUsersFromSameBuilding(building).Count; i++)
                 {
                     u = this.GetUsersFromSameBuilding(building)[i];
-                    if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
+                    if (this.CheckUser(u) && u.DeterminePassword != "@admin")
                     {
                         d.Add(u, task);
                         break;
@@ -125,11 +145,9 @@ namespace Student_House
                 }
             }
         }
-        private bool CheckUser(User u, String building)
+        private bool CheckUser(User u)
         {
             int number = 0;
-            List<User> temp = new List<User>();
-            temp = this.GetUsersFromSameBuilding(building);
             foreach (DayOrWeek d in this.days)
             {
                 if (d.Students.Contains(u))
@@ -137,7 +155,7 @@ namespace Student_House
                     number += d.GetNumberOfTimes(u);
                 }
             }
-            double checker = 23 / (temp.Count);
+            double checker = 23 / (this.users.Count - 1);
             return number <= Math.Ceiling(checker);
         }
         public void ClearAllDays()
@@ -188,9 +206,6 @@ namespace Student_House
         {
             return this.tasks;
         }
-        public List<Event> GetEvents()
-        {
-            return this.events;
-        }
+
     }
 }

@@ -60,7 +60,7 @@ namespace Student_House
                         {
                             this.ChangeForm(userNumber, password);
                         }
-                    }             
+                    }
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace Student_House
             {
                 this.Log();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -138,7 +138,7 @@ namespace Student_House
             {
                 this.AssignTasks();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

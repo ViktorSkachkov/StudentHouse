@@ -26,7 +26,6 @@ namespace Student_House
             this.user = u;
             this.rules = r;
             this.UserEvents = new List<string>();
-            this.studentsFromThisBuilding = new List<User>();
             this.UpdateList();
             this.Fill();
             this.Update();
@@ -34,14 +33,7 @@ namespace Student_House
         }
         private void UpdateList()
         {
-            this.studentsFromThisBuilding.Clear();
-            foreach(User u in this.studentHouse.GetUsersFromSameBuilding(this.user.Building))
-            {
-                if(u != this.user)
-                {
-                    this.studentsFromThisBuilding.Add(u);
-                }
-            }
+            this.studentsFromThisBuilding = new List<User>(this.studentHouse.GetUsersFromSameBuilding(this.user.Building));
             this.cbStudentsFromThisBuilding.Items.Clear();
             foreach (User u in this.studentsFromThisBuilding)
             {
@@ -106,7 +98,7 @@ namespace Student_House
         private void SendComplaint()
         {
             string complaintdescription = this.tbComp.Text.Trim();
-            DateTime complaintdate = DateTime.Now;
+            DateTime complaintdate = this.dtpDate.Value;
             String building = this.user.Building;
             this.studentHouse.AddComplaint(complaintdescription, complaintdate, building, this.user);
         }
@@ -165,5 +157,40 @@ namespace Student_House
                 MessageBox.Show(ex.Message);
             }
         }
+        // SHARED ITEMS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void btnAddSharedItem_Click(object sender, EventArgs e)
+        {
+            int studentsCount = 0;
+            this.studentHouse.manager.CreateSharedItem(user.UserNumber, tbAddedItem.Text, Convert.ToDouble(tbItemPrice.Text), Convert.ToInt32(tbItemQuantity.Text));
+            foreach (User u in studentHouse.GetAllUsers()) {
+                if (user.Building == u.Building) {
+                    studentsCount++;
+
+                }
+               
+
+                studentsCount = 0;
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            List <SharedItems>  sharedItems = this.studentHouse.manager.GetSharedItems();
+            
+
+            int studentCount = 0;
+            foreach (User u in studentHouse.GetAllUsers()) {
+                if (user.Building == u.Building) { studentCount++; }
+            }
+                    
+            foreach(var v in sharedItems )
+            {
+                foreach (User us in studentHouse.GetAllUsers()) {
+                    if (user.Building == us.Building && user.UserNumber!=us.UserNumber) { listBox1.Items.Add($"{us.FirstName} have to pay {studentHouse.manager.splittingAmmount((v.ItemPrice*v.ItemQuantity), studentCount)} on {v.StudentNumber} for {v.ItemQuantity} {v.ItemName}"); }
+                }
+
+            }
+        }
+        // SHARED ITEMS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }
