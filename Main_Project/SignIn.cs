@@ -63,6 +63,17 @@ namespace Student_House
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void lblGoBack_Click(object sender, EventArgs e)
+        {
+            this.login.Show();
+            this.Close();
+        }
+
+        private void tbRepeatPassowrd_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     

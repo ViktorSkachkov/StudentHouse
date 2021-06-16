@@ -52,6 +52,7 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Building.cs" />
     <Compile Include="Buildings.cs" />
     <Compile Include="Complaint.cs" />
     <Compile Include="DayOrWeek.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
@@ -116,6 +118,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Student House pic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StudentLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

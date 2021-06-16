@@ -16,7 +16,7 @@ namespace Student_House
         private LogIn logIn;
         private User user;
         private Rules rules;
-        private List<String> UserEvents;
+        private List<Event> UserEvents;
         private List<User> tempForUsers;
         private List<User> pendingUsers;
         private List<User> bannedUsers;
@@ -29,7 +29,7 @@ namespace Student_House
             this.logIn = li;
             this.user = u;
             this.rules = r;
-            this.UserEvents = new List<string>();
+            this.UserEvents = new List<Event>();
             this.tempForUsers = new List<User>();
             this.pendingUsers = new List<User>();
             this.bannedUsers = new List<User>();
@@ -58,9 +58,16 @@ namespace Student_House
 
         private void Fill()
         {
+            this.UpdateEvents();
             this.cbDay.Items.Clear();
             this.cbDay.Items.AddRange(this.studentHouse.GetDays().ToArray());
-            this.UpdateEvents();
+            this.cbBuilding.Items.Clear();
+            this.cbEventBuilding.Items.Clear();
+            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            {
+                this.cbBuilding.Items.Add(building);
+                this.cbEventBuilding.Items.Add(building);
+            }
         }
 
       
@@ -157,12 +164,6 @@ namespace Student_House
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnUpdateWeeklyEvent_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbDay_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -379,28 +380,16 @@ namespace Student_House
         private void UpdateEvents()
         {
             this.lbEvents.Items.Clear();
-            foreach (Event e in this.studentHouse.GetEvents())
+            this.UserEvents.Clear();
+            foreach (String building in Enum.GetNames(typeof(Buildings)))
             {
-                this.lbEvents.Items.Add(e.GetEvents());
+                foreach (Event e in this.studentHouse.GetEvents(building))
+                {
+                    this.UserEvents.Add(e);
+                    this.lbEvents.Items.Add(e.GetInfo(this.user) + " from building " + e.Building);
+                }
             }
-
         }
-
-        private void btnAddEvent_Click(object sender, EventArgs e)
-        {
-            string Event = cbEvent.SelectedItem.ToString();
-            string Day = cbDay.SelectedItem.ToString();
-            string Time = cbTime.SelectedItem.ToString();
-
-            UserEvents.Add(Event + " on " + Day + " at " + Time);
-            UpdateEvents();
-        }
-
-        private void btnUpdateDailyEvent_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void cbEvent_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -582,6 +571,84 @@ namespace Student_House
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRemoveEvent_Click(object sender, EventArgs e)
+        {
+            int index = this.lbEvents.SelectedIndex;
+            Event eve = this.UserEvents[index];
+            User u = eve.Organizer;
+            String building = u.Building;
+            this.studentHouse.RemoveEvent(eve);
+            foreach (User student in this.studentHouse.GetUsersFromSameBuilding(building))
+            {
+                student.AddMessage("I deleted one of your events. If you have objections, please contact me by writing a complaint!", this.user);
+            }
+            MessageBox.Show("The event was successfully deleted!");
+            this.UpdateEvents();
+        }
+
+        private void gbPending_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLogOutAdmin_Click(object sender, EventArgs e)
+        {
+            this.logIn.Show();
+            this.Close();
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DeleteAccount()
+        {
+            int id = Convert.ToInt32(this.lbBanned.SelectedItem);
+            this.studentHouse.RemoveUser(id);
+            this.lbBanned.Items.Clear();
+            MessageBox.Show($"{id}" + " rejected");
+            this.RefreshBann();
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DeleteAccount();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void AddEvent()
+        {
+            string Event = cbEvent.Text;
+            string Day = cbDay.Text;
+            string Time = cbTime.Text;
+            User organizer = this.user;
+            String building = this.cbEventBuilding.SelectedItem.ToString();
+
+            this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
+            UpdateEvents();
+            MessageBox.Show("Event successfully added!");
+        }
+        private void btnAddEvent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.AddEvent();
+            }
+            catch(Exception ex)
+            {
+
             }
         }
 

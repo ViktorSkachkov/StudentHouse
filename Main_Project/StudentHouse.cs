@@ -69,11 +69,20 @@ namespace Student_House
             return this.complaints;
         }
 
-        public List<Event> GetEvents()
+        public void AddEvent(User organizer, String day, String time, String name, String building)
         {
-            return this.events;
+            this.events.Add(new Event(organizer, day, time, name, building));
         }
-
+        public void RemoveEvent(Event e)
+        {
+            this.events.Remove(e);
+        }
+        public List<Event> GetEvents(String building)
+        {
+            List<Event> temp = new List<Event>();
+            temp = this.events.FindAll(x => x.Building == building);
+            return temp;
+        }
         public void AddComplaint(String complaintdescription, DateTime complaintdate, String building, User sender)
         {
             if (complaintdescription != "")

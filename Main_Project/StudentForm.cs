@@ -16,7 +16,7 @@ namespace Student_House
         private LogIn logIn;
         private User user;
         private Rules rules;
-        private List<String> UserEvents;
+        private List<Event> tempEvents;
         private List<User> studentsFromThisBuilding;
         public StudentForm(LogIn li, StudentHouse sh, User u, Rules r)
         {
@@ -25,7 +25,7 @@ namespace Student_House
             this.logIn = li;
             this.user = u;
             this.rules = r;
-            this.UserEvents = new List<string>();
+            this.tempEvents = new List<Event>();
             this.UpdateList();
             this.Fill();
             this.Update();
@@ -81,8 +81,16 @@ namespace Student_House
         }
         private void UpdateEvents()
         {
-            lbEvents.Items.Clear();
-            lbEvents.Items.AddRange(UserEvents.ToArray());
+            this.lbEvents.Items.Clear();
+            this.tempEvents.Clear();
+            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            {
+                foreach (Event e in this.studentHouse.GetEvents(building))
+                {
+                    this.tempEvents.Add(e);
+                    this.lbEvents.Items.Add(e.GetInfo(this.user));
+                }
+            }
         }
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
@@ -92,13 +100,14 @@ namespace Student_House
             User organizer = this.user;
             String building = this.user.Building;
 
-            UserEvents.Add(Event + " on " + Day + " at " + Time);
+            this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
             UpdateEvents();
+            MessageBox.Show("Event successfully added!");
         }
         private void SendComplaint()
         {
             string complaintdescription = this.tbComp.Text.Trim();
-            DateTime complaintdate = this.dtpDate.Value;
+            DateTime complaintdate = DateTime.Now;
             String building = this.user.Building;
             this.studentHouse.AddComplaint(complaintdescription, complaintdate, building, this.user);
         }
@@ -162,33 +171,85 @@ namespace Student_House
         {
             int studentsCount = 0;
             this.studentHouse.manager.CreateSharedItem(user.UserNumber, tbAddedItem.Text, Convert.ToDouble(tbItemPrice.Text), Convert.ToInt32(tbItemQuantity.Text));
-            foreach (User u in studentHouse.GetAllUsers()) {
-                if (user.Building == u.Building) {
+            foreach (User u in studentHouse.GetAllUsers())
+            {
+                if (user.Building == u.Building)
+                {
                     studentsCount++;
-
                 }
                
-
                 studentsCount = 0;
             }
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
+
             listBox1.Items.Clear();
-            List <SharedItems>  sharedItems = this.studentHouse.manager.GetSharedItems();
-            
+            List<SharedItems> sharedItems = this.studentHouse.manager.GetSharedItems();
 
             int studentCount = 0;
-            foreach (User u in studentHouse.GetAllUsers()) {
+            foreach (User u in studentHouse.GetAllUsers())
+            {
                 if (user.Building == u.Building) { studentCount++; }
             }
-                    
-            foreach(var v in sharedItems )
+
+            foreach (var v in sharedItems)
             {
-                foreach (User us in studentHouse.GetAllUsers()) {
-                    if (user.Building == us.Building && user.UserNumber!=us.UserNumber) { listBox1.Items.Add($"{us.FirstName} have to pay {studentHouse.manager.splittingAmmount((v.ItemPrice*v.ItemQuantity), studentCount)} on {v.StudentNumber} for {v.ItemQuantity} {v.ItemName}"); }
+                foreach (User us in studentHouse.GetAllUsers())
+                {
+                    if (user.Building == us.Building && user.UserNumber != us.UserNumber) { listBox1.Items.Add($"{us.FirstName} have to pay {studentHouse.manager.splittingAmmount((v.ItemPrice * v.ItemQuantity), studentCount)} on {v.StudentNumber} for {v.ItemQuantity} {v.ItemName}"); }
                 }
 
+            }
+        }
+       
+
+        private void btnRemoveEvent_Click(object sender, EventArgs e)
+        {
+            int index = this.lbEvents.SelectedIndex;
+            Event eve = this.tempEvents[index];
+            if (eve.Organizer != this.user)
+            {
+                MessageBox.Show("You can't delete this event because it wasn't created by you!");
+            }
+            else
+            {
+                this.studentHouse.RemoveEvent(eve);
+                this.lbEvents.Items.RemoveAt(index);
+                MessageBox.Show("The event was successfully deleted!");
+            }
+        }
+
+        private void tpRules_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tpEvents_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTime_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Remove()
+        {
+            int action = lbMessages.SelectedIndex;
+            if (action > -1)
+            {
+                lbMessages.Items.RemoveAt(action);
+            }
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Remove();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         // SHARED ITEMS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -26,25 +26,34 @@ namespace Student_House
             get { return this.organizer; }
             private set { this.organizer = value; }
         }
-        public String Day
-        {
-            get { return this.day; }
-            set { this.day = value; }
-        }
-        public String Time
-        {
-            get { return this.time; }
-            private set { this.time = value; }
-        }
         public String Name
         {
             get { return this.name; }
             private set { this.name = value; }
         }
-
-        public String GetEvents()
+        public String Building
         {
-            String holder=$"{this.organizer} will make {this.name} on {this.day}, {this.time}";
+            get { return this.building; }
+            private set { this.building = value; }
+        }
+        public String GetInfo(User u)
+        {
+            String holder = "";
+            if (u == this.organizer)
+            {
+                holder = $"I will make {this.name} on {this.day} at {this.time}";
+            }
+            else
+            {
+                if (this.organizer.DeterminePassword == "@admin")
+                {
+                    holder = $"The admin will make {this.name} on {this.day} at {this.time}";
+                }
+                else
+                {
+                    holder = $"{this.organizer.FirstName} will make {this.name} on {this.day} at {this.time}";
+                }
+            }
             return holder;
         }
 
