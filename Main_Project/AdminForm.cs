@@ -210,17 +210,29 @@ namespace Student_House
             MessageBox.Show($"{this.pendingUsers[index].UserNumber}" + " approved");
             this.RefreshPending();
         }
-
-        private void btnBann_Click(object sender, EventArgs e)
+        private void Bann()
         {
+            int userNumber = Convert.ToInt32(tbBannAccounts.Text);
             foreach (User user in studentHouse.GetAllUsers())
             {
-                if (user.UserNumber == Convert.ToInt32(tbBannAccounts.Text))
+                if (user.UserNumber == userNumber)
                 {
                     user.Bann();
-                    MessageBox.Show($"{user.UserNumber} is banned");
                     this.RefreshBann();
+                    throw new Exception($"{user.UserNumber} is banned");
                 }
+            }
+            throw new Exception("No account with this user number was found!");
+        }
+        private void btnBann_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Bann();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -262,10 +274,12 @@ namespace Student_House
 
         private void Deny()
         {
-            int id = Convert.ToInt32(this.lbPending.SelectedItem);
-            this.studentHouse.RemoveUser(id);
+            int index = this.lbPending.SelectedIndex;
+            User u = this.pendingUsers[index];
+            int studentNumber = u.UserNumber;
+            this.studentHouse.RemoveUser(studentNumber);
             this.lbPending.Items.Clear();
-            MessageBox.Show($"{id}" + " rejected");
+            MessageBox.Show($"{studentNumber}" + " rejected");
             this.RefreshPending();
         }
 
@@ -612,10 +626,12 @@ namespace Student_House
         }
         private void DeleteAccount()
         {
-            int id = Convert.ToInt32(this.lbBanned.SelectedItem);
-            this.studentHouse.RemoveUser(id);
+            int index = this.lbBanned.SelectedIndex;
+            User u = this.bannedUsers[index];
+            int studentNumber = u.UserNumber;
+            this.studentHouse.RemoveUser(studentNumber);
             this.lbBanned.Items.Clear();
-            MessageBox.Show($"{id}" + " rejected");
+            MessageBox.Show($"{studentNumber}" + " rejected");
             this.RefreshBann();
         }
         private void btnDelete_Click(object sender, EventArgs e)
