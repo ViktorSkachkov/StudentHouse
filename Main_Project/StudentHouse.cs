@@ -98,7 +98,6 @@ namespace Student_House
         public void RemoveComplaint(int index)
         {
             this.complaints.RemoveAt(index);
-            throw new Exception("The complaint was successfully removed!");
         }
         public void ClearComplaints()
         {
@@ -137,7 +136,7 @@ namespace Student_House
         {
             DayOrWeek d = this.days.Find(x => x.Name == day);
             User u = this.GetUsersFromSameBuilding(building)[i];
-            if (this.CheckUser(u) && u.DeterminePassword != "@admin")
+            if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
             {
                 d.Add(u, task);
             }
@@ -146,7 +145,7 @@ namespace Student_House
                 for (i = 0; i < this.GetUsersFromSameBuilding(building).Count; i++)
                 {
                     u = this.GetUsersFromSameBuilding(building)[i];
-                    if (this.CheckUser(u) && u.DeterminePassword != "@admin")
+                    if (this.CheckUser(u, building) && u.DeterminePassword != "@admin")
                     {
                         d.Add(u, task);
                         break;
@@ -154,9 +153,11 @@ namespace Student_House
                 }
             }
         }
-        private bool CheckUser(User u)
+        private bool CheckUser(User u, String building)
         {
             int number = 0;
+            List<User> temp = new List<User>();
+            temp = this.GetUsersFromSameBuilding(building);
             foreach (DayOrWeek d in this.days)
             {
                 if (d.Students.Contains(u))
@@ -164,7 +165,7 @@ namespace Student_House
                     number += d.GetNumberOfTimes(u);
                 }
             }
-            double checker = 23 / (this.users.Count - 1);
+            double checker = 23 / (temp.Count);
             return number <= Math.Ceiling(checker);
         }
         public void ClearAllDays()

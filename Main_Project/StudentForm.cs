@@ -26,6 +26,7 @@ namespace Student_House
             this.user = u;
             this.rules = r;
             this.tempEvents = new List<Event>();
+            this.studentsFromThisBuilding = new List<User>();
             this.UpdateList();
             this.Fill();
             this.Update();
@@ -33,8 +34,9 @@ namespace Student_House
         }
         private void UpdateList()
         {
-            this.studentsFromThisBuilding = new List<User>(this.studentHouse.GetUsersFromSameBuilding(this.user.Building));
             this.cbStudentsFromThisBuilding.Items.Clear();
+            this.studentsFromThisBuilding.Clear();
+            this.studentsFromThisBuilding.AddRange(this.studentHouse.GetUsersFromSameBuilding(this.user.Building));
             foreach (User u in this.studentsFromThisBuilding)
             {
                 if (u != this.user)
@@ -83,14 +85,11 @@ namespace Student_House
         {
             this.lbEvents.Items.Clear();
             this.tempEvents.Clear();
-            foreach (String building in Enum.GetNames(typeof(Buildings)))
-            {
-                foreach (Event e in this.studentHouse.GetEvents(building))
+                foreach (Event e in this.studentHouse.GetEvents(this.user.Building))
                 {
                     this.tempEvents.Add(e);
                     this.lbEvents.Items.Add(e.GetInfo(this.user));
                 }
-            }
         }
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
@@ -237,7 +236,13 @@ namespace Student_House
             int action = lbMessages.SelectedIndex;
             if (action > -1)
             {
-                lbMessages.Items.RemoveAt(action);
+                this.user.RemoveMessage(action);
+                this.UpdateComplainstAndMessages();
+                throw new Exception("Message successfully deleted!");
+            }
+            else
+            {
+                throw new Exception("No message is selected!");
             }
         }
 

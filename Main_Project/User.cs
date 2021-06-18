@@ -138,7 +138,7 @@ namespace Student_House
         }
         public void RemoveMessage(int index)
         {
-            this.answers.RemoveAt(index);
+            this.messages.RemoveAt(index);
         }
         public List<String> GetMessages()
         {

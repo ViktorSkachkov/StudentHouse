@@ -64,6 +64,15 @@
             this.lblTuesday = new System.Windows.Forms.Label();
             this.lblMonday = new System.Windows.Forms.Label();
             this.tpEvents = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbEventBuilding = new System.Windows.Forms.ComboBox();
+            this.cbTime = new System.Windows.Forms.ComboBox();
+            this.cbDay = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblChooseDay = new System.Windows.Forms.Label();
+            this.lblEvent = new System.Windows.Forms.Label();
+            this.cbEvent = new System.Windows.Forms.ComboBox();
+            this.btnAddEvent = new System.Windows.Forms.Button();
             this.btnRemoveEvent = new System.Windows.Forms.Button();
             this.lbEvents = new System.Windows.Forms.ListBox();
             this.tpComplaints = new System.Windows.Forms.TabPage();
@@ -83,18 +92,8 @@
             this.btnShowBuildingStudents = new System.Windows.Forms.Button();
             this.lblSelectBuilding = new System.Windows.Forms.Label();
             this.cbMessageToBuilding = new System.Windows.Forms.ComboBox();
-            this.lblBack = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblLogOutAdmin = new System.Windows.Forms.Label();
-            this.btnAddEvent = new System.Windows.Forms.Button();
-            this.cbTime = new System.Windows.Forms.ComboBox();
-            this.cbDay = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblChooseDay = new System.Windows.Forms.Label();
-            this.lblEvent = new System.Windows.Forms.Label();
-            this.cbEvent = new System.Windows.Forms.ComboBox();
-            this.cbEventBuilding = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
@@ -119,7 +118,7 @@
             this.tbRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRules.Name = "tbRules";
             this.tbRules.SelectedIndex = 0;
-            this.tbRules.Size = new System.Drawing.Size(865, 490);
+            this.tbRules.Size = new System.Drawing.Size(1198, 490);
             this.tbRules.TabIndex = 1;
             // 
             // tabPage1
@@ -138,7 +137,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(857, 461);
+            this.tabPage1.Size = new System.Drawing.Size(1190, 461);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Rules";
             // 
@@ -257,7 +256,7 @@
             this.tpPendingAccounts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpPendingAccounts.Name = "tpPendingAccounts";
             this.tpPendingAccounts.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpPendingAccounts.Size = new System.Drawing.Size(857, 461);
+            this.tpPendingAccounts.Size = new System.Drawing.Size(1190, 461);
             this.tpPendingAccounts.TabIndex = 1;
             this.tpPendingAccounts.Text = "Pending Accounts";
             // 
@@ -402,7 +401,7 @@
             this.tpTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpTasks.Name = "tpTasks";
             this.tpTasks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpTasks.Size = new System.Drawing.Size(857, 461);
+            this.tpTasks.Size = new System.Drawing.Size(1190, 461);
             this.tpTasks.TabIndex = 2;
             this.tpTasks.Text = "Tasks";
             // 
@@ -540,9 +539,122 @@
             this.tpEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpEvents.Name = "tpEvents";
             this.tpEvents.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpEvents.Size = new System.Drawing.Size(857, 461);
+            this.tpEvents.Size = new System.Drawing.Size(1190, 461);
             this.tpEvents.TabIndex = 3;
             this.tpEvents.Text = "Events";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(628, 130);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 21);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Choose a building:";
+            // 
+            // cbEventBuilding
+            // 
+            this.cbEventBuilding.FormattingEnabled = true;
+            this.cbEventBuilding.Location = new System.Drawing.Point(631, 159);
+            this.cbEventBuilding.Name = "cbEventBuilding";
+            this.cbEventBuilding.Size = new System.Drawing.Size(121, 24);
+            this.cbEventBuilding.TabIndex = 20;
+            // 
+            // cbTime
+            // 
+            this.cbTime.FormattingEnabled = true;
+            this.cbTime.Items.AddRange(new object[] {
+            "00:00",
+            "01:00",
+            "02:00",
+            "03:00",
+            "04:00",
+            "05:00",
+            "06:00",
+            "07:00",
+            "08:00",
+            "09:00",
+            "10:00",
+            "11:00",
+            "12:00",
+            "13:00",
+            "14:00",
+            "15:00",
+            "16:00",
+            "17:00",
+            "18:00",
+            "19:00",
+            "20:00",
+            "21:00",
+            "22:00",
+            "23:00"});
+            this.cbTime.Location = new System.Drawing.Point(631, 70);
+            this.cbTime.Name = "cbTime";
+            this.cbTime.Size = new System.Drawing.Size(121, 24);
+            this.cbTime.TabIndex = 19;
+            // 
+            // cbDay
+            // 
+            this.cbDay.FormattingEnabled = true;
+            this.cbDay.Location = new System.Drawing.Point(490, 70);
+            this.cbDay.Name = "cbDay";
+            this.cbDay.Size = new System.Drawing.Size(121, 24);
+            this.cbDay.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(627, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(122, 21);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Choose a time:";
+            // 
+            // lblChooseDay
+            // 
+            this.lblChooseDay.AutoSize = true;
+            this.lblChooseDay.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChooseDay.Location = new System.Drawing.Point(486, 45);
+            this.lblChooseDay.Name = "lblChooseDay";
+            this.lblChooseDay.Size = new System.Drawing.Size(115, 21);
+            this.lblChooseDay.TabIndex = 16;
+            this.lblChooseDay.Text = "Choose a day:";
+            // 
+            // lblEvent
+            // 
+            this.lblEvent.AutoSize = true;
+            this.lblEvent.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEvent.Location = new System.Drawing.Point(298, 45);
+            this.lblEvent.Name = "lblEvent";
+            this.lblEvent.Size = new System.Drawing.Size(139, 21);
+            this.lblEvent.TabIndex = 15;
+            this.lblEvent.Text = "Choose an event:";
+            // 
+            // cbEvent
+            // 
+            this.cbEvent.FormattingEnabled = true;
+            this.cbEvent.Items.AddRange(new object[] {
+            "Small Group Gathering",
+            "Small Party",
+            "Friend / Parents coming over for a few day"});
+            this.cbEvent.Location = new System.Drawing.Point(302, 70);
+            this.cbEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbEvent.Name = "cbEvent";
+            this.cbEvent.Size = new System.Drawing.Size(159, 24);
+            this.cbEvent.TabIndex = 14;
+            // 
+            // btnAddEvent
+            // 
+            this.btnAddEvent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddEvent.Location = new System.Drawing.Point(165, 28);
+            this.btnAddEvent.Name = "btnAddEvent";
+            this.btnAddEvent.Size = new System.Drawing.Size(114, 66);
+            this.btnAddEvent.TabIndex = 2;
+            this.btnAddEvent.Text = "Add event";
+            this.btnAddEvent.UseVisualStyleBackColor = true;
+            this.btnAddEvent.Click += new System.EventHandler(this.btnAddEvent_Click);
             // 
             // btnRemoveEvent
             // 
@@ -580,7 +692,7 @@
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpComplaints.Name = "tpComplaints";
             this.tpComplaints.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpComplaints.Size = new System.Drawing.Size(857, 461);
+            this.tpComplaints.Size = new System.Drawing.Size(1190, 461);
             this.tpComplaints.TabIndex = 4;
             this.tpComplaints.Text = "Complaints";
             // 
@@ -655,6 +767,7 @@
             this.lbComp.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbComp.FormattingEnabled = true;
             this.lbComp.HorizontalExtent = 12;
+            this.lbComp.HorizontalScrollbar = true;
             this.lbComp.ItemHeight = 21;
             this.lbComp.Location = new System.Drawing.Point(26, 47);
             this.lbComp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -677,7 +790,7 @@
             this.tpSendMessages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpSendMessages.Name = "tpSendMessages";
             this.tpSendMessages.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpSendMessages.Size = new System.Drawing.Size(857, 461);
+            this.tpSendMessages.Size = new System.Drawing.Size(1190, 461);
             this.tpSendMessages.TabIndex = 5;
             this.tpSendMessages.Text = "Send Messages";
             // 
@@ -775,18 +888,6 @@
             this.cbMessageToBuilding.TabIndex = 0;
             this.cbMessageToBuilding.SelectedIndexChanged += new System.EventHandler(this.cbMessageToBuilding_SelectedIndexChanged);
             // 
-            // lblBack
-            // 
-            this.lblBack.AutoSize = true;
-            this.lblBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.lblBack.Location = new System.Drawing.Point(1108, 9);
-            this.lblBack.Name = "lblBack";
-            this.lblBack.Size = new System.Drawing.Size(56, 25);
-            this.lblBack.TabIndex = 10;
-            this.lblBack.Text = "Back";
-            this.lblBack.Click += new System.EventHandler(this.lblBack_Click);
-            // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
@@ -802,134 +903,20 @@
             this.lblLogOutAdmin.AutoSize = true;
             this.lblLogOutAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogOutAdmin.ForeColor = System.Drawing.Color.Black;
-            this.lblLogOutAdmin.Location = new System.Drawing.Point(770, 13);
+            this.lblLogOutAdmin.Location = new System.Drawing.Point(1107, 21);
             this.lblLogOutAdmin.Name = "lblLogOutAdmin";
             this.lblLogOutAdmin.Size = new System.Drawing.Size(107, 29);
             this.lblLogOutAdmin.TabIndex = 11;
             this.lblLogOutAdmin.Text = "Log out ";
             this.lblLogOutAdmin.Click += new System.EventHandler(this.lblLogOutAdmin_Click);
             // 
-            // btnAddEvent
-            // 
-            this.btnAddEvent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddEvent.Location = new System.Drawing.Point(165, 28);
-            this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(114, 66);
-            this.btnAddEvent.TabIndex = 2;
-            this.btnAddEvent.Text = "Add event";
-            this.btnAddEvent.UseVisualStyleBackColor = true;
-            this.btnAddEvent.Click += new System.EventHandler(this.btnAddEvent_Click);
-            // 
-            // cbTime
-            // 
-            this.cbTime.FormattingEnabled = true;
-            this.cbTime.Items.AddRange(new object[] {
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00"});
-            this.cbTime.Location = new System.Drawing.Point(631, 70);
-            this.cbTime.Name = "cbTime";
-            this.cbTime.Size = new System.Drawing.Size(121, 24);
-            this.cbTime.TabIndex = 19;
-            // 
-            // cbDay
-            // 
-            this.cbDay.FormattingEnabled = true;
-            this.cbDay.Location = new System.Drawing.Point(490, 70);
-            this.cbDay.Name = "cbDay";
-            this.cbDay.Size = new System.Drawing.Size(121, 24);
-            this.cbDay.TabIndex = 18;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(627, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(122, 21);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Choose a time:";
-            // 
-            // lblChooseDay
-            // 
-            this.lblChooseDay.AutoSize = true;
-            this.lblChooseDay.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChooseDay.Location = new System.Drawing.Point(486, 45);
-            this.lblChooseDay.Name = "lblChooseDay";
-            this.lblChooseDay.Size = new System.Drawing.Size(115, 21);
-            this.lblChooseDay.TabIndex = 16;
-            this.lblChooseDay.Text = "Choose a day:";
-            // 
-            // lblEvent
-            // 
-            this.lblEvent.AutoSize = true;
-            this.lblEvent.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEvent.Location = new System.Drawing.Point(298, 45);
-            this.lblEvent.Name = "lblEvent";
-            this.lblEvent.Size = new System.Drawing.Size(139, 21);
-            this.lblEvent.TabIndex = 15;
-            this.lblEvent.Text = "Choose an event:";
-            // 
-            // cbEvent
-            // 
-            this.cbEvent.FormattingEnabled = true;
-            this.cbEvent.Items.AddRange(new object[] {
-            "Small Group Gathering",
-            "Small Party",
-            "Friend / Parents coming over for a few day"});
-            this.cbEvent.Location = new System.Drawing.Point(302, 70);
-            this.cbEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbEvent.Name = "cbEvent";
-            this.cbEvent.Size = new System.Drawing.Size(159, 24);
-            this.cbEvent.TabIndex = 14;
-            // 
-            // cbEventBuilding
-            // 
-            this.cbEventBuilding.FormattingEnabled = true;
-            this.cbEventBuilding.Location = new System.Drawing.Point(631, 159);
-            this.cbEventBuilding.Name = "cbEventBuilding";
-            this.cbEventBuilding.Size = new System.Drawing.Size(121, 24);
-            this.cbEventBuilding.TabIndex = 20;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(628, 130);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 21);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Choose a building:";
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 553);
+            this.ClientSize = new System.Drawing.Size(1226, 553);
             this.Controls.Add(this.lblLogOutAdmin);
             this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.lblBack);
             this.Controls.Add(this.tbRules);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AdminForm";
@@ -967,7 +954,6 @@
         private System.Windows.Forms.TextBox tbEditRule;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Label lblBack;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.TabPage tpTasks;

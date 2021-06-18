@@ -70,13 +70,7 @@ namespace Student_House
             }
         }
 
-      
 
-        private void lblBack_Click(object sender, EventArgs e)
-        {
-            this.logIn.Show();
-            this.Close();
-        }
         private void WelcomeUser()
         {
             String firstName = this.user.FirstName;
@@ -453,6 +447,11 @@ namespace Student_House
             {
                 this.studentHouse.RemoveComplaint(action);
                 this.lbComp.Items.RemoveAt(action);
+                throw new Exception("Complaint successfully removed!");
+            }
+            else
+            {
+                throw new Exception("Select a complaint to remove!");
             }
         }
 
@@ -472,6 +471,8 @@ namespace Student_House
         private void btnClearComp_Click(object sender, EventArgs e)
         {
             this.lbComp.Items.Clear();
+            this.studentHouse.ClearComplaints();
+            MessageBox.Show("All complaints were cleared!");
         }
 
         // COMPLAINTS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
