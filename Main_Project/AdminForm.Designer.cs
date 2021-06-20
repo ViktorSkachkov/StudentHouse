@@ -55,14 +55,6 @@
             this.btnSeeTasks = new System.Windows.Forms.Button();
             this.cbBuilding = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblThisWeek = new System.Windows.Forms.Label();
-            this.lblSunday = new System.Windows.Forms.Label();
-            this.lblSaturday = new System.Windows.Forms.Label();
-            this.lblFriday = new System.Windows.Forms.Label();
-            this.lblThursday = new System.Windows.Forms.Label();
-            this.lblWednesday = new System.Windows.Forms.Label();
-            this.lblTuesday = new System.Windows.Forms.Label();
-            this.lblMonday = new System.Windows.Forms.Label();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.cbEventBuilding = new System.Windows.Forms.ComboBox();
@@ -100,6 +92,7 @@
             this.tbBuildingName = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblLogOutAdmin = new System.Windows.Forms.Label();
+            this.lbSeeTasks = new System.Windows.Forms.ListBox();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
@@ -145,7 +138,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1190, 461);
+            this.tabPage1.Size = new System.Drawing.Size(851, 461);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Rules";
             // 
@@ -396,17 +389,10 @@
             // tpTasks
             // 
             this.tpTasks.BackColor = System.Drawing.Color.LightGray;
+            this.tpTasks.Controls.Add(this.lbSeeTasks);
             this.tpTasks.Controls.Add(this.btnSeeTasks);
             this.tpTasks.Controls.Add(this.cbBuilding);
             this.tpTasks.Controls.Add(this.label6);
-            this.tpTasks.Controls.Add(this.lblThisWeek);
-            this.tpTasks.Controls.Add(this.lblSunday);
-            this.tpTasks.Controls.Add(this.lblSaturday);
-            this.tpTasks.Controls.Add(this.lblFriday);
-            this.tpTasks.Controls.Add(this.lblThursday);
-            this.tpTasks.Controls.Add(this.lblWednesday);
-            this.tpTasks.Controls.Add(this.lblTuesday);
-            this.tpTasks.Controls.Add(this.lblMonday);
             this.tpTasks.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpTasks.Location = new System.Drawing.Point(4, 25);
             this.tpTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -451,86 +437,6 @@
             this.label6.Size = new System.Drawing.Size(137, 21);
             this.label6.TabIndex = 9;
             this.label6.Text = "Select a building:";
-            // 
-            // lblThisWeek
-            // 
-            this.lblThisWeek.AutoSize = true;
-            this.lblThisWeek.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThisWeek.Location = new System.Drawing.Point(237, 403);
-            this.lblThisWeek.Name = "lblThisWeek";
-            this.lblThisWeek.Size = new System.Drawing.Size(19, 14);
-            this.lblThisWeek.TabIndex = 8;
-            this.lblThisWeek.Text = "8)";
-            // 
-            // lblSunday
-            // 
-            this.lblSunday.AutoSize = true;
-            this.lblSunday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSunday.Location = new System.Drawing.Point(237, 354);
-            this.lblSunday.Name = "lblSunday";
-            this.lblSunday.Size = new System.Drawing.Size(19, 14);
-            this.lblSunday.TabIndex = 7;
-            this.lblSunday.Text = "7)";
-            // 
-            // lblSaturday
-            // 
-            this.lblSaturday.AutoSize = true;
-            this.lblSaturday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaturday.Location = new System.Drawing.Point(237, 301);
-            this.lblSaturday.Name = "lblSaturday";
-            this.lblSaturday.Size = new System.Drawing.Size(19, 14);
-            this.lblSaturday.TabIndex = 6;
-            this.lblSaturday.Text = "6)";
-            // 
-            // lblFriday
-            // 
-            this.lblFriday.AutoSize = true;
-            this.lblFriday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFriday.Location = new System.Drawing.Point(237, 246);
-            this.lblFriday.Name = "lblFriday";
-            this.lblFriday.Size = new System.Drawing.Size(19, 14);
-            this.lblFriday.TabIndex = 5;
-            this.lblFriday.Text = "5)";
-            // 
-            // lblThursday
-            // 
-            this.lblThursday.AutoSize = true;
-            this.lblThursday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThursday.Location = new System.Drawing.Point(237, 194);
-            this.lblThursday.Name = "lblThursday";
-            this.lblThursday.Size = new System.Drawing.Size(19, 14);
-            this.lblThursday.TabIndex = 4;
-            this.lblThursday.Text = "4)";
-            // 
-            // lblWednesday
-            // 
-            this.lblWednesday.AutoSize = true;
-            this.lblWednesday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWednesday.Location = new System.Drawing.Point(237, 140);
-            this.lblWednesday.Name = "lblWednesday";
-            this.lblWednesday.Size = new System.Drawing.Size(19, 14);
-            this.lblWednesday.TabIndex = 3;
-            this.lblWednesday.Text = "3)";
-            // 
-            // lblTuesday
-            // 
-            this.lblTuesday.AutoSize = true;
-            this.lblTuesday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTuesday.Location = new System.Drawing.Point(237, 86);
-            this.lblTuesday.Name = "lblTuesday";
-            this.lblTuesday.Size = new System.Drawing.Size(19, 14);
-            this.lblTuesday.TabIndex = 2;
-            this.lblTuesday.Text = "2)";
-            // 
-            // lblMonday
-            // 
-            this.lblMonday.AutoSize = true;
-            this.lblMonday.Font = new System.Drawing.Font("Tahoma", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonday.Location = new System.Drawing.Point(237, 30);
-            this.lblMonday.Name = "lblMonday";
-            this.lblMonday.Size = new System.Drawing.Size(19, 14);
-            this.lblMonday.TabIndex = 1;
-            this.lblMonday.Text = "1)";
             // 
             // tpEvents
             // 
@@ -980,6 +886,16 @@
             this.lblLogOutAdmin.Text = "Log out ";
             this.lblLogOutAdmin.Click += new System.EventHandler(this.lblLogOutAdmin_Click);
             // 
+            // lbSeeTasks
+            // 
+            this.lbSeeTasks.FormattingEnabled = true;
+            this.lbSeeTasks.HorizontalScrollbar = true;
+            this.lbSeeTasks.ItemHeight = 16;
+            this.lbSeeTasks.Location = new System.Drawing.Point(226, 24);
+            this.lbSeeTasks.Name = "lbSeeTasks";
+            this.lbSeeTasks.Size = new System.Drawing.Size(596, 276);
+            this.lbSeeTasks.TabIndex = 12;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1029,14 +945,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.TabPage tpTasks;
-        private System.Windows.Forms.Label lblSunday;
-        private System.Windows.Forms.Label lblSaturday;
-        private System.Windows.Forms.Label lblFriday;
-        private System.Windows.Forms.Label lblThursday;
-        private System.Windows.Forms.Label lblWednesday;
-        private System.Windows.Forms.Label lblTuesday;
-        private System.Windows.Forms.Label lblMonday;
-        private System.Windows.Forms.Label lblThisWeek;
         private System.Windows.Forms.TabPage tpEvents;
         private System.Windows.Forms.ListBox lbEvents;
         private System.Windows.Forms.TabPage tpComplaints;
@@ -1087,5 +995,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbCapacity;
         private System.Windows.Forms.TextBox tbBuildingName;
+        private System.Windows.Forms.ListBox lbSeeTasks;
     }
 }

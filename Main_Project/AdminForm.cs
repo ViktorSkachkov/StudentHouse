@@ -358,54 +358,24 @@ namespace Student_House
         // TASKS //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void FillWithTasks(String building)
         {
-            this.lblMonday.Text = "";
-            this.lblTuesday.Text = "";
-            this.lblWednesday.Text = "";
-            this.lblThursday.Text = "";
-            this.lblFriday.Text = "";
-            this.lblSaturday.Text = "";
-            this.lblSunday.Text = "";
-            this.lblThisWeek.Text = "";
+            this.lbSeeTasks.Items.Clear();
             foreach (DayOrWeek d in this.studentHouse.GetAllDays(null))
             {
-                if (d.Name == "Monday")
-                {
-                    this.lblMonday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Tuesday")
-                {
-                    this.lblTuesday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Wednesday")
-                {
-                    this.lblWednesday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Thursday")
-                {
-                    this.lblThursday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Friday")
-                {
-                    this.lblFriday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Saturday")
-                {
-                    this.lblSaturday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "Sunday")
-                {
-                    this.lblSunday.Text += d.GetInfo(building);
-                }
-                if (d.Name == "This week")
-                {
-                    this.lblThisWeek.Text += d.GetInfo(building);
-                }
+                    this.lbSeeTasks.Items.Add(d.GetInfo(building));
+                this.lbSeeTasks.Items.Add("");
             }
         }
         private void SeeTasks()
         {
-            String building = this.cbBuilding.SelectedItem.ToString();
-            this.FillWithTasks(building);
+            if (this.cbBuilding.SelectedIndex > -1)
+            {
+                String building = this.cbBuilding.SelectedItem.ToString();
+                this.FillWithTasks(building);
+            }
+            else
+            {
+                throw new Exception("Select a building!");
+            }
         }
         private void btnSeeTasks_Click(object sender, EventArgs e)
         {

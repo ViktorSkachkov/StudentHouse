@@ -171,7 +171,7 @@ namespace Student_House
             if(!this.buildings.Exists(x => x.Name == name))
             {
                 this.buildings.Add(new Building(name, capacity));
-                throw new Exception("A successfully added!");
+                throw new Exception("Building successfully added!");
             }
             else
             {
