@@ -14,13 +14,14 @@ namespace Student_House
         private String lastName;
         private String email;
         private String building;
+        private int room;
         private String password;
         private String determinePassword;
         private bool pending;
         private bool banned;
         List<String> answers;
         List<String> messages;
-        public User(int userNumber, String firstName, String surname, String lastName, String email, String building, String password, String determinePassword, bool pending, bool banned)
+        public User(int userNumber, String firstName, String surname, String lastName, String email, String building, int room, String password, String determinePassword, bool pending, bool banned)
         {
             this.userNumber = userNumber;
             this.firstName = firstName;
@@ -28,6 +29,7 @@ namespace Student_House
             this.lastName = lastName;
             this.email = email;
             this.building = building;
+            this.room = room;
             this.password = password;
             this.determinePassword = determinePassword;
             this.pending = pending;
@@ -74,6 +76,11 @@ namespace Student_House
         {
             get { return this.building; }
             private set { this.building = value; }
+        }
+        public int Room
+        {
+            get { return this.room; }
+            private set { this.room = value; }
         }
         public bool Pending
         { 

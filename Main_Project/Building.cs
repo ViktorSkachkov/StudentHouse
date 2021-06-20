@@ -6,12 +6,45 @@ using System.Threading.Tasks;
 
 namespace Student_House
 {
-    class Building
+    public class Building
     {
-        private String name;
+        // private char additionalInitials;
+        private string name;
         private int capacity;
-        public Building(String name, int capacity)
+
+        List<int> rooms;
+        public Building(String name, /*char additionalInitials, */int capacity)
         {
+            this.name = name ;
+            this.rooms = new List<int>();
+            for (int number = 1; number <= capacity; number++)
+            {
+                this.rooms.Add(number);
+            }
+        }
+        public int Capacity
+        {
+            get { return this.capacity; }
+            set { this.capacity = value; }
+        }
+
+
+        public string Name
+        {
+            get { return this.name; }
+            private set { this.name = value;/*{additionalInitials}*/ }
+        }
+
+
+        public List<int> GetRooms()
+        {
+            return this.rooms;
+        }
+
+
+        public override string ToString()
+        {
+            return $" {this.name} || {this.Capacity}";
 
         }
     }

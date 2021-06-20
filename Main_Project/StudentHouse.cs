@@ -14,20 +14,28 @@ namespace Student_House
         private List<Task> tasks;
         private List<Complaint> complaints;
         private List<Event> events;
+        List<Building> buildings;
         public SharedItemsManager manager;
   
         private Random rand;
         public StudentHouse()
         {
             this.manager = new SharedItemsManager();
-            this.users = new List<User>() { new User(2312, "Pedro", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
-                                            new User(4343, "Cisco", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
-                                            new User(9797, "Sergo", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
-                                            new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", "pas", "@student", false, false),
-                                            new User(1234, "Johnny", "Brown", "Kerrigan", "j.kerriganY@gmail.com", "B2", "pas", "@student", true, false),
-                                            new User(1, "Pavel", "Ivanov", "Vasilov", "pav.vasilov999@gmail.com", "admin", "admin", "@admin", false, false)};           
+            this.users = new List<User>() { new User(2312, "Peter", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", 1, "pas", "@student", false, false),
+                                            new User(4343, "Cisco", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", 3,  "pas", "@student", false, false),
+                                            new User(9797, "Sergo", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", 2, "pas", "@student", false, false),
+                                            new User(4545, "Viktor", "Aleksandrov", "Skachkov", "viktor.skachkov01@gmail.com", "B1", 1, "pas", "@student", false, false),
+                                            new User(1234, "Johnny", "Brown", "Kerrigan", "j.kerriganY@gmail.com", "B2", 1,  "pas", "@student", true, false),
+                                            new User(1, "Pavel", "Ivanov", "Vasilov", "pav.vasilov999@gmail.com", "admin", 1, "admin", "@admin", false, false)};           
             this.days = new List<DayOrWeek>() { new DayOrWeek("Monday"), new DayOrWeek("Tuesday"), new DayOrWeek("Wednesday"), new DayOrWeek("Thursday"), new DayOrWeek("Friday"), new DayOrWeek("Saturday"), new DayOrWeek("Sunday"), new DayOrWeek("This week")};
             this.tasks = new List<Task>() { new Task("do the garbage disposal", "daily"), new Task("swipe the whole property", "daily"), new Task("clean the dishes", "daily"), new Task("clean the bathroom", "weekly"), new Task("clean the whole property", "weekly") };
+            this.buildings = new List<Building>()
+            {
+                new Building("B1", 4),
+                new Building("B2", 5),
+                new Building("B3", 5),
+                new Building("B4", 5)
+            };
             this.events = new List<Event>();
             this.complaints = new List<Complaint>();
             this.rand = new Random();
@@ -39,7 +47,7 @@ namespace Student_House
                 return this.shared;
             }
         }
-        public void AddUser(int userNumber, String firstName, String surname, String lastName, String email, String building, String password, String determinePassword, bool pending, bool banned)
+        public void AddUser(int userNumber, String firstName, String surname, String lastName, String email, String building, int room, String password, String determinePassword, bool pending, bool banned)
         {
                 if (!this.CheckName(firstName, surname, lastName))
                 {
@@ -47,7 +55,7 @@ namespace Student_House
                     {
                         if (!this.CheckPassword(password))
                         {
-                            this.users.Add(new User(userNumber, firstName, surname, lastName, email, building, password, determinePassword, pending, banned));
+                            this.users.Add(new User(userNumber, firstName, surname, lastName, email, building, room, password, determinePassword, pending, banned));
                         }//gorniq red kod ima problem s USER
                         else
                         {
@@ -126,6 +134,11 @@ namespace Student_House
         {
             return this.users.Exists(x => x.Email == email);
         }
+        public bool CheckRoom(String address, int room)
+        {
+            List<User> temp = this.GetUsersFromSameBuilding(address);
+            return temp.Exists(x => x.Building == address);
+        }
         public List<User> GetUsersFromSameBuilding(String building)
         {
             List<User> temp = new List<User>();
@@ -151,6 +164,18 @@ namespace Student_House
                         break;
                     }
                 }
+            }
+        }
+        public void AddBuilding(string name, int capacity)
+        {
+            if(!this.buildings.Exists(x => x.Name == name))
+            {
+                this.buildings.Add(new Building(name, capacity));
+                throw new Exception("A successfully added!");
+            }
+            else
+            {
+                throw new Exception("Building with this name already exists!");
             }
         }
         private bool CheckUser(User u, String building)
@@ -216,6 +241,13 @@ namespace Student_House
         {
             return this.tasks;
         }
-
+        public List<Building> GetAllBuildings()
+        {
+            return this.buildings;
+        }
+        public Building GetBuilding(int index)
+        {
+            return buildings.ElementAt(index);
+        }
     }
 }

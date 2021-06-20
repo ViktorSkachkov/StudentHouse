@@ -66,7 +66,9 @@
             this.tbSendMessage = new System.Windows.Forms.TextBox();
             this.lblChooseStudentFromThisBuilding = new System.Windows.Forms.Label();
             this.tpSharedItems = new System.Windows.Forms.TabPage();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.tbDeleteItem = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnDeleteItem = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -86,7 +88,6 @@
             this.tpComplaints.SuspendLayout();
             this.tpSendMessages.SuspendLayout();
             this.tpSharedItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBack
@@ -113,7 +114,7 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(921, 449);
+            this.tabControl.Size = new System.Drawing.Size(787, 449);
             this.tabControl.TabIndex = 2;
             // 
             // tpRules
@@ -127,7 +128,7 @@
             this.tpRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpRules.Name = "tpRules";
             this.tpRules.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpRules.Size = new System.Drawing.Size(913, 420);
+            this.tpRules.Size = new System.Drawing.Size(779, 420);
             this.tpRules.TabIndex = 0;
             this.tpRules.Text = "Rules";
             this.tpRules.Click += new System.EventHandler(this.tpRules_Click);
@@ -156,6 +157,7 @@
             // 
             this.lbRules.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRules.FormattingEnabled = true;
+            this.lbRules.HorizontalScrollbar = true;
             this.lbRules.ItemHeight = 16;
             this.lbRules.Location = new System.Drawing.Point(16, 53);
             this.lbRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -173,7 +175,7 @@
             this.tpTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpTasks.Name = "tpTasks";
             this.tpTasks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpTasks.Size = new System.Drawing.Size(913, 420);
+            this.tpTasks.Size = new System.Drawing.Size(779, 420);
             this.tpTasks.TabIndex = 1;
             this.tpTasks.Text = "Tasks";
             // 
@@ -191,7 +193,7 @@
             // 
             this.pictureBox2.BackgroundImage = global::Student_House.Properties.Resources.Logo2;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(560, 114);
+            this.pictureBox2.Location = new System.Drawing.Point(560, 115);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(208, 217);
             this.pictureBox2.TabIndex = 5;
@@ -200,6 +202,7 @@
             // lbDaily
             // 
             this.lbDaily.FormattingEnabled = true;
+            this.lbDaily.HorizontalScrollbar = true;
             this.lbDaily.ItemHeight = 16;
             this.lbDaily.Location = new System.Drawing.Point(15, 54);
             this.lbDaily.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -224,7 +227,7 @@
             this.tpEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpEvents.Name = "tpEvents";
             this.tpEvents.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpEvents.Size = new System.Drawing.Size(913, 420);
+            this.tpEvents.Size = new System.Drawing.Size(779, 420);
             this.tpEvents.TabIndex = 2;
             this.tpEvents.Text = "Events";
             this.tpEvents.Click += new System.EventHandler(this.tpEvents_Click);
@@ -257,7 +260,7 @@
             "21:00",
             "22:00",
             "23:00"});
-            this.cbTime.Location = new System.Drawing.Point(622, 50);
+            this.cbTime.Location = new System.Drawing.Point(615, 50);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(121, 24);
             this.cbTime.TabIndex = 13;
@@ -265,7 +268,7 @@
             // cbDay
             // 
             this.cbDay.FormattingEnabled = true;
-            this.cbDay.Location = new System.Drawing.Point(481, 50);
+            this.cbDay.Location = new System.Drawing.Point(471, 50);
             this.cbDay.Name = "cbDay";
             this.cbDay.Size = new System.Drawing.Size(121, 24);
             this.cbDay.TabIndex = 12;
@@ -274,7 +277,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(618, 25);
+            this.label7.Location = new System.Drawing.Point(611, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 21);
             this.label7.TabIndex = 11;
@@ -284,7 +287,7 @@
             // 
             this.lblChooseDay.AutoSize = true;
             this.lblChooseDay.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChooseDay.Location = new System.Drawing.Point(477, 25);
+            this.lblChooseDay.Location = new System.Drawing.Point(467, 25);
             this.lblChooseDay.Name = "lblChooseDay";
             this.lblChooseDay.Size = new System.Drawing.Size(115, 21);
             this.lblChooseDay.TabIndex = 10;
@@ -294,7 +297,7 @@
             // 
             this.pictureBox3.BackgroundImage = global::Student_House.Properties.Resources.Logo2;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(560, 114);
+            this.pictureBox3.Location = new System.Drawing.Point(563, 130);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(208, 217);
             this.pictureBox3.TabIndex = 9;
@@ -350,6 +353,7 @@
             // 
             this.lbEvents.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEvents.FormattingEnabled = true;
+            this.lbEvents.HorizontalScrollbar = true;
             this.lbEvents.ItemHeight = 16;
             this.lbEvents.Location = new System.Drawing.Point(11, 95);
             this.lbEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -370,7 +374,7 @@
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpComplaints.Name = "tpComplaints";
             this.tpComplaints.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpComplaints.Size = new System.Drawing.Size(913, 420);
+            this.tpComplaints.Size = new System.Drawing.Size(779, 420);
             this.tpComplaints.TabIndex = 3;
             this.tpComplaints.Text = "Complaints";
             // 
@@ -387,7 +391,7 @@
             // btnRemoveMessage
             // 
             this.btnRemoveMessage.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveMessage.Location = new System.Drawing.Point(603, 83);
+            this.btnRemoveMessage.Location = new System.Drawing.Point(610, 82);
             this.btnRemoveMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemoveMessage.Name = "btnRemoveMessage";
             this.btnRemoveMessage.Size = new System.Drawing.Size(135, 65);
@@ -400,17 +404,18 @@
             // 
             this.lbAnswers.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbAnswers.FormattingEnabled = true;
+            this.lbAnswers.HorizontalScrollbar = true;
             this.lbAnswers.ItemHeight = 21;
             this.lbAnswers.Location = new System.Drawing.Point(21, 163);
             this.lbAnswers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbAnswers.Name = "lbAnswers";
-            this.lbAnswers.Size = new System.Drawing.Size(717, 235);
+            this.lbAnswers.Size = new System.Drawing.Size(724, 235);
             this.lbAnswers.TabIndex = 5;
             // 
             // btnSendComplaint
             // 
             this.btnSendComplaint.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendComplaint.Location = new System.Drawing.Point(462, 83);
+            this.btnSendComplaint.Location = new System.Drawing.Point(469, 82);
             this.btnSendComplaint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSendComplaint.Name = "btnSendComplaint";
             this.btnSendComplaint.Size = new System.Drawing.Size(135, 65);
@@ -426,7 +431,7 @@
             this.tbComp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbComp.Multiline = true;
             this.tbComp.Name = "tbComp";
-            this.tbComp.Size = new System.Drawing.Size(616, 51);
+            this.tbComp.Size = new System.Drawing.Size(623, 51);
             this.tbComp.TabIndex = 2;
             // 
             // lblComplaint
@@ -454,7 +459,7 @@
             this.tpSendMessages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpSendMessages.Name = "tpSendMessages";
             this.tpSendMessages.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpSendMessages.Size = new System.Drawing.Size(913, 420);
+            this.tpSendMessages.Size = new System.Drawing.Size(779, 420);
             this.tpSendMessages.TabIndex = 4;
             this.tpSendMessages.Text = "Send messages";
             // 
@@ -481,24 +486,24 @@
             // 
             // lbMessages
             // 
-            this.lbMessages.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMessages.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMessages.FormattingEnabled = true;
             this.lbMessages.HorizontalScrollbar = true;
-            this.lbMessages.ItemHeight = 21;
-            this.lbMessages.Location = new System.Drawing.Point(433, 68);
+            this.lbMessages.ItemHeight = 16;
+            this.lbMessages.Location = new System.Drawing.Point(408, 68);
             this.lbMessages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbMessages.Name = "lbMessages";
-            this.lbMessages.Size = new System.Drawing.Size(328, 319);
+            this.lbMessages.Size = new System.Drawing.Size(353, 308);
             this.lbMessages.TabIndex = 7;
             // 
             // cbStudentsFromThisBuilding
             // 
-            this.cbStudentsFromThisBuilding.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStudentsFromThisBuilding.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbStudentsFromThisBuilding.FormattingEnabled = true;
             this.cbStudentsFromThisBuilding.Location = new System.Drawing.Point(33, 68);
             this.cbStudentsFromThisBuilding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbStudentsFromThisBuilding.Name = "cbStudentsFromThisBuilding";
-            this.cbStudentsFromThisBuilding.Size = new System.Drawing.Size(190, 29);
+            this.cbStudentsFromThisBuilding.Size = new System.Drawing.Size(227, 24);
             this.cbStudentsFromThisBuilding.TabIndex = 6;
             // 
             // btnSendMessage
@@ -525,7 +530,7 @@
             // 
             // tbSendMessage
             // 
-            this.tbSendMessage.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSendMessage.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbSendMessage.Location = new System.Drawing.Point(32, 139);
             this.tbSendMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSendMessage.Multiline = true;
@@ -546,7 +551,9 @@
             // tpSharedItems
             // 
             this.tpSharedItems.BackColor = System.Drawing.Color.LightGray;
-            this.tpSharedItems.Controls.Add(this.pictureBox4);
+            this.tpSharedItems.Controls.Add(this.tbDeleteItem);
+            this.tpSharedItems.Controls.Add(this.label8);
+            this.tpSharedItems.Controls.Add(this.btnDeleteItem);
             this.tpSharedItems.Controls.Add(this.label4);
             this.tpSharedItems.Controls.Add(this.label3);
             this.tpSharedItems.Controls.Add(this.label2);
@@ -558,19 +565,38 @@
             this.tpSharedItems.Location = new System.Drawing.Point(4, 25);
             this.tpSharedItems.Margin = new System.Windows.Forms.Padding(4);
             this.tpSharedItems.Name = "tpSharedItems";
-            this.tpSharedItems.Size = new System.Drawing.Size(913, 420);
+            this.tpSharedItems.Size = new System.Drawing.Size(779, 420);
             this.tpSharedItems.TabIndex = 5;
             this.tpSharedItems.Text = "Shared items";
             // 
-            // pictureBox4
+            // tbDeleteItem
             // 
-            this.pictureBox4.BackgroundImage = global::Student_House.Properties.Resources.Logo2;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(493, 144);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(242, 256);
-            this.pictureBox4.TabIndex = 10;
-            this.pictureBox4.TabStop = false;
+            this.tbDeleteItem.Location = new System.Drawing.Point(534, 243);
+            this.tbDeleteItem.Name = "tbDeleteItem";
+            this.tbDeleteItem.Size = new System.Drawing.Size(219, 22);
+            this.tbDeleteItem.TabIndex = 13;
+            this.tbDeleteItem.TextChanged += new System.EventHandler(this.tbDeleteItem_TextChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(531, 188);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(222, 42);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Write the name of \r\nthe item you want to delete:";
+            // 
+            // btnDeleteItem
+            // 
+            this.btnDeleteItem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteItem.Location = new System.Drawing.Point(534, 271);
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Size = new System.Drawing.Size(219, 58);
+            this.btnDeleteItem.TabIndex = 11;
+            this.btnDeleteItem.Text = "Delete Item";
+            this.btnDeleteItem.UseVisualStyleBackColor = true;
+            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
             // label4
             // 
@@ -611,7 +637,7 @@
             this.tbItemQuantity.Location = new System.Drawing.Point(139, 103);
             this.tbItemQuantity.Margin = new System.Windows.Forms.Padding(4);
             this.tbItemQuantity.Name = "tbItemQuantity";
-            this.tbItemQuantity.Size = new System.Drawing.Size(132, 23);
+            this.tbItemQuantity.Size = new System.Drawing.Size(169, 23);
             this.tbItemQuantity.TabIndex = 4;
             // 
             // tbItemPrice
@@ -620,18 +646,19 @@
             this.tbItemPrice.Location = new System.Drawing.Point(139, 62);
             this.tbItemPrice.Margin = new System.Windows.Forms.Padding(4);
             this.tbItemPrice.Name = "tbItemPrice";
-            this.tbItemPrice.Size = new System.Drawing.Size(132, 23);
+            this.tbItemPrice.Size = new System.Drawing.Size(169, 23);
             this.tbItemPrice.TabIndex = 3;
             // 
             // listBox1
             // 
             this.listBox1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 21;
             this.listBox1.Location = new System.Drawing.Point(18, 144);
             this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(425, 256);
+            this.listBox1.Size = new System.Drawing.Size(490, 256);
             this.listBox1.TabIndex = 2;
             // 
             // tbAddedItem
@@ -640,14 +667,14 @@
             this.tbAddedItem.Location = new System.Drawing.Point(139, 21);
             this.tbAddedItem.Margin = new System.Windows.Forms.Padding(4);
             this.tbAddedItem.Name = "tbAddedItem";
-            this.tbAddedItem.Size = new System.Drawing.Size(132, 23);
+            this.tbAddedItem.Size = new System.Drawing.Size(169, 23);
             this.tbAddedItem.TabIndex = 1;
             // 
             // btnAddSharedItem
             // 
             this.btnAddSharedItem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSharedItem.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddSharedItem.Location = new System.Drawing.Point(284, 44);
+            this.btnAddSharedItem.Location = new System.Drawing.Point(349, 41);
             this.btnAddSharedItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSharedItem.Name = "btnAddSharedItem";
             this.btnAddSharedItem.Size = new System.Drawing.Size(159, 58);
@@ -671,7 +698,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(984, 517);
+            this.ClientSize = new System.Drawing.Size(822, 517);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.lblBack);
@@ -694,7 +721,6 @@
             this.tpSendMessages.PerformLayout();
             this.tpSharedItems.ResumeLayout(false);
             this.tpSharedItems.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,12 +768,14 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnAddSharedItem;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblChooseDay;
         private System.Windows.Forms.ComboBox cbTime;
         private System.Windows.Forms.ComboBox cbDay;
+        private System.Windows.Forms.Button btnDeleteItem;
+        private System.Windows.Forms.TextBox tbDeleteItem;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -30,17 +30,42 @@ namespace Student_House
             this.UpdateList();
             this.Fill();
             this.Update();
+            this.UpdateSharedItems();
             this.WelcomeUser();
+        }
+        private void UpdateSharedItems()
+        {
+
+            listBox1.Items.Clear();
+            List<SharedItems> sharedItems = this.studentHouse.manager.GetSharedItems();
+
+            int studentCount = 0;
+            foreach (User u in studentHouse.GetAllUsers())
+            {
+                if (user.Building == u.Building) { studentCount++; }
+            }
+
+            foreach (var v in sharedItems)
+            {
+                foreach (User us in studentHouse.GetAllUsers())
+                {
+                        if (user.Building == us.Building && v.StudentNumber != us.UserNumber)
+                        {
+                            listBox1.Items.Add($"{us.FirstName} has to pay {studentHouse.manager.splittingAmmount((v.ItemPrice * v.ItemQuantity), studentCount)} to {v.Name} for {v.ItemQuantity} {v.ItemName}");
+                        }
+
+                }
+            }
         }
         private void UpdateList()
         {
             this.cbStudentsFromThisBuilding.Items.Clear();
             this.studentsFromThisBuilding.Clear();
-            this.studentsFromThisBuilding.AddRange(this.studentHouse.GetUsersFromSameBuilding(this.user.Building));
-            foreach (User u in this.studentsFromThisBuilding)
+            foreach (User u in this.studentHouse.GetUsersFromSameBuilding(this.user.Building))
             {
                 if (u != this.user)
                 {
+                    this.studentsFromThisBuilding.Add(u);
                     this.cbStudentsFromThisBuilding.Items.Add(u.GetInfo());
                 }
             }
@@ -98,17 +123,30 @@ namespace Student_House
             string Time = cbTime.Text;
             User organizer = this.user;
             String building = this.user.Building;
-
-            this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
-            UpdateEvents();
-            MessageBox.Show("Event successfully added!");
+            if (Event != "" && Day != "" && Time != "")
+            {
+                this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
+                UpdateEvents();
+                MessageBox.Show("Event successfully added!");
+            }
+            else
+            {
+                MessageBox.Show("Fill in the correct information!");
+            }
         }
         private void SendComplaint()
         {
             string complaintdescription = this.tbComp.Text.Trim();
-            DateTime complaintdate = DateTime.Now;
-            String building = this.user.Building;
-            this.studentHouse.AddComplaint(complaintdescription, complaintdate, building, this.user);
+            if (complaintdescription != "")
+            {
+                DateTime complaintdate = DateTime.Now;
+                String building = this.user.Building;
+                this.studentHouse.AddComplaint(complaintdescription, complaintdate, building, this.user);
+            }
+            else
+            {
+                throw new Exception("Write a complaint!");
+            }
         }
         private void btnSendComplaint_Click(object sender, EventArgs e)
         {
@@ -123,10 +161,17 @@ namespace Student_House
         }
         private void RemoveMessage()
         {
-            int index = this.lbAnswers.SelectedIndex;
-            this.user.RemoveAnswer(index);
-            this.UpdateComplainstAndMessages();
-            throw new Exception("Message successfully deleted!");
+            if (this.lbAnswers.SelectedIndex > -1)
+            {
+                int index = this.lbAnswers.SelectedIndex;
+                this.user.RemoveAnswer(index);
+                this.UpdateComplainstAndMessages();
+                throw new Exception("Message successfully deleted!");
+            }
+            else
+            {
+                throw new Exception("Select a message!");
+            }
         }
         private void btnRemoveMessage_Click(object sender, EventArgs e)
         {
@@ -141,17 +186,24 @@ namespace Student_House
         }
         private void Send()
         {
-            int index = this.cbStudentsFromThisBuilding.SelectedIndex;
-            User u = this.studentsFromThisBuilding[index];
-            String comment = this.tbSendMessage.Text.Trim();
-            if (comment != "")
+            if (this.cbStudentsFromThisBuilding.SelectedIndex > -1)
             {
-                u.AddMessage(comment, this.user);
-                throw new Exception("Message successfully sent!");
+                int index = this.cbStudentsFromThisBuilding.SelectedIndex;
+                User u = this.studentsFromThisBuilding[index];
+                String comment = this.tbSendMessage.Text.Trim();
+                if (comment != "")
+                {
+                    u.AddMessage(comment, this.user);
+                    throw new Exception("Message successfully sent!");
+                }
+                else
+                {
+                    throw new Exception("Write something in the text field!");
+                }
             }
             else
             {
-                throw new Exception("Write something in the text field!");
+                throw new Exception("Select a building!");
             }
         }
         private void btnSendMessage_Click(object sender, EventArgs e)
@@ -169,50 +221,49 @@ namespace Student_House
         private void btnAddSharedItem_Click(object sender, EventArgs e)
         {
             int studentsCount = 0;
-            this.studentHouse.manager.CreateSharedItem(user.UserNumber, tbAddedItem.Text, Convert.ToDouble(tbItemPrice.Text), Convert.ToInt32(tbItemQuantity.Text));
-            foreach (User u in studentHouse.GetAllUsers())
+            if (this.tbAddedItem.Text != "" && tbItemPrice.Text != "" & tbItemQuantity.Text != "")
             {
-                if (user.Building == u.Building)
+                this.studentHouse.manager.CreateSharedItem(this.user, tbAddedItem.Text, Convert.ToDouble(tbItemPrice.Text), Convert.ToInt32(tbItemQuantity.Text));
+                foreach (User u in studentHouse.GetAllUsers())
                 {
-                    studentsCount++;
+                    if (user.Building == u.Building)
+                    {
+                        studentsCount++;
+                    }
+
+                    studentsCount = 0;
                 }
-               
-                studentsCount = 0;
+                this.UpdateSharedItems();
             }
-
-            listBox1.Items.Clear();
-            List<SharedItems> sharedItems = this.studentHouse.manager.GetSharedItems();
-
-            int studentCount = 0;
-            foreach (User u in studentHouse.GetAllUsers())
+            else
             {
-                if (user.Building == u.Building) { studentCount++; }
-            }
-
-            foreach (var v in sharedItems)
-            {
-                foreach (User us in studentHouse.GetAllUsers())
-                {
-                    if (user.Building == us.Building && user.UserNumber != us.UserNumber) { listBox1.Items.Add($"{us.FirstName} have to pay {studentHouse.manager.splittingAmmount((v.ItemPrice * v.ItemQuantity), studentCount)} on {v.StudentNumber} for {v.ItemQuantity} {v.ItemName}"); }
-                }
-
+                MessageBox.Show("Fill in the correct information!");
             }
         }
        
 
         private void btnRemoveEvent_Click(object sender, EventArgs e)
         {
-            int index = this.lbEvents.SelectedIndex;
-            Event eve = this.tempEvents[index];
-            if (eve.Organizer != this.user)
+            if (lbEvents.SelectedIndex > -1)
             {
-                MessageBox.Show("You can't delete this event because it wasn't created by you!");
+
+
+                int index = this.lbEvents.SelectedIndex;
+                Event eve = this.tempEvents[index];
+                if (eve.Organizer != this.user)
+                {
+                    MessageBox.Show("You can't delete this event because it wasn't created by you!");
+                }
+                else
+                {
+                    this.studentHouse.RemoveEvent(eve);
+                    this.lbEvents.Items.RemoveAt(index);
+                    MessageBox.Show("The event was successfully deleted!");
+                }
             }
             else
             {
-                this.studentHouse.RemoveEvent(eve);
-                this.lbEvents.Items.RemoveAt(index);
-                MessageBox.Show("The event was successfully deleted!");
+                MessageBox.Show("Please select something to delete");
             }
         }
 
@@ -256,6 +307,42 @@ namespace Student_House
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void DeleteItem()
+        {
+            String itemName = this.tbDeleteItem.Text.Trim();
+            if (itemName != "")
+            {
+                this.studentHouse.manager.DeleteSharedItem(this.user, itemName);
+            }
+            else
+            {
+                throw new Exception("Fill in th correct infomation!");
+            }
+        }
+        private void btnDeleteItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DeleteItem();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            try
+            {
+                this.UpdateSharedItems();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tbDeleteItem_TextChanged(object sender, EventArgs e)
+        {
+
         }
         // SHARED ITEMS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

@@ -41,35 +41,42 @@ namespace Student_House
         {
             int userNumber = int.Parse(this.tbUserNumber.Text.Trim());
             String password = this.tbPassword.Text.Trim();
-            if (this.studentHouse.CheckNumber(userNumber))
+            if (password != "")
             {
-                if (this.studentHouse.CheckPassword(password))
+                if (this.studentHouse.CheckNumber(userNumber))
                 {
-                    User u = this.studentHouse.GetUser(userNumber, password);
-                    if (u.Pending)
+                    if (this.studentHouse.CheckPassword(password))
                     {
-                        MessageBox.Show("Your account is still in pending! Please wait for approval from admin!");
-                    }
-                    else
-                    {
-                        if (u.Banned)
+                        User u = this.studentHouse.GetUser(userNumber, password);
+                        if (u.Pending)
                         {
-                            MessageBox.Show("Your account is currently banned! Please wait to be unbanned!");
+                            MessageBox.Show("Your account is still in pending! Please wait for approval from admin!");
                         }
                         else
                         {
-                            this.ChangeForm(userNumber, password);
+                            if (u.Banned)
+                            {
+                                MessageBox.Show("Your account is currently banned! Please wait to be unbanned!");
+                            }
+                            else
+                            {
+                                this.ChangeForm(userNumber, password);
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show(String.Format("This password does not exist in the database!"));
                     }
                 }
                 else
                 {
-                    MessageBox.Show(String.Format("This password does not exist in the database!"));
+                    MessageBox.Show(String.Format("The user number '{0}' does not exist!", userNumber));
                 }
             }
             else
             {
-                MessageBox.Show(String.Format("The user number '{0}' does not exist!", userNumber));
+                MessageBox.Show("Fill in the correct information!");
             }
         }
         private void btnLogIn_Click(object sender, EventArgs e)
@@ -78,9 +85,9 @@ namespace Student_House
             {
                 this.Log();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Please enter Login information");
             }
         }
 
@@ -98,20 +105,20 @@ namespace Student_House
         private void AssignTasks()
         {
             this.studentHouse.ClearAllDays();
-            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            foreach (Building building in this.studentHouse.GetAllBuildings())
             {
-                if (this.studentHouse.GetUsersFromSameBuilding(building).Count > 0)
+                if (this.studentHouse.GetUsersFromSameBuilding(building.Name).Count > 0)
                 {
                     foreach (Task task in this.studentHouse.GetAllTasks())
                     {
                         if (task.Type == "weekly")
                         {
-                            int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                            int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building.Name).Count - 1);
                             if (i == -1)
                             {
                                 i++;
                             }
-                            this.studentHouse.AddTask(building, "This week", i, task);
+                            this.studentHouse.AddTask(building.Name, "This week", i, task);
                         }
                         else
                         {
@@ -119,12 +126,12 @@ namespace Student_House
                             {
                                 foreach (String day in this.studentHouse.GetDays())
                                 {
-                                    int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building).Count - 1);
+                                    int i = this.rand.Next(-1, this.studentHouse.GetUsersFromSameBuilding(building.Name).Count - 1);
                                     if (i == -1)
                                     {
                                         i++;
                                     }
-                                    this.studentHouse.AddTask(building, day, i, task);
+                                    this.studentHouse.AddTask(building.Name, day, i, task);
                                 }
                             }
                         }
@@ -146,6 +153,11 @@ namespace Student_House
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogIn_Load(object sender, EventArgs e)
         {
 
         }

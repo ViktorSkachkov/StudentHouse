@@ -92,6 +92,12 @@
             this.btnShowBuildingStudents = new System.Windows.Forms.Button();
             this.lblSelectBuilding = new System.Windows.Forms.Label();
             this.cbMessageToBuilding = new System.Windows.Forms.ComboBox();
+            this.tpAddBuilding = new System.Windows.Forms.TabPage();
+            this.btnAddBuilding = new System.Windows.Forms.Button();
+            this.lblCapacity = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbCapacity = new System.Windows.Forms.TextBox();
+            this.tbBuildingName = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblLogOutAdmin = new System.Windows.Forms.Label();
             this.tbRules.SuspendLayout();
@@ -103,6 +109,7 @@
             this.tpComplaints.SuspendLayout();
             this.tpSendMessages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tpAddBuilding.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbRules
@@ -113,12 +120,13 @@
             this.tbRules.Controls.Add(this.tpEvents);
             this.tbRules.Controls.Add(this.tpComplaints);
             this.tbRules.Controls.Add(this.tpSendMessages);
+            this.tbRules.Controls.Add(this.tpAddBuilding);
             this.tbRules.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRules.Location = new System.Drawing.Point(16, 52);
             this.tbRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRules.Name = "tbRules";
             this.tbRules.SelectedIndex = 0;
-            this.tbRules.Size = new System.Drawing.Size(1198, 490);
+            this.tbRules.Size = new System.Drawing.Size(859, 490);
             this.tbRules.TabIndex = 1;
             // 
             // tabPage1
@@ -199,6 +207,7 @@
             // 
             this.lbRules.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRules.FormattingEnabled = true;
+            this.lbRules.HorizontalScrollbar = true;
             this.lbRules.ItemHeight = 21;
             this.lbRules.Location = new System.Drawing.Point(384, 49);
             this.lbRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -256,7 +265,7 @@
             this.tpPendingAccounts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpPendingAccounts.Name = "tpPendingAccounts";
             this.tpPendingAccounts.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpPendingAccounts.Size = new System.Drawing.Size(1190, 461);
+            this.tpPendingAccounts.Size = new System.Drawing.Size(851, 461);
             this.tpPendingAccounts.TabIndex = 1;
             this.tpPendingAccounts.Text = "Pending Accounts";
             // 
@@ -318,6 +327,7 @@
             // lbBanned
             // 
             this.lbBanned.FormattingEnabled = true;
+            this.lbBanned.HorizontalScrollbar = true;
             this.lbBanned.ItemHeight = 16;
             this.lbBanned.Location = new System.Drawing.Point(550, 120);
             this.lbBanned.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -349,6 +359,7 @@
             // lbPending
             // 
             this.lbPending.FormattingEnabled = true;
+            this.lbPending.HorizontalScrollbar = true;
             this.lbPending.ItemHeight = 16;
             this.lbPending.Location = new System.Drawing.Point(37, 120);
             this.lbPending.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -401,7 +412,7 @@
             this.tpTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpTasks.Name = "tpTasks";
             this.tpTasks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpTasks.Size = new System.Drawing.Size(1190, 461);
+            this.tpTasks.Size = new System.Drawing.Size(851, 461);
             this.tpTasks.TabIndex = 2;
             this.tpTasks.Text = "Tasks";
             // 
@@ -539,7 +550,7 @@
             this.tpEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpEvents.Name = "tpEvents";
             this.tpEvents.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpEvents.Size = new System.Drawing.Size(1190, 461);
+            this.tpEvents.Size = new System.Drawing.Size(851, 461);
             this.tpEvents.TabIndex = 3;
             this.tpEvents.Text = "Events";
             // 
@@ -547,7 +558,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(628, 130);
+            this.label8.Location = new System.Drawing.Point(561, 177);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(146, 21);
             this.label8.TabIndex = 21;
@@ -556,7 +567,7 @@
             // cbEventBuilding
             // 
             this.cbEventBuilding.FormattingEnabled = true;
-            this.cbEventBuilding.Location = new System.Drawing.Point(631, 159);
+            this.cbEventBuilding.Location = new System.Drawing.Point(565, 201);
             this.cbEventBuilding.Name = "cbEventBuilding";
             this.cbEventBuilding.Size = new System.Drawing.Size(121, 24);
             this.cbEventBuilding.TabIndex = 20;
@@ -589,7 +600,7 @@
             "21:00",
             "22:00",
             "23:00"});
-            this.cbTime.Location = new System.Drawing.Point(631, 70);
+            this.cbTime.Location = new System.Drawing.Point(565, 123);
             this.cbTime.Name = "cbTime";
             this.cbTime.Size = new System.Drawing.Size(121, 24);
             this.cbTime.TabIndex = 19;
@@ -597,7 +608,7 @@
             // cbDay
             // 
             this.cbDay.FormattingEnabled = true;
-            this.cbDay.Location = new System.Drawing.Point(490, 70);
+            this.cbDay.Location = new System.Drawing.Point(565, 50);
             this.cbDay.Name = "cbDay";
             this.cbDay.Size = new System.Drawing.Size(121, 24);
             this.cbDay.TabIndex = 18;
@@ -606,7 +617,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(627, 45);
+            this.label7.Location = new System.Drawing.Point(561, 99);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(122, 21);
             this.label7.TabIndex = 17;
@@ -616,7 +627,7 @@
             // 
             this.lblChooseDay.AutoSize = true;
             this.lblChooseDay.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChooseDay.Location = new System.Drawing.Point(486, 45);
+            this.lblChooseDay.Location = new System.Drawing.Point(561, 25);
             this.lblChooseDay.Name = "lblChooseDay";
             this.lblChooseDay.Size = new System.Drawing.Size(115, 21);
             this.lblChooseDay.TabIndex = 16;
@@ -626,7 +637,7 @@
             // 
             this.lblEvent.AutoSize = true;
             this.lblEvent.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEvent.Location = new System.Drawing.Point(298, 45);
+            this.lblEvent.Location = new System.Drawing.Point(561, 257);
             this.lblEvent.Name = "lblEvent";
             this.lblEvent.Size = new System.Drawing.Size(139, 21);
             this.lblEvent.TabIndex = 15;
@@ -639,18 +650,18 @@
             "Small Group Gathering",
             "Small Party",
             "Friend / Parents coming over for a few day"});
-            this.cbEvent.Location = new System.Drawing.Point(302, 70);
+            this.cbEvent.Location = new System.Drawing.Point(565, 280);
             this.cbEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbEvent.Name = "cbEvent";
-            this.cbEvent.Size = new System.Drawing.Size(159, 24);
+            this.cbEvent.Size = new System.Drawing.Size(179, 24);
             this.cbEvent.TabIndex = 14;
             // 
             // btnAddEvent
             // 
             this.btnAddEvent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddEvent.Location = new System.Drawing.Point(165, 28);
+            this.btnAddEvent.Location = new System.Drawing.Point(565, 363);
             this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(114, 66);
+            this.btnAddEvent.Size = new System.Drawing.Size(124, 66);
             this.btnAddEvent.TabIndex = 2;
             this.btnAddEvent.Text = "Add event";
             this.btnAddEvent.UseVisualStyleBackColor = true;
@@ -659,9 +670,9 @@
             // btnRemoveEvent
             // 
             this.btnRemoveEvent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveEvent.Location = new System.Drawing.Point(20, 28);
+            this.btnRemoveEvent.Location = new System.Drawing.Point(695, 363);
             this.btnRemoveEvent.Name = "btnRemoveEvent";
-            this.btnRemoveEvent.Size = new System.Drawing.Size(126, 66);
+            this.btnRemoveEvent.Size = new System.Drawing.Size(124, 66);
             this.btnRemoveEvent.TabIndex = 1;
             this.btnRemoveEvent.Text = "Remove event";
             this.btnRemoveEvent.UseVisualStyleBackColor = true;
@@ -671,12 +682,14 @@
             // 
             this.lbEvents.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEvents.FormattingEnabled = true;
+            this.lbEvents.HorizontalScrollbar = true;
             this.lbEvents.ItemHeight = 16;
-            this.lbEvents.Location = new System.Drawing.Point(20, 110);
+            this.lbEvents.Location = new System.Drawing.Point(19, 25);
             this.lbEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbEvents.Name = "lbEvents";
-            this.lbEvents.Size = new System.Drawing.Size(537, 308);
+            this.lbEvents.Size = new System.Drawing.Size(537, 404);
             this.lbEvents.TabIndex = 0;
+            this.lbEvents.SelectedIndexChanged += new System.EventHandler(this.lbEvents_SelectedIndexChanged);
             // 
             // tpComplaints
             // 
@@ -692,7 +705,7 @@
             this.tpComplaints.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpComplaints.Name = "tpComplaints";
             this.tpComplaints.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpComplaints.Size = new System.Drawing.Size(1190, 461);
+            this.tpComplaints.Size = new System.Drawing.Size(851, 461);
             this.tpComplaints.TabIndex = 4;
             this.tpComplaints.Text = "Complaints";
             // 
@@ -790,7 +803,7 @@
             this.tpSendMessages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpSendMessages.Name = "tpSendMessages";
             this.tpSendMessages.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tpSendMessages.Size = new System.Drawing.Size(1190, 461);
+            this.tpSendMessages.Size = new System.Drawing.Size(851, 461);
             this.tpSendMessages.TabIndex = 5;
             this.tpSendMessages.Text = "Send Messages";
             // 
@@ -843,6 +856,7 @@
             // 
             this.lbShowStudentsFromSameBuilding.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShowStudentsFromSameBuilding.FormattingEnabled = true;
+            this.lbShowStudentsFromSameBuilding.HorizontalScrollbar = true;
             this.lbShowStudentsFromSameBuilding.ItemHeight = 21;
             this.lbShowStudentsFromSameBuilding.Location = new System.Drawing.Point(35, 95);
             this.lbShowStudentsFromSameBuilding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -876,17 +890,73 @@
             // 
             this.cbMessageToBuilding.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMessageToBuilding.FormattingEnabled = true;
-            this.cbMessageToBuilding.Items.AddRange(new object[] {
-            "B1",
-            "B2",
-            "B3",
-            "B4"});
-            this.cbMessageToBuilding.Location = new System.Drawing.Point(267, 43);
+            this.cbMessageToBuilding.Location = new System.Drawing.Point(267, 44);
             this.cbMessageToBuilding.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbMessageToBuilding.Name = "cbMessageToBuilding";
             this.cbMessageToBuilding.Size = new System.Drawing.Size(79, 24);
             this.cbMessageToBuilding.TabIndex = 0;
             this.cbMessageToBuilding.SelectedIndexChanged += new System.EventHandler(this.cbMessageToBuilding_SelectedIndexChanged);
+            // 
+            // tpAddBuilding
+            // 
+            this.tpAddBuilding.BackColor = System.Drawing.Color.LightGray;
+            this.tpAddBuilding.Controls.Add(this.btnAddBuilding);
+            this.tpAddBuilding.Controls.Add(this.lblCapacity);
+            this.tpAddBuilding.Controls.Add(this.label9);
+            this.tpAddBuilding.Controls.Add(this.tbCapacity);
+            this.tpAddBuilding.Controls.Add(this.tbBuildingName);
+            this.tpAddBuilding.Location = new System.Drawing.Point(4, 25);
+            this.tpAddBuilding.Name = "tpAddBuilding";
+            this.tpAddBuilding.Padding = new System.Windows.Forms.Padding(3);
+            this.tpAddBuilding.Size = new System.Drawing.Size(851, 461);
+            this.tpAddBuilding.TabIndex = 6;
+            this.tpAddBuilding.Text = "Add Building";
+            // 
+            // btnAddBuilding
+            // 
+            this.btnAddBuilding.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddBuilding.Location = new System.Drawing.Point(30, 176);
+            this.btnAddBuilding.Name = "btnAddBuilding";
+            this.btnAddBuilding.Size = new System.Drawing.Size(206, 69);
+            this.btnAddBuilding.TabIndex = 4;
+            this.btnAddBuilding.Text = "Add Building";
+            this.btnAddBuilding.UseVisualStyleBackColor = true;
+            this.btnAddBuilding.Click += new System.EventHandler(this.btnAddBuilding_Click);
+            // 
+            // lblCapacity
+            // 
+            this.lblCapacity.AutoSize = true;
+            this.lblCapacity.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCapacity.Location = new System.Drawing.Point(26, 97);
+            this.lblCapacity.Name = "lblCapacity";
+            this.lblCapacity.Size = new System.Drawing.Size(79, 21);
+            this.lblCapacity.TabIndex = 3;
+            this.lblCapacity.Text = "Capacity:";
+            this.lblCapacity.Click += new System.EventHandler(this.lblCapacity_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(26, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(169, 21);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Name of the building:";
+            // 
+            // tbCapacity
+            // 
+            this.tbCapacity.Location = new System.Drawing.Point(30, 130);
+            this.tbCapacity.Name = "tbCapacity";
+            this.tbCapacity.Size = new System.Drawing.Size(150, 23);
+            this.tbCapacity.TabIndex = 1;
+            // 
+            // tbBuildingName
+            // 
+            this.tbBuildingName.Location = new System.Drawing.Point(30, 57);
+            this.tbBuildingName.Name = "tbBuildingName";
+            this.tbBuildingName.Size = new System.Drawing.Size(150, 23);
+            this.tbBuildingName.TabIndex = 0;
             // 
             // lblWelcome
             // 
@@ -903,7 +973,7 @@
             this.lblLogOutAdmin.AutoSize = true;
             this.lblLogOutAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogOutAdmin.ForeColor = System.Drawing.Color.Black;
-            this.lblLogOutAdmin.Location = new System.Drawing.Point(1107, 21);
+            this.lblLogOutAdmin.Location = new System.Drawing.Point(764, 21);
             this.lblLogOutAdmin.Name = "lblLogOutAdmin";
             this.lblLogOutAdmin.Size = new System.Drawing.Size(107, 29);
             this.lblLogOutAdmin.TabIndex = 11;
@@ -914,7 +984,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 553);
+            this.ClientSize = new System.Drawing.Size(886, 553);
             this.Controls.Add(this.lblLogOutAdmin);
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.tbRules);
@@ -937,6 +1007,8 @@
             this.tpSendMessages.ResumeLayout(false);
             this.tpSendMessages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tpAddBuilding.ResumeLayout(false);
+            this.tpAddBuilding.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1009,5 +1081,11 @@
         private System.Windows.Forms.ComboBox cbEvent;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbEventBuilding;
+        private System.Windows.Forms.TabPage tpAddBuilding;
+        private System.Windows.Forms.Button btnAddBuilding;
+        private System.Windows.Forms.Label lblCapacity;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbCapacity;
+        private System.Windows.Forms.TextBox tbBuildingName;
     }
 }

@@ -7,11 +7,10 @@ namespace Student_House
 {
 	public class SharedItems
 	{
-		private int studentNumber;
 		private string itemName;
 		private double itemPrice;
 		private int itemQuantity;
-
+		private User organizer;
 
 
 		public SharedItems shared
@@ -22,9 +21,9 @@ namespace Student_House
 			}
 		}
 
-		public SharedItems(int studentNumber, string itemName, double itemPrice, int itemQuantity)
+		public SharedItems(User organizer, string itemName, double itemPrice, int itemQuantity)
 		{
-			this.studentNumber = studentNumber;
+			this.organizer = organizer;
 			this.itemName = itemName;
 			this.itemPrice = itemPrice;
 			this.itemQuantity = itemQuantity;
@@ -35,9 +34,11 @@ namespace Student_House
 			get { return this.itemName; }
 			set { this.itemName = value; }
 		}
-
-
-
+		public User Organizer
+        {
+			get { return this.organizer; }
+			private set { this.organizer = value; }
+        }
 		public double ItemPrice
 		{
 			get { return this.itemPrice; }
@@ -53,22 +54,18 @@ namespace Student_House
 			set { this.itemQuantity = value; }
 		}
 
+		public String Name
+		{
+			get { return this.organizer.FirstName; }
+		}
 		public int StudentNumber
 		{
-			get { return this.studentNumber; }
-			set { this.studentNumber = value; }
+			get { return this.organizer.UserNumber; }
 		}
-
 		public override string ToString()
         {
-            return $"{this.studentNumber} || {this.itemName} || {this.ItemPrice} || {this.itemQuantity}";
+            return $"{this.organizer.FirstName} || {this.itemName} || {this.ItemPrice} || {this.itemQuantity}";
 
         }
-
-
-
-
-
-
     }
 }

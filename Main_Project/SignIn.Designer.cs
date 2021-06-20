@@ -46,6 +46,8 @@ namespace Student_House
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.cbBuilding = new System.Windows.Forms.ComboBox();
             this.lblGoBack = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbRooms = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // tbFirstName
@@ -158,10 +160,10 @@ namespace Student_House
             // btnSignIn
             // 
             this.btnSignIn.Font = new System.Drawing.Font("Tahoma", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignIn.Location = new System.Drawing.Point(198, 346);
+            this.btnSignIn.Location = new System.Drawing.Point(198, 385);
             this.btnSignIn.Margin = new System.Windows.Forms.Padding(4);
             this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(140, 46);
+            this.btnSignIn.Size = new System.Drawing.Size(140, 55);
             this.btnSignIn.TabIndex = 12;
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.UseVisualStyleBackColor = true;
@@ -205,8 +207,9 @@ namespace Student_House
             "B4"});
             this.cbBuilding.Location = new System.Drawing.Point(198, 306);
             this.cbBuilding.Name = "cbBuilding";
-            this.cbBuilding.Size = new System.Drawing.Size(59, 24);
+            this.cbBuilding.Size = new System.Drawing.Size(140, 24);
             this.cbBuilding.TabIndex = 17;
+            this.cbBuilding.SelectedIndexChanged += new System.EventHandler(this.cbBuilding_SelectedIndexChanged);
             // 
             // lblGoBack
             // 
@@ -219,12 +222,32 @@ namespace Student_House
             this.lblGoBack.Text = "Go Back";
             this.lblGoBack.Click += new System.EventHandler(this.lblGoBack_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(125, 348);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 21);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Room:";
+            // 
+            // cbRooms
+            // 
+            this.cbRooms.FormattingEnabled = true;
+            this.cbRooms.Location = new System.Drawing.Point(198, 345);
+            this.cbRooms.Name = "cbRooms";
+            this.cbRooms.Size = new System.Drawing.Size(140, 24);
+            this.cbRooms.TabIndex = 20;
+            // 
             // SignIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(505, 412);
+            this.ClientSize = new System.Drawing.Size(505, 464);
+            this.Controls.Add(this.cbRooms);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblGoBack);
             this.Controls.Add(this.cbBuilding);
             this.Controls.Add(this.tbPassword);
@@ -270,5 +293,7 @@ namespace Student_House
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.ComboBox cbBuilding;
         private System.Windows.Forms.Label lblGoBack;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbRooms;
     }
 }

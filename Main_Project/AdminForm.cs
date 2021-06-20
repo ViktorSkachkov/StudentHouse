@@ -63,10 +63,12 @@ namespace Student_House
             this.cbDay.Items.AddRange(this.studentHouse.GetDays().ToArray());
             this.cbBuilding.Items.Clear();
             this.cbEventBuilding.Items.Clear();
-            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            this.cbMessageToBuilding.Items.Clear();
+            foreach (Building building in this.studentHouse.GetAllBuildings())
             {
-                this.cbBuilding.Items.Add(building);
-                this.cbEventBuilding.Items.Add(building);
+                this.cbBuilding.Items.Add(building.Name);
+                this.cbEventBuilding.Items.Add(building.Name);
+                this.cbMessageToBuilding.Items.Add(building.Name);
             }
         }
 
@@ -112,10 +114,17 @@ namespace Student_House
 
         private void Remove()
         {
-            String rule = this.lbRules.SelectedItem.ToString();
-            this.rules.RemoveRule(rule);
-            MessageBox.Show(String.Format("The rule {0} was successfully deleted!", rule));
-            this.UpdateRules();
+            if (this.lbRules.SelectedIndex > -1)
+            {
+                String rule = this.lbRules.SelectedItem.ToString();
+                this.rules.RemoveRule(rule);
+                MessageBox.Show(String.Format("The rule {0} was successfully deleted!", rule));
+                this.UpdateRules();
+            }
+            else
+            {
+                throw new Exception("Select a rule!");
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -132,20 +141,27 @@ namespace Student_House
 
         private void Edit()
         {
-            int index = this.lbRules.SelectedIndex;
-            String oldRule = this.lbRules.SelectedItem.ToString();
-            String newRule = this.tbEditRule.Text.Trim();
-            if (newRule == String.Empty)
+            if (this.lbRules.SelectedIndex > -1)
             {
-                MessageBox.Show(String.Format("There is nothing written for a rule!"));
+                int index = this.lbRules.SelectedIndex;
+                String oldRule = this.lbRules.SelectedItem.ToString();
+                String newRule = this.tbEditRule.Text.Trim();
+                if (newRule == String.Empty)
+                {
+                    MessageBox.Show(String.Format("There is nothing written for a rule!"));
+                }
+                else
+                {
+                    this.rules.EditRule(index, oldRule, newRule);
+                    this.rules.RemoveRule(oldRule);
+                    MessageBox.Show(String.Format("The rule '{0}' was successfully replaced with rule '{1}'", oldRule, newRule));
+                }
+                this.UpdateRules();
             }
             else
             {
-                this.rules.EditRule(index, oldRule, newRule);
-                this.rules.RemoveRule(oldRule);
-                MessageBox.Show(String.Format("The rule '{0}' was successfully replaced with rule '{1}'", oldRule, newRule));
+                throw new Exception("Select a rule!");
             }
-            this.UpdateRules();
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -174,7 +190,7 @@ namespace Student_House
             {
                 if (u.Pending)
                 {
-                    this.lbPending.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber}");
+                    this.lbPending.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber} from {u.Building}, room {u.Room}");
                     this.pendingUsers.Add(u);
                 }
             }
@@ -189,7 +205,7 @@ namespace Student_House
                 if (u.Banned)
                 {
                     this.bannedUsers.Add(u);
-                    this.lbBanned.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber}");
+                    this.lbBanned.Items.Add($"{u.LastName},{u.FirstName}:{u.UserNumber} from {u.Building}, room {u.Room}");
 
                 }
         }
@@ -203,12 +219,19 @@ namespace Student_House
 
         private void btnApprove_Click(object sender, EventArgs e)
               {
-            int index = this.lbPending.SelectedIndex;
+            if (this.lbPending.SelectedIndex > -1)
+            {
+                int index = this.lbPending.SelectedIndex;
 
-            User u = this.pendingUsers[index];
-            u.ChangePending();
-            MessageBox.Show($"{this.pendingUsers[index].UserNumber}" + " approved");
-            this.RefreshPending();
+                User u = this.pendingUsers[index];
+                u.ChangePending();
+                MessageBox.Show($"{this.pendingUsers[index].UserNumber}" + " approved");
+                this.RefreshPending();
+            }
+            else
+            {
+                MessageBox.Show("Select an account!");
+            }
         }
         private void Bann()
         {
@@ -251,13 +274,20 @@ namespace Student_House
 
         private void btnUnbann_Click(object sender, EventArgs e)
         {
-            int index = this.lbBanned.SelectedIndex;
+            if (this.lbBanned.SelectedIndex > -1)
+            {
+                int index = this.lbBanned.SelectedIndex;
 
-            User u = this.bannedUsers[index];
-            u.Unbann();
-            MessageBox.Show($"{this.bannedUsers[index].UserNumber} is unbanned!");
-            this.lbBanned.Items.Clear();
-            this.RefreshBann();
+                User u = this.bannedUsers[index];
+                u.Unbann();
+                MessageBox.Show($"{this.bannedUsers[index].UserNumber} is unbanned!");
+                this.lbBanned.Items.Clear();
+                this.RefreshBann();
+            }
+            else
+            {
+                MessageBox.Show("Select an account!");
+            }
         }
 
 
@@ -274,13 +304,20 @@ namespace Student_House
 
         private void Deny()
         {
-            int index = this.lbPending.SelectedIndex;
-            User u = this.pendingUsers[index];
-            int studentNumber = u.UserNumber;
-            this.studentHouse.RemoveUser(studentNumber);
-            this.lbPending.Items.Clear();
-            MessageBox.Show($"{studentNumber}" + " rejected");
-            this.RefreshPending();
+            if (this.lbPending.SelectedIndex > -1)
+            {
+                int index = this.lbPending.SelectedIndex;
+                User u = this.pendingUsers[index];
+                int studentNumber = u.UserNumber;
+                this.studentHouse.RemoveUser(studentNumber);
+                this.lbPending.Items.Clear();
+                MessageBox.Show($"{studentNumber}" + " rejected");
+                this.RefreshPending();
+            }
+            else
+            {
+                throw new Exception("Select an account!");
+            }
         }
 
       
@@ -389,9 +426,9 @@ namespace Student_House
         {
             this.lbEvents.Items.Clear();
             this.UserEvents.Clear();
-            foreach (String building in Enum.GetNames(typeof(Buildings)))
+            foreach (Building building in this.studentHouse.GetAllBuildings())
             {
-                foreach (Event e in this.studentHouse.GetEvents(building))
+                foreach (Event e in this.studentHouse.GetEvents(building.Name))
                 {
                     this.UserEvents.Add(e);
                     this.lbEvents.Items.Add(e.GetInfo(this.user) + " from building " + e.Building);
@@ -425,17 +462,24 @@ namespace Student_House
         }
         private void Answer()
         {
-            int index = this.lbComp.SelectedIndex;
-            Complaint complaint = this.studentHouse.GetComplaints()[index];
-            User receiver = complaint.GetSender;
-            String message = this.tbMessage.Text.Trim();
-            if (receiver.AddAnswer(message))
+            if (this.lbComp.SelectedIndex > -1)
             {
-                throw new Exception("Answer successfully sent!");
+                int index = this.lbComp.SelectedIndex;
+                Complaint complaint = this.studentHouse.GetComplaints()[index];
+                User receiver = complaint.GetSender;
+                String message = this.tbMessage.Text.Trim();
+                if (receiver.AddAnswer(message))
+                {
+                    throw new Exception("Answer successfully sent!");
+                }
+                else
+                {
+                    throw new Exception("Write something in the text field!");
+                }
             }
             else
             {
-                throw new Exception("Write something in the text field!");
+                throw new Exception("Select a comlaint!");
             }
         }
 
@@ -456,17 +500,17 @@ namespace Student_House
 
         private void RemoveComp()
         {
-            int action = this.lbComp.SelectedIndex;
-            if (action > -1)
-            {
-                this.studentHouse.RemoveComplaint(action);
-                this.lbComp.Items.RemoveAt(action);
-                throw new Exception("Complaint successfully removed!");
-            }
-            else
-            {
-                throw new Exception("Select a complaint to remove!");
-            }
+                int action = this.lbComp.SelectedIndex;
+                if (action > -1)
+                {
+                    this.studentHouse.RemoveComplaint(action);
+                    this.lbComp.Items.RemoveAt(action);
+                    throw new Exception("Complaint successfully removed!");
+                }
+                else
+                {
+                    throw new Exception("Select a complaint to remove!");
+                }
         }
 
         private void btnRemoveComp_Click(object sender, EventArgs e)
@@ -493,13 +537,20 @@ namespace Student_House
         // SEND MESSAGE //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void ShowBuildingStudents()
         {
-            String building = this.cbMessageToBuilding.SelectedItem.ToString();
-            this.lbShowStudentsFromSameBuilding.Items.Clear();
-            this.tempForUsers.Clear();
-            foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building))
+            if (this.cbMessageToBuilding.SelectedIndex > -1)
             {
-                this.tempForUsers.Add(u);
-                this.lbShowStudentsFromSameBuilding.Items.Add(u.GetInfo());
+                String building = this.cbMessageToBuilding.SelectedItem.ToString();
+                this.lbShowStudentsFromSameBuilding.Items.Clear();
+                this.tempForUsers.Clear();
+                foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building))
+                {
+                    this.tempForUsers.Add(u);
+                    this.lbShowStudentsFromSameBuilding.Items.Add(u.GetInfo());
+                }
+            }
+            else
+            {
+                throw new Exception("Select a building!");
             }
         }
 
@@ -524,19 +575,26 @@ namespace Student_House
 
         private void SendToAll()
         {
-            String building = this.cbMessageToBuilding.SelectedItem.ToString();
-            String message = this.tbSendToSelected.Text.Trim();
-            if (message != "")
+            if (this.cbMessageToBuilding.SelectedIndex > -1)
             {
-                foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building))
+                String building = this.cbMessageToBuilding.SelectedItem.ToString();
+                String message = this.tbSendToSelected.Text.Trim();
+                if (message != "")
                 {
-                    u.AddMessage(message, this.user);
+                    foreach (User u in this.studentHouse.GetUsersFromSameBuilding(building))
+                    {
+                        u.AddMessage(message, this.user);
+                    }
+                    throw new Exception("Message successfully sent!");
                 }
-                throw new Exception("Message successfully sent!");
+                else
+                {
+                    throw new Exception("Write something in the text field!");
+                }
             }
             else
             {
-                throw new Exception("Write something in the text field!");
+                throw new Exception("Select a building!");
             }
         }
 
@@ -564,17 +622,24 @@ namespace Student_House
 
         private void SendMessageToSelectedStudent()
         {
-            int index = this.lbShowStudentsFromSameBuilding.SelectedIndex;
-            User user = this.tempForUsers[index];
-            String comment = this.tbSendToSelected.Text.Trim();
-            if (comment != "")
+            if (this.lbShowStudentsFromSameBuilding.SelectedIndex > -1)
             {
-                user.AddMessage(comment, this.user);
-                throw new Exception("Message successfully sent!");
+                int index = this.lbShowStudentsFromSameBuilding.SelectedIndex;
+                User user = this.tempForUsers[index];
+                String comment = this.tbSendToSelected.Text.Trim();
+                if (comment != "")
+                {
+                    user.AddMessage(comment, this.user);
+                    throw new Exception("Message successfully sent!");
+                }
+                else
+                {
+                    throw new Exception("Write something in the text field!");
+                }
             }
             else
             {
-                throw new Exception("Write something in the text field!");
+                throw new Exception("Select a student!");
             }
         }
         private void btnSendMessageToSelected_Click(object sender, EventArgs e)
@@ -591,17 +656,24 @@ namespace Student_House
 
         private void btnRemoveEvent_Click(object sender, EventArgs e)
         {
-            int index = this.lbEvents.SelectedIndex;
-            Event eve = this.UserEvents[index];
-            User u = eve.Organizer;
-            String building = u.Building;
-            this.studentHouse.RemoveEvent(eve);
-            foreach (User student in this.studentHouse.GetUsersFromSameBuilding(building))
+            if (this.lbEvents.SelectedIndex > -1)
             {
-                student.AddMessage("I deleted one of your events. If you have objections, please contact me by writing a complaint!", this.user);
+                int index = this.lbEvents.SelectedIndex;
+                Event eve = this.UserEvents[index];
+                User u = eve.Organizer;
+                String building = u.Building;
+                this.studentHouse.RemoveEvent(eve);
+                foreach (User student in this.studentHouse.GetUsersFromSameBuilding(building))
+                {
+                    student.AddMessage("I deleted one of your events. If you have objections, please contact me by writing a complaint!", this.user);
+                }
+                MessageBox.Show("The event was successfully deleted!");
+                this.UpdateEvents();
             }
-            MessageBox.Show("The event was successfully deleted!");
-            this.UpdateEvents();
+            else
+            {
+                MessageBox.Show("Select an event!");
+            }
         }
 
         private void gbPending_Enter(object sender, EventArgs e)
@@ -626,13 +698,20 @@ namespace Student_House
         }
         private void DeleteAccount()
         {
-            int index = this.lbBanned.SelectedIndex;
-            User u = this.bannedUsers[index];
-            int studentNumber = u.UserNumber;
-            this.studentHouse.RemoveUser(studentNumber);
-            this.lbBanned.Items.Clear();
-            MessageBox.Show($"{studentNumber}" + " rejected");
-            this.RefreshBann();
+            if (this.lbBanned.SelectedIndex > -1)
+            {
+                int index = this.lbBanned.SelectedIndex;
+                User u = this.bannedUsers[index];
+                int studentNumber = u.UserNumber;
+                this.studentHouse.RemoveUser(studentNumber);
+                this.lbBanned.Items.Clear();
+                MessageBox.Show($"{studentNumber}" + " rejected");
+                this.RefreshBann();
+            }
+            else
+            {
+                throw new Exception("Select an account!");
+            }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -651,11 +730,18 @@ namespace Student_House
             string Day = cbDay.Text;
             string Time = cbTime.Text;
             User organizer = this.user;
-            String building = this.cbEventBuilding.SelectedItem.ToString();
+            if (Event != "" && Day != "" && Time != "" && this.cbEventBuilding.SelectedIndex > -1)
+            {
+                String building = this.cbEventBuilding.SelectedItem.ToString();
 
-            this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
-            UpdateEvents();
-            MessageBox.Show("Event successfully added!");
+                this.studentHouse.AddEvent(this.user, Day, Time, Event, building);
+                UpdateEvents();
+                MessageBox.Show("Event successfully added!");
+            }
+            else
+            {
+                MessageBox.Show("Fill n the correct informaion!");
+            }
         }
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
@@ -665,8 +751,50 @@ namespace Student_House
             }
             catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
+        }
+        private void AddBuilding()
+        {
+            String name = this.tbBuildingName.Text.Trim();
+            int capacity = Convert.ToInt32(this.tbCapacity.Text.Trim());
+            if (name != "")
+            {
+                this.studentHouse.AddBuilding(name, capacity);
+            }
+            else
+            {
+                throw new Exception("Fill in the correct information!");
+            }
+        }
+        private void btnAddBuilding_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.AddBuilding();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            try
+            {
+                this.Fill();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void lbEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCapacity_Click(object sender, EventArgs e)
+        {
+
         }
 
 
