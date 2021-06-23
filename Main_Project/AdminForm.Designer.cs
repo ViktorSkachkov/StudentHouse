@@ -52,6 +52,7 @@
             this.btnDeny = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.tpTasks = new System.Windows.Forms.TabPage();
+            this.lbSeeTasks = new System.Windows.Forms.ListBox();
             this.btnSeeTasks = new System.Windows.Forms.Button();
             this.cbBuilding = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -92,7 +93,6 @@
             this.tbBuildingName = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblLogOutAdmin = new System.Windows.Forms.Label();
-            this.lbSeeTasks = new System.Windows.Forms.ListBox();
             this.tbRules.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tpPendingAccounts.SuspendLayout();
@@ -402,6 +402,16 @@
             this.tpTasks.TabIndex = 2;
             this.tpTasks.Text = "Tasks";
             // 
+            // lbSeeTasks
+            // 
+            this.lbSeeTasks.FormattingEnabled = true;
+            this.lbSeeTasks.HorizontalScrollbar = true;
+            this.lbSeeTasks.ItemHeight = 16;
+            this.lbSeeTasks.Location = new System.Drawing.Point(226, 24);
+            this.lbSeeTasks.Name = "lbSeeTasks";
+            this.lbSeeTasks.Size = new System.Drawing.Size(596, 276);
+            this.lbSeeTasks.TabIndex = 12;
+            // 
             // btnSeeTasks
             // 
             this.btnSeeTasks.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -685,7 +695,6 @@
             // 
             this.lbComp.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbComp.FormattingEnabled = true;
-            this.lbComp.HorizontalExtent = 12;
             this.lbComp.HorizontalScrollbar = true;
             this.lbComp.ItemHeight = 21;
             this.lbComp.Location = new System.Drawing.Point(26, 47);
@@ -885,16 +894,6 @@
             this.lblLogOutAdmin.TabIndex = 11;
             this.lblLogOutAdmin.Text = "Log out ";
             this.lblLogOutAdmin.Click += new System.EventHandler(this.lblLogOutAdmin_Click);
-            // 
-            // lbSeeTasks
-            // 
-            this.lbSeeTasks.FormattingEnabled = true;
-            this.lbSeeTasks.HorizontalScrollbar = true;
-            this.lbSeeTasks.ItemHeight = 16;
-            this.lbSeeTasks.Location = new System.Drawing.Point(226, 24);
-            this.lbSeeTasks.Name = "lbSeeTasks";
-            this.lbSeeTasks.Size = new System.Drawing.Size(596, 276);
-            this.lbSeeTasks.TabIndex = 12;
             // 
             // AdminForm
             // 
